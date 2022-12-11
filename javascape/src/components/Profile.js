@@ -5,9 +5,9 @@ import { StringDecoder } from 'string_decoder';
 
 export default function Profile() {
 
-    const [user, setUser] = useState<{ email: string }>();
+    const [user, setUser] = useState({});
 
-    onAuthStateChanged(auth, (currentUser: any) => {
+    onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
     })
 

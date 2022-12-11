@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../firebase"
+import { auth,  } from "../firebase"
 
 export default function SignUp() {
 
@@ -11,6 +11,9 @@ export default function SignUp() {
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
             console.log(user)
+
+   
+
         } catch (error) {
             console.log(error)
         }
