@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth,  } from "../firebase"
+import { auth, firestore  } from "../firebase"
+import { doc, setDoc } from "firebase/firestore"
 
 export default function SignUp() {
 
     const [registerEmail, setRegisterEmail] = useState("")
     const [registerPassword, setRegisterPassword] = useState("")
+    const [registerUsername, setRegisterUsername] = useState("")
 
     const Register = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-            console.log(user)
-
-   
-
+            try {
+                await setDoc(doc(firestore, "Users", user.user.uid), {
+                    Username: registerUsername,
+                    Email: registerEmail,
+                    CreateDate: new Date(),
+                });
+            } catch (error) {
+                console.log('Error in creating user', error);
+            }
         } catch (error) {
             console.log(error)
         }
@@ -27,6 +34,11 @@ export default function SignUp() {
                 <div className='mt-2'>
                     <span>Email: </span>
                     <input onChange={(email) => { setRegisterEmail(email.target.value) }} type="email" required className="border-2" />
+                </div>
+
+                <div className='mt-2'>
+                    <span>Username: </span>
+                    <input onChange={(username) => { setRegisterUsername(username.target.value) }} type="username" required className="border-2" />
                 </div>
 
                 <div className='mt-2'>

@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from "firebase/auth"
-import { doc, getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = ({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,10 +13,4 @@ const firebaseConfig = ({
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
-export const firestore = getFirestore(app);
-
-export const createUserDocument = async (user, additionalData) => {
-    if (!user) return;
-
-    const userRef = doc(`Users/${user.uid}`);
-};
+export const firestore = getFirestore(app)
