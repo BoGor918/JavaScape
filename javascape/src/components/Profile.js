@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { auth } from "../firebase"
 import { onAuthStateChanged, signOut } from "firebase/auth"
-import { StringDecoder } from 'string_decoder';
 
 export default function Profile() {
 
