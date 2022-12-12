@@ -27,7 +27,7 @@ export default function MapperContextProvider(props) {
     })
 
     return (
-        <MapperContext.Provider value={{userData, authUser}}>
+        <MapperContext.Provider value={{userData, authUser }}>
             {props.children}
         </MapperContext.Provider>
     )

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, firestore } from "../firebase"
 import { doc, setDoc } from "firebase/firestore"
@@ -8,10 +9,23 @@ import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {
 
-    const [registerEmail, setRegisterEmail] = useState("")
-    const [registerPassword, setRegisterPassword] = useState("")
-    const [registerUsername, setRegisterUsername] = useState("")
-    const [registerPhoneNumber, setRegisterPhoneNumber] = useState("")
+    var registerEmail = null, registerPassword = null, registerUsername = null, registerPhoneNumber = null;
+
+    const setRegisterEmail = (email) => {
+        registerEmail = email;
+    }
+
+    const setRegisterPassword = (password) => {
+        registerPassword = password;
+    }
+
+    const setRegisterUsername = (username) => {
+        registerUsername = username;
+    }
+
+    const setRegisterPhoneNumber = (phone) => {
+        registerPhoneNumber = phone;
+    }
 
     const navigate = useNavigate();
 
@@ -33,6 +47,23 @@ export default function SignUp() {
             console.log('Error in creating user', error);
         }
     }
+    
+    useEffect(() => {
+        const keyDownHandler = event => {
+
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                Register();
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, []);
+    
 
     return (
         <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
@@ -64,7 +95,7 @@ export default function SignUp() {
 
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
                     <div>
-                        <button onClick={Register} className='w-full h-[3rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Login</button>
+                        <button onClick={Register} className='w-full h-[3rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
                     </div>
                 </div>
 
