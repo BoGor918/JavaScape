@@ -19,7 +19,7 @@ export default function NavBar() {
                 <div className='hidden md:flex items-center '>
                     <ul className='flex'>
                         <li className='px-5'>Home</li>
-                        <li className='px-5'>Topics</li>
+                        <li className='px-5'>Topic</li>
                         <li className='px-5'>Battle</li>
                         <li className='px-5'>Rank</li>
                         <li className='px-5'>Forum</li>

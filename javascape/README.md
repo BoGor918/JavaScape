@@ -5,9 +5,6 @@
 1. npm install firebase
 
 # Tailwind CSS Setup
-<<<<<<< Updated upstream
-1. import --> https://tailwindcss.com/docs/guides/create-react-app
-=======
 1. npm install -D tailwindcss postcss autoprefixer
 2. npx tailwindcss init -p
 3. import --> https://tailwindcss.com/docs/guides/create-react-app
@@ -17,4 +14,8 @@
 
 # React Router Dom Bug Fix Solution
 1. npm install react-router-dom --save
->>>>>>> Stashed changes
+
+# Mapping Condition
+{mappedVariable.map((tempVariable) => { if (Condition) { return (
+
+) } })}
