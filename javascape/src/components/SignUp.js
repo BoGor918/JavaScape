@@ -34,7 +34,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className='SignUp flex flex-col justify-center items-center h-screen bg-[#09002B] text-white font-exo'>
+        <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
             <div>
                 <img src={Logo} alt="" className="max-w-[17rem] my-10" />
             </div>

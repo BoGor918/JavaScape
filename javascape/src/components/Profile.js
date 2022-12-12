@@ -21,9 +21,9 @@ export default function Profile() {
     }
 
     return (
-        <div>
+        <div className=''>
             <NavBar />
-            <div className='Profile w-full flex flex-col justify-center items-center h-screen bg-[#09002B] text-white font-exo uppercase'>
+            <div className='Profile w-full flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo uppercase'>
 
                 <div className='flex flex-col max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
                     <span className='text-xl text-white my-3'>Member Name: admin</span>
