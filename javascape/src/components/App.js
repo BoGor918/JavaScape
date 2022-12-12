@@ -4,19 +4,21 @@ import Login from './Login';
 import Profile from './Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MapperContextProvider from '../globalVariables/MapperContextProvider';
+import Home from './Home';
 
 function App() {
 
   return (
-    <MapperContextProvider>
-      <Router>
+    <Router>
+      <MapperContextProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-      </Router>
-    </MapperContextProvider>
+      </MapperContextProvider>
+    </Router>
   );
 }
 

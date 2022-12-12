@@ -4,6 +4,7 @@ import { auth, firestore } from "../firebase"
 import { doc, setDoc } from "firebase/firestore"
 import Logo from '../images/Logo.png'
 import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {
 
@@ -36,7 +37,7 @@ export default function SignUp() {
     return (
         <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
             <div>
-                <img src={Logo} alt="" className="max-w-[17rem] my-10" />
+                <NavLink to="/"><img src={Logo} alt="" className="max-w-[17rem] my-10" /></NavLink>
             </div>
             <div className='flex flex-col max-w-[28rem] w-full items-center px-[5.5rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>
                 <span className='font-bold text-2xl text-white my-5'>Sign Up</span>

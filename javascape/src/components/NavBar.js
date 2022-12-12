@@ -1,35 +1,59 @@
-import React, {useState} from 'react'
+/* eslint-disable array-callback-return */
+import React, { useState, useContext } from 'react'
 import Logo from "../images/Logo.png"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
+import { MapperContext } from '../globalVariables/MapperContextProvider'
+import { NavLink } from 'react-router-dom'
 
 export default function NavBar() {
+    const {
+        userData,
+        authUser
+    } = useContext(MapperContext);
+
     const [nav, setNav] = useState(true)
 
     const handleNav = () => {
         setNav(!nav)
     }
 
+    const activeLink = "text-white"
+    const inactiveLink = "text-[#B154F0]"
+
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
                 <div>
-                    <img src={Logo} alt="" className="max-w-[10rem]" />
+                    <NavLink to="/"><img src={Logo} alt="" className="max-w-[10rem]" /></NavLink>
                 </div>
 
                 <div className='hidden md:flex items-center '>
                     <ul className='flex'>
-                        <li className='px-5'>Home</li>
-                        <li className='px-5'>Topic</li>
-                        <li className='px-5'>Battle</li>
-                        <li className='px-5'>Rank</li>
-                        <li className='px-5'>Forum</li>
+                        <li className='px-5'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
+                        <li className='px-5'><NavLink to="/topic" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
+                        <li className='px-5'><NavLink to="/battle" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Battle</NavLink></li>
+                        <li className='px-5'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
+                        <li className='px-5'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
                     </ul>
 
                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-5">
                         <div>
-                            <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Bogor</button>
+                            {
+                                authUser === null ?
+                                    <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/login">Login</NavLink></button> :
+                                    userData.map((user) => {
+                                        if (authUser?.email === user.Email) {
+                                            return (
+                                                <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{user.Username}</NavLink></button>
+                                            )
+                                        }
+                                    })
+                            }
                         </div>
                     </div>
+
+
+
                 </div>
 
                 <div onClick={handleNav} className="block md:hidden">
@@ -56,7 +80,6 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
