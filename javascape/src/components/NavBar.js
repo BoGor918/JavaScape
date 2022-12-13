@@ -21,7 +21,7 @@ export default function NavBar() {
 
     // nav bar text active and inactive link style
     const activeLink = "text-white"
-    const inactiveLink = "text-[#B154F0] hover:text-white active:text-white"
+    const inactiveLink = "text-[#B154F0] hover:text-white active:text-white duration-300"
 
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute'>
