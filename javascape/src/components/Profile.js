@@ -25,10 +25,10 @@ export default function Profile() {
 
     return (
         authUser === null ? navigate("/") :
-            <div className=''>
+            <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo uppercase'>
                 {/* Nav bar component */}
                 <NavBar />
-                <div className='Profile w-full flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo uppercase'>
+                <div className='Profile w-full flex flex-col justify-center items-center h-screen'>
                     {/* display users information */}
                     {
                         userData.map((user) => {
@@ -56,6 +56,10 @@ export default function Profile() {
                             }
                         })
                     }
+                </div>
+
+                <div className='flex justify-center items-center mt-[-24px]'>
+                    <span>Copyright © 2022 JavaScape. All Rights Reserved</span>
                 </div>
             </div>
     )

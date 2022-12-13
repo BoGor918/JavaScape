@@ -30,7 +30,7 @@ export default function NavBar() {
                 <div>
                     <NavLink to="/"><img src={Logo} alt="" className="max-w-[10rem]" /></NavLink>
                 </div>
-                <div className='hidden md:flex items-center '>
+                <div className='hidden md:flex items-center'>
                     {/* Nav Text */}
                     <ul className='flex'>
                         <li className='px-5'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
