@@ -8,7 +8,10 @@ import { NavLink } from 'react-router-dom'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 
 export default function Login() {
+    // Get user data from context
     const { userArray } = useContext(MapperContext);
+
+    // Login variables
     const loginEmailOrUsername = useRef("");
     const loginPassword = useRef("");
 
@@ -18,12 +21,14 @@ export default function Login() {
     // Login function
     const Login = async () => {
         try {
+            // if user is using email to login
             if (loginEmailOrUsername.current.value.includes('.') && loginEmailOrUsername.current.value.includes('@')) {
                 const user = await signInWithEmailAndPassword(auth, loginEmailOrUsername.current.value, loginPassword.current.value)
                 console.log(user)
 
                 navigate("/profile")
             } else {
+                // if user is using username to login
                 for (var i = 0; i < userArray.length; i++) {
                     if (Object.is(userArray[0][i], loginEmailOrUsername.current.value) === true) {
                         const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
