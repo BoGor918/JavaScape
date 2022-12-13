@@ -32,17 +32,25 @@ export default function Login() {
                 navigate("/profile")
             } else {
                 // if user is using username to login
+                var haveUsername = false;
                 for (var i = 0; i < userArray.length; i++) {
                     if (Object.is(userArray[0][i], loginEmailOrUsername.current.value) === true) {
                         const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
                         console.log(user)
                         navigate("/profile")
+                        haveUsername = true;
                         break;
                     }
+                    haveUsername = false;
+                }
+
+                if (haveUsername === false) {
+                    alert("Invalid Email / Username or Password, Plz Try Again")
                 }
             }
         } catch (error) {
             console.log(error)
+            alert("Invalid Email / Username or Password, Plz Try Again")
         }
     }
 
