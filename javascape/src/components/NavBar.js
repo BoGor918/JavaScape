@@ -76,7 +76,17 @@ export default function NavBar() {
 
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
                     <div>
-                        <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'>Bogor</button>
+                        {
+                            authUser === null ?
+                                <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/login">Login</NavLink></button> :
+                                userData.map((user) => {
+                                    if (authUser?.email === user.Email) {
+                                        return (
+                                            <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/profile">{user.Username}</NavLink></button>
+                                        )
+                                    }
+                                })
+                        }
                     </div>
                 </div>
             </div>
