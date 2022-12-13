@@ -58,6 +58,7 @@ export default function Profile() {
                         })
                     }
                 </div>
+                {/* Footer */}
                 <Footer />
             </div>
     )
