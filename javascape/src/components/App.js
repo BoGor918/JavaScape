@@ -10,8 +10,10 @@ function App() {
 
   return (
     <Router>
+      {/* Mapper context component added */}
       <MapperContextProvider>
         <Routes>
+          {/* Set up link path */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />

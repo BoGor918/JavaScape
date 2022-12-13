@@ -8,13 +8,16 @@ import Logo from "../images/Logo.png"
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 
 export default function Profile() {
+    // call data from mapper context js
     const {
         userData,
         authUser
     } = useContext(MapperContext)
 
+    // navigate function
     const navigate = useNavigate();
 
+    // Logout function
     const Logout = async () => {
         await signOut(auth)
         navigate("/")
@@ -23,8 +26,10 @@ export default function Profile() {
     return (
         authUser === null ? navigate("/") :
             <div className=''>
+                {/* Nav bar component */}
                 <NavBar />
                 <div className='Profile w-full flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo uppercase'>
+                    {/* display users information */}
                     {
                         userData.map((user) => {
                             if (authUser?.email === user.Email) {

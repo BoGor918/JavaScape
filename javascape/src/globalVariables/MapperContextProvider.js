@@ -8,15 +8,20 @@ export const MapperContext = createContext()
 
 export default function MapperContextProvider(props) {
 
+    // User data set from firestore
     const [userData, setUserData] = useState([])
+    // Logged user data
     const [authUser, setAuthUser] = useState({})
 
+    // Get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
 
+    // Set logged user
     onAuthStateChanged(auth, (currentUser) => {
         setAuthUser(currentUser)
     })
 
+    // Map the user data
     useEffect(() => {
         const GetUserData = async () => {
             const userDataRef = await getDocs(usersCollectionRef)
@@ -27,7 +32,11 @@ export default function MapperContextProvider(props) {
     })
 
     return (
-        <MapperContext.Provider value={{userData, authUser }}>
+        // Pass the data to the children
+        <MapperContext.Provider value={{
+            userData, 
+            authUser,
+        }}>
             {props.children}
         </MapperContext.Provider>
     )

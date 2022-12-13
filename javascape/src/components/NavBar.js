@@ -26,12 +26,10 @@ export default function NavBar() {
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
-
                 {/* Logo */}
                 <div>
                     <NavLink to="/"><img src={Logo} alt="" className="max-w-[10rem]" /></NavLink>
                 </div>
-
                 <div className='hidden md:flex items-center '>
                     {/* Nav Text */}
                     <ul className='flex'>
@@ -41,7 +39,6 @@ export default function NavBar() {
                         <li className='px-5'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
                         <li className='px-5'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
                     </ul>
-
                     {/* Login and Button */}
                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-5">
                         {/* Link to profile only user is logged in else show login button */}

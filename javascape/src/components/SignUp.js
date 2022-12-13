@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function SignUp() {
 
+    // Register variables and set function
     var registerEmail = null, registerPassword = null, registerUsername = null, registerPhoneNumber = null;
 
     const setRegisterEmail = (email) => {
@@ -27,8 +28,10 @@ export default function SignUp() {
         registerPhoneNumber = phone;
     }
 
+    // Navigate function
     const navigate = useNavigate();
 
+    // Register function
     const Register = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
@@ -47,7 +50,8 @@ export default function SignUp() {
             console.log('Error in creating user', error);
         }
     }
-    
+
+    // Enter key press event and call Register function
     useEffect(() => {
         const keyDownHandler = event => {
 
@@ -63,47 +67,49 @@ export default function SignUp() {
             document.removeEventListener('keydown', keyDownHandler);
         };
     }, []);
-    
+
 
     return (
         <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
+            {/* Logo */}
             <div>
                 <NavLink to="/"><img src={Logo} alt="" className="max-w-[17rem] my-10" /></NavLink>
             </div>
+            {/* Sign up form */}
             <div className='flex flex-col max-w-[28rem] w-full items-center px-[5.5rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>
+                {/* Sign up text */}
                 <span className='font-bold text-2xl text-white my-5'>Sign Up</span>
-
+                {/* Email field */}
                 <div className='my-3 flex flex-col w-full'>
                     <span>Email Address: </span>
                     <input onChange={(email) => { setRegisterEmail(email.target.value) }} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
-
+                {/* Phone number field */}
                 <div className='my-3 flex flex-col w-full'>
                     <span>Phone Number: </span>
                     <input onChange={(phone) => { setRegisterPhoneNumber(phone.target.value) }} type="phone" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
-
+                {/* Username field */}
                 <div className='my-3 flex flex-col w-full'>
                     <span>Username: </span>
                     <input onChange={(username) => { setRegisterUsername(username.target.value) }} type="username" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
-
+                {/* Password field */}
                 <div className='my-3 flex flex-col w-full'>
                     <span>Password: </span>
                     <input onChange={(password) => { setRegisterPassword(password.target.value) }} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
-
+                {/* Sign up button */}
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
                     <div>
                         <button onClick={Register} className='w-full h-[3rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
                     </div>
                 </div>
-
+                {/* Link to login view */}
                 <div className='my-3'>
                     <span>Already have a account? <a href='/' className='underline'>Login</a></span>
                 </div>
             </div>
-
         </div>
     )
 }
