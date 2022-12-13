@@ -21,7 +21,7 @@ export default function NavBar() {
 
     // nav bar text active and inactive link style
     const activeLink = "text-white"
-    const inactiveLink = "text-[#B154F0]"
+    const inactiveLink = "text-[#B154F0] hover:text-white active:text-white"
 
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute'>
@@ -45,11 +45,11 @@ export default function NavBar() {
                         <div>
                             {
                                 authUser === null ?
-                                    <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/login">Login</NavLink></button> :
+                                    <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/login">Login</NavLink></button> :
                                     userData.map((user) => {
                                         if (authUser?.email === user.Email) {
                                             return (
-                                                <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{user.Username}</NavLink></button>
+                                                <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{user.Username}</NavLink></button>
                                             )
                                         }
                                     })
@@ -71,11 +71,11 @@ export default function NavBar() {
                 </div>
                 {/* Nav Text */}
                 <ul className="pt-5 px-5">
-                    <li className='p-5 border-b border-gray-500'>Home</li>
-                    <li className='p-5 border-b border-gray-500'>Topics</li>
-                    <li className='p-5 border-b border-gray-500'>Battle</li>
-                    <li className='p-5 border-b border-gray-500'>Rank</li>
-                    <li className='p-5 border-b border-gray-500'>Forum</li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/topic" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/battle" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Battle</NavLink></li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
                 </ul>
                 {/* Login and Button */}
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
@@ -83,11 +83,11 @@ export default function NavBar() {
                     <div>
                         {
                             authUser === null ?
-                                <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/login">Login</NavLink></button> :
+                                <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/login">Login</NavLink></button> :
                                 userData.map((user) => {
                                     if (authUser?.email === user.Email) {
                                         return (
-                                            <button className='px-3 h-[2.6rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/profile">{user.Username}</NavLink></button>
+                                            <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/profile">{user.Username}</NavLink></button>
                                         )
                                     }
                                 })
