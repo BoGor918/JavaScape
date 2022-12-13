@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
-import { createContext, useState, useEffect } from "react"
+import { createContext, useEffect, useState } from "react"
 import { firestore, auth } from "../firebase"
 import { collection, getDocs, } from 'firebase/firestore'
 import { onAuthStateChanged } from "firebase/auth"
@@ -16,6 +17,11 @@ export default function MapperContextProvider(props) {
     // Get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
 
+    var userArray = [
+        userData.map((user) => user.Username),
+        userData.map((user) => user.Email)
+    ]
+
     // Set logged user
     onAuthStateChanged(auth, (currentUser) => {
         setAuthUser(currentUser)
@@ -29,13 +35,14 @@ export default function MapperContextProvider(props) {
             setUserData(userDataRef.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         }
         GetUserData()
-    })
+    }, [])
 
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{
-            userData, 
+            userData,
             authUser,
+            userArray,
         }}>
             {props.children}
         </MapperContext.Provider>

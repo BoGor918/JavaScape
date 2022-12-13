@@ -1,37 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext, useRef } from 'react'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../firebase"
 import Logo from "../images/Logo.png"
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import { MapperContext } from '../globalVariables/MapperContextProvider'
 
 export default function Login() {
-
-    // Login variables and set function
-    var loginEmail = null, loginPassword = null;
-
-    const setLoginEmail = (email) => {
-        loginEmail = email;
-    }
-
-    const setLoginPassword = (password) => {
-        loginPassword = password;
-    }
+    const { userArray } = useContext(MapperContext);
+    const loginEmailOrUsername = useRef("");
+    const loginPassword = useRef("");
 
     // Navigate function
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     // Login function
     const Login = async () => {
-        console.log(loginEmail, loginPassword)
-
         try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-            console.log(user)
+            if (loginEmailOrUsername.current.value.includes('.') && loginEmailOrUsername.current.value.includes('@')) {
+                const user = await signInWithEmailAndPassword(auth, loginEmailOrUsername.current.value, loginPassword.current.value)
+                console.log(user)
 
-            navigate("/profile")
-
+                navigate("/profile")
+            } else {
+                for (var i = 0; i < userArray.length; i++) {
+                    if (Object.is(userArray[0][i], loginEmailOrUsername.current.value) === true) {
+                        const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
+                        console.log(user)
+                        navigate("/profile")
+                        break;
+                    }
+                }
+            }
         } catch (error) {
             console.log(error)
         }
@@ -66,13 +67,13 @@ export default function Login() {
                 <span className='font-bold text-2xl text-white my-5'>Login</span>
                 {/* Email field */}
                 <div className='my-3 flex flex-col w-full'>
-                    <span>Email Address: </span>
-                    <input onChange={(email) => setLoginEmail(email.target.value)} value={loginEmail} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                    <span>Email Address / Username: </span>
+                    <input ref={loginEmailOrUsername} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
                 {/* Password field */}
                 <div className='my-3 flex flex-col w-full'>
                     <span>Password: </span>
-                    <input onChange={(password) => setLoginPassword(password.target.value)} value={loginPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                    <input ref={loginPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                 </div>
                 {/* Login button */}
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
