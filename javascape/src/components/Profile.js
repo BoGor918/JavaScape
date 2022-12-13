@@ -35,21 +35,21 @@ export default function Profile() {
                         userData.map((user) => {
                             if (authUser?.email === user.Email) {
                                 return (
-                                    <div className='flex flex-col max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
-                                        <span className='text-xl text-white my-3'>Member Name: {user.Username}</span>
-                                        <span className='text-xl text-white my-3'>Phone Number: {user.PhoneNumber}</span>
-                                        <span className='text-xl text-white my-3'>Email: {user.Email}</span>
-                                        <span className='text-xl text-white my-3'>Total Point: 150</span>
-                                        <span className='text-xl text-white my-3'>Position: COMMANDER IN CHIEF</span>
+                                    <div className='flex flex-col max-w-[23rem] sm:max-w-[23rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: {user.Username}</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Phone Number: {user.PhoneNumber}</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Email: {user.Email}</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Point: 150</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: COMMANDER IN CHIEF</span>
 
-                                        <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
+                                        <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4rem] sm:max-w-[4rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
                                             <div>
-                                                <button onClick={Logout} className='w-full h-[3rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>LOGOUT</button>
+                                                <button onClick={Logout} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
                                             </div>
                                         </div>
 
-                                        <div className='self-end mt-[-66px]'>
-                                            <img src={Logo} alt="" className="max-w-[7rem]" />
+                                        <div className='self-end mt-[-58px] sm:mt-[-58px] md:mt-[-66px] lg:mt-[-66px]'>
+                                            <img src={Logo} alt="" className="max-w-[6rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[7rem]" />
                                         </div>
                                     </div>
                                 )
