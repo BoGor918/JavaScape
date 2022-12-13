@@ -6,6 +6,8 @@ import Intro2 from '../images/Intro2.png'
 import Robot1 from '../images/Robot1.png'
 import Robot2 from '../images/Robot2.png'
 import Robot3 from '../images/Robot3.png'
+import { NavLink } from 'react-router-dom'
+import Footer from './Footer'
 
 export default function Home() {
   return (
@@ -42,20 +44,19 @@ export default function Home() {
             {/* text topic */}
             <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>What are you waiting for ?</span>
             {/* First group */}
-            <div className="flex flex-col sm:flex-col md:flex-row lg:flex-row mt-10 mb-0 sm:mb-0 md:mb-20 lg:mb-20">
-              <img src={Robot1} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] sm:max-h-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mr-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem] lg:mr-[7rem]" />
-              <img src={Robot2} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:ml-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem] lg:ml-[7rem]" />
+            <div className="flex justify-center content-center flex-col sm:flex-col md:flex-row lg:flex-row mt-10 mb-0 sm:mb-0 md:mb-20 lg:mb-20">
+              <NavLink to="/topic"><img src={Robot1} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mr-[5rem] lg:my-0 lg:max-w-[27rem] lg:max-h-[24.5rem] lg:mr-[7rem]" /></NavLink>
+              <NavLink to="battle"><img src={Robot2} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:ml-[5rem] lg:my-0 lg:max-w-[27rem] lg:max-h-[24.3rem] lg:ml-[7rem]" /></NavLink>
             </div>
             {/* Second group */}
             <div className="flex">
-              <img src={Robot3} alt="" className="my-20 sm:my-20 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mx-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem]" />
+              <NavLink to="/forum"><img src={Robot3} alt="" className="my-20 sm:my-20 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mx-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem]" /></NavLink>
             </div>
           </div>
-          {/* Copyright */}
-          <div className='flex justify-center items-center uppercase text-center mt-[0rem] sm:mt-[0rem] md:mt-[10rem] lg:mt-[10rem]'>
-            <span className='text-[1px] sm:text-[1px] md:text-[13px] lg:text-[16px]'>Copyright © 2022 JavaScape. All Rights Reserved</span>
-          </div>
         </div>
+      </div>
+      <div className=''>
+        <Footer />
       </div>
     </div>
   )

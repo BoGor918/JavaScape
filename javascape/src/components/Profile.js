@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import NavBar from './NavBar'
 import Logo from "../images/Logo.png"
 import { MapperContext } from '../globalVariables/MapperContextProvider'
+import Footer from './Footer'
 
 export default function Profile() {
     // call data from mapper context js
@@ -57,10 +58,7 @@ export default function Profile() {
                         })
                     }
                 </div>
-
-                <div className='flex justify-center items-center mt-[-24px]'>
-                    <span>Copyright © 2022 JavaScape. All Rights Reserved</span>
-                </div>
+                <Footer />
             </div>
     )
 }

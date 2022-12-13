@@ -28,7 +28,7 @@ export default function NavBar() {
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
                 {/* Logo */}
                 <div>
-                    <NavLink to="/"><img src={Logo} alt="" className="max-w-[10rem]" /></NavLink>
+                    <NavLink to="/"><img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" /></NavLink>
                 </div>
                 <div className='hidden md:flex items-center'>
                     {/* Nav Text */}
@@ -57,20 +57,18 @@ export default function NavBar() {
                         </div>
                     </div>
                 </div>
-
                 {/* Mobile Responsive Burger Tag */}
                 <div onClick={handleNav} className="block md:hidden">
                     {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
                 </div>
             </div>
 
-            {/* Mobile Responsive Menu  */}
+            {/* Mobile Responsive Menu */}
             <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%]'}>
                 {/* Logo */}
-                <div className='mx-[1rem] my-[0.9rem]'>
-                    <img src={Logo} alt="" className="max-w-[10rem]" />
+                <div className='mx-[1rem] my-[1.3rem]'>
+                    <img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" />
                 </div>
-
                 {/* Nav Text */}
                 <ul className="pt-5 px-5">
                     <li className='p-5 border-b border-gray-500'>Home</li>
@@ -79,7 +77,6 @@ export default function NavBar() {
                     <li className='p-5 border-b border-gray-500'>Rank</li>
                     <li className='p-5 border-b border-gray-500'>Forum</li>
                 </ul>
-
                 {/* Login and Button */}
                 <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
                     {/* Link to profile only user is logged in else show login button */}
