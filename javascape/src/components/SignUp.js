@@ -26,6 +26,7 @@ export default function SignUp() {
     // Register function
     const Register = async () => {
         console.log(registerEmail.current.value, registerPassword.current.value, registerUsername.current.value, registerPhoneNumber.current.value)
+
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
 
@@ -40,6 +41,20 @@ export default function SignUp() {
             window.location.reload();
         } catch (error) {
             console.log('Error in creating user', error);
+
+            switch (error.code) {
+                case "auth/email-already-in-use":
+                    alert("Email Already in Use, Plz Try Again")
+                    break;
+                case "auth/invalid-email":
+                    alert("Invalid Email, Plz Try Again")
+                    break;
+                case "auth/weak-password":
+                    alert("Invalid Password, Plz Try Again")
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -89,7 +104,7 @@ export default function SignUp() {
                     </div>
                     {/* Password field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Password: </span>
+                        <span>Password: At Least 6 Characters</span>
                         <input ref={registerPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Sign up button */}
