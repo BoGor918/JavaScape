@@ -3,7 +3,7 @@
 import React from 'react'
 import { createContext, useEffect, useState } from "react"
 import { firestore, auth } from "../firebase"
-import { collection, getDocs, } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 import { onAuthStateChanged } from "firebase/auth"
 
 export const MapperContext = createContext()

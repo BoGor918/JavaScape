@@ -78,8 +78,6 @@ export default function SignUp() {
                 })
 
                 createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
-
-                navigate('/profile')
             })
         }
     }
