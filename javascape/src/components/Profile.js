@@ -25,7 +25,7 @@ export default function Profile() {
     }
 
     return (
-        authUser === null ? navigate("/") :
+        authUser === null ? navigate("/") : 
             <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo uppercase'>
                 {/* Nav bar component */}
                 <NavBar />

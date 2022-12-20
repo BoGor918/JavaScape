@@ -11,50 +11,76 @@ import { MapperContext } from '../globalVariables/MapperContextProvider'
 export default function SignUp() {
     // call data from mapper context js
     const {
-        authUser
+        authUser,
+        userArray,
     } = useContext(MapperContext)
 
     // Register variables
     const registerEmail = useRef("")
     const registerPassword = useRef("")
     const registerUsername = useRef("")
-    const registerPhoneNumber = useRef("")
 
     // Navigate function
     const navigate = useNavigate();
 
     // Register function
-    const Register = async () => {
-        console.log(registerEmail.current.value, registerPassword.current.value, registerUsername.current.value, registerPhoneNumber.current.value)
+    const Register = () => {
+        console.log(registerEmail.current.value, registerPassword.current.value, registerUsername.current.value)
 
-        try {
-            const user = await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
+        // Check all register inputs
+        var canReg = [true, true, true, true];
 
-            await setDoc(doc(firestore, "Users", user.user.uid), {
+        // error checking
+        for (let i = 0; i < userArray.length; i++) {
+            if (userArray[1][i] === registerEmail.current.value) {
+                canReg[0] = false;
+            }
+        }
+
+        if (registerEmail.current.value === "" || registerEmail.current.value.includes("@") === false || registerEmail.current.value.includes(".") === false) {
+            canReg[1] = false;
+        } else if (registerEmail.current.value.includes("@") === false && registerEmail.current.value.includes(".") === false) {
+            canReg[1] = false;
+        }
+
+        for (let i = 0; i < userArray.length; i++) {
+            if (userArray[0][i] === registerUsername.current.value) {
+                canReg[2] = false;
+            }
+        }
+
+        if (registerPassword.current.value.length < 6) {
+            canReg[3] = false;
+        }
+
+        if (canReg[0] === false) {
+            alert("Email Already in Use, Plz Try Again")
+        } else if (canReg[1] === false) {
+            alert("Invalid Email, Plz Try Again")
+        } else if (canReg[2] === false) {
+            alert("Username Already in Use, Plz Try Again")
+        } else if (canReg[3] === false) {
+            alert("Invalid Password, It Shound At Least 6 Characters, Plz Try Again")
+        }
+
+        // if is all data ok
+        if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
+            setDoc(doc(firestore, "Users", registerUsername.current.value), {
                 Username: registerUsername.current.value,
                 Email: registerEmail.current.value,
                 Password: registerPassword.current.value,
-                PhoneNumber: registerPhoneNumber.current.value,
                 CreateDate: new Date(),
+            }).then(() => {
+                setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {
+                    Username: registerUsername.current.value,
+                    HighestScore: 0,
+                    Level: 1,
+                })
+
+                createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
+
+                navigate('/profile')
             })
-
-            window.location.reload();
-        } catch (error) {
-            console.log('Error in creating user', error);
-
-            switch (error.code) {
-                case "auth/email-already-in-use":
-                    alert("Email Already in Use, Plz Try Again")
-                    break;
-                case "auth/invalid-email":
-                    alert("Invalid Email, Plz Try Again")
-                    break;
-                case "auth/weak-password":
-                    alert("Invalid Password, Plz Try Again")
-                    break;
-                default:
-                    break;
-            }
         }
     }
 
@@ -75,9 +101,8 @@ export default function SignUp() {
         };
     }, []);
 
-
     return (
-        authUser !== null ? navigate("/profile") :
+        authUser !== null ? navigate('/profile') :
             <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
                 {/* Logo */}
                 <div>

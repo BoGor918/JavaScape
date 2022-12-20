@@ -26,10 +26,7 @@ export default function App() {
           authUser === null ?
             <Route path="/stage" element={<Stage />} />
             :
-            <>
-
-              <Route path={"/stage/" + currentUserDataSet[1]} element={<Stage />} />
-            </>
+            <Route path={"/stage/" + currentUserDataSet[1]} element={<Stage />} />
         }
       </Routes>
     </Router>
