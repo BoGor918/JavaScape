@@ -25,3 +25,6 @@
         }
     })
 }
+
+# Unity WebGL with React
+1. npm install react-unity-webgl
