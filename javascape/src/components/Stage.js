@@ -52,7 +52,7 @@ export default function Stage() {
   return (
     authUser === null ? navigate("/login") : 
     <Fragment>
-      <Unity unityProvider={unityProvider} />
+      <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]"/>
       {isGameOver === true && (
         <p>{`Game Over ${userName}! You've scored ${score} points.`}</p>
       )}
