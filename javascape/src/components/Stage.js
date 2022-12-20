@@ -3,10 +3,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 export default function Stage() {
   const { unityProvider } = useUnityContext({
-    loaderUrl: "Build/新增資料夾.loader.js",
-    dataUrl: "Build/新增資料夾.data",
-    frameworkUrl: "Build/新增資料夾.framework.js",
-    codeUrl: "Build/新增資料夾.wasm",
+    loaderUrl: "/Build/Stage1.loader.js",
+    dataUrl: "/Build/Stage1.data",
+    frameworkUrl: "/Build/Stage1.framework.js",
+    codeUrl: "/Build/Stage1.wasm",
   });
 
   return <Unity unityProvider={unityProvider} className="w-full" />;
