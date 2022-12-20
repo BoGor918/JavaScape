@@ -92,11 +92,6 @@ export default function SignUp() {
                         <span>Email Address: </span>
                         <input ref={registerEmail} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
-                    {/* Phone number field */}
-                    <div className='my-3 flex flex-col w-full'>
-                        <span>Phone Number: </span>
-                        <input ref={registerPhoneNumber} type="phone" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
-                    </div>
                     {/* Username field */}
                     <div className='my-3 flex flex-col w-full'>
                         <span>Username: </span>
@@ -104,7 +99,7 @@ export default function SignUp() {
                     </div>
                     {/* Password field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Password: At Least 6 Characters</span>
+                        <span>Password: <span className='text-sm'>At Least 6 Characters</span></span>
                         <input ref={registerPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Sign up button */}

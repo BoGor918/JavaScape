@@ -8,8 +8,8 @@ import { NavLink } from 'react-router-dom'
 export default function NavBar() {
     // call data from mapper context js
     const {
-        userData,
-        authUser
+        authUser,
+        currentUserDataSet
     } = useContext(MapperContext);
 
     // nav bar state
@@ -46,13 +46,7 @@ export default function NavBar() {
                             {
                                 authUser === null ?
                                     <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/login">Login</NavLink></button> :
-                                    userData.map((user) => {
-                                        if (authUser?.email === user.Email) {
-                                            return (
-                                                <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{user.Username}</NavLink></button>
-                                            )
-                                        }
-                                    })
+                                    <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{currentUserDataSet[1]}</NavLink></button>
                             }
                         </div>
                     </div>
@@ -84,13 +78,7 @@ export default function NavBar() {
                         {
                             authUser === null ?
                                 <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/login">Login</NavLink></button> :
-                                userData.map((user) => {
-                                    if (authUser?.email === user.Email) {
-                                        return (
-                                            <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/profile">{user.Username}</NavLink></button>
-                                        )
-                                    }
-                                })
+                                <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppercase font-extrabold'><NavLink to="/profile">{currentUserDataSet[1]}</NavLink></button>
                         }
                     </div>
                 </div>

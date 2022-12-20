@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { createContext, useEffect, useState } from "react"
@@ -13,21 +14,30 @@ export default function MapperContextProvider(props) {
     const [userData, setUserData] = useState([])
     // Logged user data
     const [authUser, setAuthUser] = useState({})
-
-    // Get users collection from firestore
+    // user data set
+    const currentUserDataSet = [];
+    // get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
 
-    var userArray = [
+    // set all user data
+    const userArray = [
         userData.map((user) => user.Username),
         userData.map((user) => user.Email)
     ]
 
-    // Set logged user
+    // set current user data
+    userData.map((user) => {
+        if (user.Email === authUser?.email) {
+            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password)
+        }
+    })
+
+    // set logged user data for authentication
     onAuthStateChanged(auth, (currentUser) => {
         setAuthUser(currentUser)
     })
 
-    // Map the user data
+    // get and map the user data
     useEffect(() => {
         const GetUserData = async () => {
             const userDataRef = await getDocs(usersCollectionRef)
@@ -40,9 +50,9 @@ export default function MapperContextProvider(props) {
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{
-            userData,
             authUser,
             userArray,
+            currentUserDataSet
         }}>
             {props.children}
         </MapperContext.Provider>
