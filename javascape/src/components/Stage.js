@@ -1,10 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useState, useCallback, useEffect } from "react";
+import React, { Fragment, useState, useCallback, useEffect, useContext } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { firestore } from "../firebase"
 import { updateDoc, doc } from 'firebase/firestore'
+import { MapperContext } from "../globalVariables/MapperContextProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function Stage() {
+  // get user data from context
+  const {
+    authUser
+  } = useContext(MapperContext);
+
+  // redirect to login page if user is not login
+  const navigate = useNavigate();
+
   // data set receive from unity
   const [isGameOver, setIsGameOver] = useState(false);
   const [userName, setUserName] = useState();
@@ -40,6 +50,7 @@ export default function Stage() {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   return (
+    authUser === null ? navigate("/login") : 
     <Fragment>
       <Unity unityProvider={unityProvider} />
       {isGameOver === true && (
