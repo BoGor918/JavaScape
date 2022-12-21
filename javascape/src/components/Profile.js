@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useContext } from 'react'
 import { auth } from "../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'

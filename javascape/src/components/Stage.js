@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useState, useCallback, useEffect, useContext } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { firestore } from "../firebase"
 import { updateDoc, doc } from 'firebase/firestore'
@@ -22,12 +22,12 @@ export default function Stage() {
 
   // unity context
   const { unityProvider, addEventListener, removeEventListener } =
-  useUnityContext({
-    loaderUrl: "/Build/Build.loader.js",
-    dataUrl: "/Build/Build.data",
-    frameworkUrl: "/Build/Build.framework.js",
-    codeUrl: "/Build/Build.wasm",
-  });
+    useUnityContext({
+      loaderUrl: "/Build/Build.loader.js",
+      dataUrl: "/Build/Build.data",
+      frameworkUrl: "/Build/Build.framework.js",
+      codeUrl: "/Build/Build.wasm",
+    });
 
   // handle unity call back function also update document
   const handleGameOver = useCallback((userName, score) => {
@@ -50,12 +50,13 @@ export default function Stage() {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   return (
-    authUser === null ? navigate("/login") : 
-    <Fragment>
-      <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]"/>
-      {isGameOver === true && (
-        <p>{`Game Over ${userName}! You've scored ${score} points.`}</p>
-      )}
-    </Fragment>
+    authUser === null ? navigate("/login") :
+      <div className="w-full h-screen flex justify-center items-center">
+        <Unity unityProvider={unityProvider} className="w-full max-w-[1280px] h-[720px]" />
+
+        {isGameOver === true && (
+          <p>{`Game Over ${userName}! You've scored ${score} points.`}</p>
+        )}
+      </div>
   );
 }
