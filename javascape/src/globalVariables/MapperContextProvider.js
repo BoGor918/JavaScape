@@ -19,6 +19,11 @@ export default function MapperContextProvider(props) {
     // get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
 
+    // set logged user data for authentication
+    onAuthStateChanged(auth, (currentUser) => {
+        setAuthUser(currentUser)
+    })
+
     // set all user data
     const userArray = [
         userData.map((user) => user.Username),
@@ -32,11 +37,6 @@ export default function MapperContextProvider(props) {
         }
     })
 
-    // set logged user data for authentication
-    onAuthStateChanged(auth, (currentUser) => {
-        setAuthUser(currentUser)
-    })
-
     // get and map the user data
     useEffect(() => {
         const GetUserData = async () => {
@@ -45,14 +45,14 @@ export default function MapperContextProvider(props) {
             setUserData(userDataRef.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         }
         GetUserData()
-    }, [])
+    }, [authUser])
 
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{
             authUser,
             userArray,
-            currentUserDataSet
+            currentUserDataSet,
         }}>
             {props.children}
         </MapperContext.Provider>

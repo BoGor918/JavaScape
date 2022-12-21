@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { auth } from "../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +12,7 @@ export default function Profile() {
     // call data from mapper context js
     const {
         authUser,
-        currentUserDataSet
+        currentUserDataSet,
     } = useContext(MapperContext)
 
     // navigate function

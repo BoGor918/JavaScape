@@ -24,7 +24,7 @@ export default function SignUp() {
     const navigate = useNavigate();
 
     // Register function
-    const Register = () => {
+    const Register = async () => {
         console.log(registerEmail.current.value, registerPassword.current.value, registerUsername.current.value)
 
         // Check all register inputs
@@ -65,19 +65,19 @@ export default function SignUp() {
 
         // if is all data ok
         if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
-            setDoc(doc(firestore, "Users", registerUsername.current.value), {
+            await setDoc(doc(firestore, "Users", registerUsername.current.value), {
                 Username: registerUsername.current.value,
                 Email: registerEmail.current.value,
                 Password: registerPassword.current.value,
                 CreateDate: new Date(),
-            }).then(() => {
-                setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {
+            }).then(async () => {
+                await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {
                     Username: registerUsername.current.value,
                     HighestScore: 0,
                     Level: 1,
                 })
 
-                createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
+                await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
             })
         }
     }
