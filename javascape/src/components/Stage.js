@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, useEffect, useContext } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
@@ -5,6 +6,7 @@ import { firestore } from "../firebase"
 import { updateDoc, doc } from 'firebase/firestore'
 import { MapperContext } from "../globalVariables/MapperContextProvider";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 export default function Stage() {
   // get user data from context
@@ -16,7 +18,6 @@ export default function Stage() {
   const navigate = useNavigate();
 
   // data set receive from unity
-  const [isGameOver, setIsGameOver] = useState(false);
   const [userName, setUserName] = useState();
   const [score, setScore] = useState();
 
@@ -31,7 +32,6 @@ export default function Stage() {
 
   // handle unity call back function also update document
   const handleGameOver = useCallback((userName, score) => {
-    setIsGameOver(true);
     setUserName(userName);
     setScore(score);
 
@@ -51,12 +51,11 @@ export default function Stage() {
 
   return (
     authUser === null ? navigate("/login") :
-      <div className="w-full h-screen flex justify-center items-center">
-        <Unity unityProvider={unityProvider} className="w-full max-w-[1280px] h-[720px]" />
-
-        {isGameOver === true && (
-          <p>{`Game Over ${userName}! You've scored ${score} points.`}</p>
-        )}
+      <div className="Stage bg-[#09002B] bg-background flex flex-col text-white font-exo w-full">
+        <NavBar />
+        <div className="w-full h-screen flex justify-center items-center">
+          <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
+        </div>
       </div>
   );
 }
