@@ -34,7 +34,7 @@ export default function Battle() {
         <div className='Home bg-[#09002B] bg-background flex flex-col text-white font-exo w-full'>
             <NavBar />
             {/* Level Slider */}
-            <div className='max-w-[1366px] h-[950px] w-full m-auto pt-40'>
+            <div className='max-w-[1366px] h-[950px] w-full m-auto pt-40 px-[50px]'>
                 <div>
                     <img src={`${slides[currentIndex].url}`} alt='Level Banner' />
                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit absolute lg:translate-x-[85%]  lg:-translate-y-[330%]">
