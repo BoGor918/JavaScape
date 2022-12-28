@@ -33,7 +33,7 @@ export default function MapperContextProvider(props) {
     // set current user data
     userData.map((user) => {
         if (user.Email === authUser?.email) {
-            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password)
+            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position)
         }
     })
 

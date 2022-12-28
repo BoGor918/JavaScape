@@ -69,6 +69,7 @@ export default function SignUp() {
                 Username: registerUsername.current.value,
                 Email: registerEmail.current.value,
                 Password: registerPassword.current.value,
+                Position: "Private (E-1)",
                 CreateDate: new Date(),
             }).then(async () => {
                 await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {

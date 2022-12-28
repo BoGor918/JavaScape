@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
-import React, { useContext } from 'react'
-import { auth } from "../firebase"
+import React, { useContext, useEffect, useState } from 'react'
+import { auth, firestore } from "../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
+import { collection, getDocs } from 'firebase/firestore'
 import NavBar from './NavBar'
 import Logo from "../images/Logo.png"
 import { MapperContext } from '../globalVariables/MapperContextProvider'
@@ -24,8 +26,30 @@ export default function Profile() {
         navigate("/")
     }
 
+    // user level data
+    const [userLevelScoreData, setUserLevelScoreData] = useState([]);
+    // all level score
+    const currentLevelScoreDataSet = [];
+    // get users collection from firestore
+    const usersLevelRef = collection(firestore, `Users/${currentUserDataSet[1]}/Levels`)
+
+    // get and map the user data
+    useEffect(() => {
+        const GetUserLevelData = async () => {
+            const userLevelData = await getDocs(usersLevelRef)
+            setUserLevelScoreData(userLevelData.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+
+        }
+        GetUserLevelData()
+    }, [currentUserDataSet])
+
+    // set current user data
+    userLevelScoreData.map((level) => {
+        currentLevelScoreDataSet.push(level.HighestScore)
+    })
+
     return (
-        authUser === null ? navigate("/") : 
+        authUser === null ? navigate("/") :
             <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo uppercase'>
                 {/* Nav bar component */}
                 <NavBar />
@@ -33,8 +57,8 @@ export default function Profile() {
                     <div className='flex flex-col max-w-[23rem] sm:max-w-[23rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: {currentUserDataSet[1]}</span>
                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Email: {currentUserDataSet[2]}</span>
-                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Point: 150</span>
-                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: COMMANDER IN CHIEF</span>
+                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Point: {currentLevelScoreDataSet.reduce((total, currentValue) => total + currentValue, 0)}</span>
+                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: {currentUserDataSet[4]}</span>
 
                         <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4rem] sm:max-w-[4rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
                             <div>

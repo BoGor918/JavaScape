@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, useEffect, useContext } from "react";
@@ -21,9 +22,9 @@ export default function Level01() {
   const navigate = useNavigate();
 
   // data set receive from unity
-  const [userName, setUserName] = useState();
   const [score, setScore] = useState();
   const [userLevel1Data, setUserLevel1Data] = useState([]);
+  const currentLevelDataSet = [];
 
   const usersLevel1Ref = collection(firestore, `Users/${currentUserDataSet[1]}/Levels`)
 
@@ -37,25 +38,37 @@ export default function Level01() {
     GetUserData()
   }, [authUser])
 
+  // set current user data
+  userLevel1Data.map((level1) => {
+    if (level1.Level === 1) {
+      currentLevelDataSet.push(level1.Level, level1.Username, level1.HighestScore)
+    }
+  })
+
   // unity context
   const { unityProvider, addEventListener, removeEventListener } =
     useUnityContext({
-      loaderUrl: "/Build/Build.loader.js",
-      dataUrl: "/Build/Build.data",
-      frameworkUrl: "/Build/Build.framework.js",
-      codeUrl: "/Build/Build.wasm",
+      loaderUrl: "/Level01/Level01.loader.js",
+      dataUrl: "/Level01/Level01.data",
+      frameworkUrl: "/Level01/Level01.framework.js",
+      codeUrl: "/Level01/Level01.wasm",
     });
 
   // handle unity call back function also update document
-  const handleGameOver = useCallback((userName, score) => {
-    setUserName(userName);
+  const handleGameOver = useCallback((score) => {
     setScore(score);
 
-    const updateLevelPath = "Users/" + userName + "/Levels/"
+    const updateLevelPath = "Users/" + currentUserDataSet[1] + "/Levels/"
     const updateLevelRef = doc(firestore, updateLevelPath, "Level1")
 
-    updateDoc(updateLevelRef, { HighestScore: score })
-  }, []);
+    const updateUserPath = "Users/"
+    const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
+
+    if (currentLevelDataSet[2] < score) {
+      updateDoc(updateLevelRef, { HighestScore: score })
+      updateDoc(updateUserRef, { TotalScore: currentUserDataSet[4] + score })
+    }
+  }, [currentLevelDataSet, currentUserDataSet]);
 
   // add and remove event listener
   useEffect(() => {
@@ -65,33 +78,28 @@ export default function Level01() {
     };
   }, [addEventListener, removeEventListener, handleGameOver]);
 
-  userLevel1Data.map((user) => () => {
-    if (currentUserDataSet[1] === user.Username) {
-
-      console.log(user.Username)
-    }
-  })
-
   return (
     authUser === null ? navigate("/login") :
       <div>
+        {/* Header */}
         <NavBar />
         <div className="Stage bg-[#09002B] bg-background flex flex-col text-white font-exo w-full">
           <div className="w-full h-screen flex flex-col justify-center items-center px-4 pt-4 sm:px-4 sm:pt-4 md:px-24 md:pt-24 lg:px-24 lg:pt-24">
-
             {
               userLevel1Data.map((level1) => {
-                return (
-                  <div className="w-full max-w-[1280px] text-3xl font-bold flex justify-between mb-3">
-                    <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
-                    <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
-                  </div>
-                )
+                if (level1.Level === 1) {
+                  return (
+                    <div className="w-full max-w-[1280px] text-3xl font-bold flex justify-between mb-3">
+                      <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
+                      <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
+                    </div>
+                  )
+                }
               })
             }
-
+            {/* Unity Game Content */}
             <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
-
+            {/* Exit Button */}
             <div className="w-full max-w-[1280px] pt-5">
               <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
                 <div>
