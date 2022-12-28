@@ -4,9 +4,10 @@ import Login from './Login';
 import Profile from './Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './Home';
-import Level01 from './Levels/Level01';
+import Level01 from './Levels/Level01/Level01';
 import { MapperContext } from '../globalVariables/MapperContextProvider';
 import Battle from './Battle';
+import Level01Intro from './Levels/Level01/Level01Intro';
 
 export default function App() {
   // call data from mapper context js
@@ -18,12 +19,15 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Set up link path */}
+        {/* common link */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/battle" element={<Battle />} />
+        {/* levels link */}
+        <Route path="/battle/level01" element={<Level01Intro />} />
+        {/* gameplay link */}
         {
           authUser === null ?
             <Route path="/battle/level01" element={<Level01 />} />

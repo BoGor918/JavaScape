@@ -2,13 +2,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, useEffect, useContext } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import { firestore } from "../../firebase"
+import { firestore } from "../../../firebase"
 import { updateDoc, doc, collection, getDocs } from 'firebase/firestore'
-import { MapperContext } from "../../globalVariables/MapperContextProvider";
+import { MapperContext } from "../../../globalVariables/MapperContextProvider";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../NavBar";
+import NavBar from "../../NavBar";
 import { NavLink } from "react-router-dom";
-import Footer from "../Footer";
+import Footer from "../../Footer";
 
 export default function Level01() {
   // get user data from context
