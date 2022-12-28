@@ -28,3 +28,6 @@
 
 # Unity WebGL with React
 1. npm install react-unity-webgl
+
+# React Icon
+1. npm install react-icons --save
