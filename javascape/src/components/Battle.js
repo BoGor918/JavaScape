@@ -15,9 +15,6 @@ export default function Battle() {
         {
             url: LBN
         },
-        {
-            url: LBN2
-        },
     ]
 
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -40,24 +37,21 @@ export default function Battle() {
             <div className='max-w-[1366px] h-[950px] w-full m-auto pt-40'>
                 <div>
                     <img src={`${slides[currentIndex].url}`} alt='Level Banner' />
-                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit lg:mt-[-17%] lg:ml-[16%]">
+                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit absolute lg:translate-x-[85%]  lg:-translate-y-[330%]">
                         <div>
                             <button className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[25px] px-8 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[4rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
-                                {
-                                    currentIndex === 0 ? <NavLink to={`/battle/level01/${currentUserDataSet[0]}`}>Start Level 01</NavLink> :
-                                        <NavLink to={`/battle/level02/${currentUserDataSet[0]}`}>Start Level 02</NavLink>
-                                }
+                                <NavLink to={`/battle/level01/${currentUserDataSet[0]}`}>Start Level 01</NavLink>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Left Arrow */}
-                <div className='absolute top-[50%] -translate-x-5 sm:-translate-x-5 lg:-translate-x-0 -translate-y-[600%] sm:-translate-y-[600%] lg:translate-y-[50%] left-5 text-2xl text-white cursor-pointer'>
+                <div className='absolute top-[50%] -translate-x-0 translate-y-[50%] left-5 text-3xl text-white cursor-pointer'>
                     <BsChevronCompactLeft onClick={prevSlide} size={30} />
                 </div>
                 {/* Right Arrow */}
-                <div className='absolute top-[50%] translate-x-5 sm:-translate-x-5 lg:-translate-x-0 -translate-y-[600%] sm:-translate-y-[600%] lg:translate-y-[50%] right-5 text-2xl text-white cursor-pointer'>
+                <div className='absolute top-[50%] -translate-x-0 translate-y-[50%] right-5 text-3xl text-white cursor-pointer'>
                     <BsChevronCompactRight onClick={nextSlide} size={30} />
                 </div>
             </div>
