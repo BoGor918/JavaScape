@@ -9,12 +9,14 @@ import { MapperContext } from '../globalVariables/MapperContextProvider';
 import Battle from './Battle';
 import Level01Intro from './Levels/Level01/Level01Intro';
 import Rank from './Rank';
+import AllUserProfile from './AllUserProfile';
 
 export default function App() {
   // call data from mapper context js
   const {
     currentUserDataSet,
     authUser,
+    userData
   } = useContext(MapperContext);
 
   return (
@@ -34,6 +36,14 @@ export default function App() {
           authUser !== null ?
             <Route path={"/battle/level01/" + currentUserDataSet[1]} element={<Level01 />} /> :
             <></>
+        }
+        {/* All User Profile Link */}
+        {
+          userData.map((user) => {
+            return (
+              <Route path={"/profile/" + user.Username} element={<AllUserProfile />} />
+            )
+          })
         }
       </Routes>
     </Router>

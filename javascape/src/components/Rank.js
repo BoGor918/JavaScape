@@ -9,8 +9,6 @@ export default function Rank() {
         userData,
     } = useContext(MapperContext)
 
-    console.log(userData)
-
     return (
         <div className='Rank bg-[#09002B] bg-background text-white font-exo h-screen'>
             <NavBar />
