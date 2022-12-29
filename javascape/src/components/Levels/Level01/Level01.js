@@ -65,8 +65,9 @@ export default function Level01() {
     const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
 
     if (currentLevelDataSet[2] < score) {
+      console.log(score + currentUserDataSet[5] - currentLevelDataSet[2])
       updateDoc(updateLevelRef, { HighestScore: score })
-      updateDoc(updateUserRef, { TotalScore: currentUserDataSet[4] + score })
+      updateDoc(updateUserRef, { TotalScore: score + currentUserDataSet[5] - currentLevelDataSet[2] })
     }
   }, [currentLevelDataSet, currentUserDataSet]);
 
@@ -103,7 +104,7 @@ export default function Level01() {
             <div className="w-full max-w-[1280px] pt-5">
               <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
                 <div>
-                  <button className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/battle">Back To Menu</NavLink></button>
+                  <button onClick={() => window.close()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@
 import React from 'react'
 import { createContext, useEffect, useState } from "react"
 import { firestore, auth } from "../firebase"
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import { onAuthStateChanged } from "firebase/auth"
 
 export const MapperContext = createContext()
@@ -33,19 +33,16 @@ export default function MapperContextProvider(props) {
     // set current user data
     userData.map((user) => {
         if (user.Email === authUser?.email) {
-            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position)
+            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore)
         }
     })
 
-    // get and map the user data
     useEffect(() => {
-        const GetUserData = async () => {
-            const userDataRef = await getDocs(usersCollectionRef)
-
-            setUserData(userDataRef.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        }
-        GetUserData()
-    }, [authUser])
+        const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setUserData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+        return unsub;
+    }, [authUser]);
 
     return (
         // Pass the data to the children
@@ -53,6 +50,7 @@ export default function MapperContextProvider(props) {
             authUser,
             userArray,
             currentUserDataSet,
+            userData
         }}>
             {props.children}
         </MapperContext.Provider>

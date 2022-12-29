@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import NavBar from './NavBar'
 import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
@@ -9,7 +9,7 @@ import Level04Banner from '../images/Levels/Level04Banner.png'
 
 export default function Battle() {
     return (
-        <div className='Home bg-[#09002B] bg-background text-white font-exo'>
+        <div className='Battle bg-[#09002B] bg-background text-white font-exo'>
             <NavBar />
             {/* Content */}
             <div className='w-full flex flex-col justify-center items-center'>

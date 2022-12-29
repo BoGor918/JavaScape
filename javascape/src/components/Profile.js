@@ -53,7 +53,7 @@ export default function Profile() {
             <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo uppercase'>
                 {/* Nav bar component */}
                 <NavBar />
-                <div className='Profile w-full flex flex-col justify-center items-center h-screen'>
+                <div className='w-full flex flex-col justify-center items-center h-screen'>
                     <div className='flex flex-col max-w-[23rem] sm:max-w-[23rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: {currentUserDataSet[1]}</span>
                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Email: {currentUserDataSet[2]}</span>
