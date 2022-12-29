@@ -2,12 +2,16 @@ import React, { useContext } from 'react'
 import NavBar from './NavBar'
 import Footer from './Footer'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
+import { useNavigate } from 'react-router-dom'
 
 export default function Rank() {
     // call data from mapper context js
     const {
         userData,
     } = useContext(MapperContext)
+
+    // navigate function
+    const navigate = useNavigate();
 
     return (
         <div className='Rank bg-[#09002B] bg-background text-white font-exo h-screen'>
@@ -48,7 +52,7 @@ export default function Rank() {
                                             </span>
                                         </div>
                                         <div className='w-full flex justify-center'>
-                                            <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                            <span onClick={() => navigate(`/profile/${user.Username}`)} className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3 cursor-pointer underline'>
                                                 {user.Username}
                                             </span>
                                         </div>
