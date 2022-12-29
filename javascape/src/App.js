@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import SignUp from './SignUp';
-import Login from './Login';
-import Profile from './Profile';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import Profile from './components/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './Home';
-import Level01 from './Levels/Level01/Level01';
-import { MapperContext } from '../globalVariables/MapperContextProvider';
-import Battle from './Battle';
-import Level01Intro from './Levels/Level01/Level01Intro';
-import Rank from './Rank';
-import AllUserProfile from './AllUserProfile';
+import Home from './components/Home';
+import Level01 from './components/Levels/Level01/Level01';
+import { MapperContext } from './globalVariables/MapperContextProvider';
+import Battle from './components/Battle';
+import Level01Intro from './components/Levels/Level01/Level01Intro';
+import Rank from './components/Rank';
+import AllUserProfile from './components/AllUserProfile';
 
 export default function App() {
   // call data from mapper context js

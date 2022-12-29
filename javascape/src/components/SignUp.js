@@ -102,7 +102,7 @@ export default function SignUp() {
 
     return (
         authUser !== null ? navigate('/profile') :
-            <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo'>
+            <div className='SignUp flex flex-col justify-center items-center h-screen bg-background bg-[#09002B] text-white font-exo uppercase'>
                 {/* Logo */}
                 <div>
                     <NavLink to="/"><img src={Logo} alt="" className="max-w-[13rem] sm:max-w-[13rem] md:max-w-[17rem] lg:max-w-[17rem] my-10" /></NavLink>
@@ -129,7 +129,7 @@ export default function SignUp() {
                     {/* Sign up button */}
                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
                         <div>
-                            <button onClick={Register} className='w-full h-[3rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
+                            <button onClick={Register} className='uppercase w-full h-[3rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
                         </div>
                     </div>
                     {/* Link to login view */}

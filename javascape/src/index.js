@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './global.css';
-import App from './components/App';
+import App from './App';
 import MapperContextProvider from './globalVariables/MapperContextProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
