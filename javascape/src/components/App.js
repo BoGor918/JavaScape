@@ -37,7 +37,7 @@ export default function App() {
             <Route path={"/battle/level01/" + currentUserDataSet[1]} element={<Level01 />} /> :
             <></>
         }
-        {/* All User Profile Link */}
+        {/* all User Profile Link */}
         {
           userData.map((user) => {
             return (
