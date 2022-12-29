@@ -84,12 +84,12 @@ export default function Login() {
                     <span className='font-bold text-2xl text-white my-5'>Login</span>
                     {/* Email field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Email Address / Username: </span>
+                        <span>Email Address / Username : </span>
                         <input ref={loginEmailOrUsername} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Password field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Password: </span>
+                        <span>Password : </span>
                         <input ref={loginPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Login button */}
@@ -100,7 +100,7 @@ export default function Login() {
                     </div>
                     {/* Link to sign up view */}
                     <div className='my-3 text-sm sm:text-sm md:text-md lg:text-md'>
-                        <span>Do not have a account? <a href='/sign-up' className='underline'>Sign Up</a></span>
+                        <span>Do not have a account ? <a href='/sign-up' className='underline'>Sign Up</a></span>
                     </div>
                 </div>
             </div>

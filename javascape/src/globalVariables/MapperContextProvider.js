@@ -12,12 +12,15 @@ export default function MapperContextProvider(props) {
 
     // User data set from firestore
     const [userData, setUserData] = useState([])
+    // Forum data set from firestore
+    const [forumData, setForumData] = useState([])
     // Logged user data
     const [authUser, setAuthUser] = useState({})
     // user data set
     const currentUserDataSet = [];
     // get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
+    const forumCollection = collection(firestore, "Forum")
 
     // set logged user data for authentication
     onAuthStateChanged(auth, (currentUser) => {
@@ -44,13 +47,21 @@ export default function MapperContextProvider(props) {
         return unsub;
     }, [authUser]);
 
+    useEffect(() => {
+        const q = query(forumCollection, orderBy("CreateDate", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setForumData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+        return unsub;
+    }, [authUser]);
+
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{
             authUser,
             userArray,
             currentUserDataSet,
-            userData
+            userData,
+            forumData
         }}>
             {props.children}
         </MapperContext.Provider>

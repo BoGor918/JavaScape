@@ -113,17 +113,17 @@ export default function SignUp() {
                     <span className='font-bold text-2xl text-white my-5'>Sign Up</span>
                     {/* Email field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Email Address: </span>
+                        <span>Email Address : </span>
                         <input ref={registerEmail} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Username field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Username: </span>
+                        <span>Username : </span>
                         <input ref={registerUsername} type="username" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Password field */}
                     <div className='my-3 flex flex-col w-full'>
-                        <span>Password: <span className='text-sm'>At Least 6 Characters</span></span>
+                        <span>Password : <span className='text-sm'>At Least 6 Characters</span></span>
                         <input ref={registerPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                     </div>
                     {/* Sign up button */}
@@ -134,7 +134,7 @@ export default function SignUp() {
                     </div>
                     {/* Link to login view */}
                     <div className='my-3 text-sm sm:text-sm md:text-md lg:text-md'>
-                        <span>Already have a account? <a href='/login' className='underline'>Login</a></span>
+                        <span>Already have a account ? <a href='/login' className='underline'>Login</a></span>
                     </div>
                 </div>
             </div>

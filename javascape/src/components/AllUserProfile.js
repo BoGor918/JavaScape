@@ -23,11 +23,11 @@ export default function AllUserProfile() {
 
     return (
         authUser === null ? navigate("/") :
-            <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo uppercase'>
+            <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo'>
                 {/* Nav bar component */}
                 <NavBar />
                 {/* All User Profile */}
-                <div className='w-full flex flex-col justify-center items-center h-screen'>
+                <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
                     {
                         userData.map((user) => {
                             // Compare with the user name in the url
