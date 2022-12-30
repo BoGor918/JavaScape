@@ -2,7 +2,8 @@ import React, { useContext, useRef, useState } from 'react'
 import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { firestore } from "../firebase"
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
+import { uploadBytes, ref, getStorage, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom'
 
 export default function Forum() {
@@ -16,26 +17,55 @@ export default function Forum() {
     // navigate function
     const navigate = useNavigate();
 
+    // Firebase storage
+    const storage = getStorage();
+
     // Forum variables
     const question = useRef("");
+    const description = useRef("");
+
+    const [image, setImage] = useState(undefined)
+    const hiddenFileInput = useRef(null);
+
+    const handleImageUploaded = (event) => {
+        setImage(event.target.files[0]);
+    };
 
     const CreateQuestion = async () => {
         const today = new Date()
         const timeCode = (currentUserDataSet[1] + today.getFullYear() + (today.getMonth() + 1) + "/" + today.getDate() + today.getHours() + today.getMinutes() + today.getSeconds()).replace("/", "")
 
-        if (question.current.value !== "") {
-            await setDoc(doc(firestore, "Forum", timeCode), {
-                Question: question.current.value,
-                CreateUser: currentUserDataSet[1],
-                PositiveVote: 0,
-                NegativeVote: 0,
-                CreateDate: new Date(),
-            }).then(() => {
-                window.location.reload()
+        const forumImageRef = ref(storage, "Forum/" + timeCode)
+
+        // add reply sub collection
+        const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Reply');
+
+        await uploadBytes(forumImageRef, image).then(
+            async () => {
+                await getDownloadURL(forumImageRef).then(
+                    async (url) => {
+                        if (question.current.value !== "" && description.current.value !== "") {
+                            await setDoc(doc(firestore, "Forum", timeCode), {
+                                Question: question.current.value,
+                                Description: description.current.value,
+                                Image: url,
+                                CreateUser: currentUserDataSet[1],
+                                PositiveVote: 0,
+                                NegativeVote: 0,
+                                CreateDate: new Date(),
+                            }).then(() => {
+                                addDoc(forumReplyRef, {
+                                    ForumReply: "ForumReply",
+                                })
+
+                                window.location.reload()
+                            })
+                        } else {
+                            alert("Please Input Your Question and Description")
+                        }
+                    }
+                )
             })
-        } else {
-            alert("Please Input Your Question")
-        }
     }
 
     // Popup detail
@@ -53,9 +83,32 @@ export default function Forum() {
         <div className='Forum bg-[#09002B] bg-background text-white font-exo h-screen'>
             <NavBar />
             {/* Content */}
-            <div className='w-full h-full overflow-auto flex flex-col items-center uppercase'>
+            <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
                 <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Feel Free To Ask Your Teammates</span>
+                {/* Create Button */}
+                {
+                    !modal && (
+                        <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
+                            <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                                <div>
+                                    <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+                {
+                    modal && (
+                        <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
+                            <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                                <div>
+                                    <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
                 {/* Level Grid Column */}
                 <div className='w-full flex flex-col justify-center items-center'>
                     {
@@ -84,14 +137,6 @@ export default function Forum() {
                                         })
                                     }
                                 </div>
-                                {/* Create Button */}
-                                <div className="w-full max-w-[1280px] pt-5 flex justify-center">
-                                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
-                                        <div>
-                                            <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         )
                     }
@@ -111,7 +156,20 @@ export default function Forum() {
                                             {/* Textarea */}
                                             <div className='my-3 flex flex-col w-full max-w-[40rem]'>
                                                 <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Enter Your Description Here : </span>
-                                                <textarea ref={question} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                                <textarea ref={description} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                            </div>
+                                            <div className="my-3 flex flex-col w-full max-w-[40rem]">
+
+                                                <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Upload Image (Optional) : </span>
+                                                <input
+                                                    className=""
+                                                    type="file"
+                                                    ref={hiddenFileInput}
+                                                    onChange={handleImageUploaded}
+                                                    accept=".jpg,.png,.jpeg,.tiff"
+                                                    name="banner"
+                                                />
+
                                             </div>
                                         </div>
                                     </div>
@@ -119,12 +177,6 @@ export default function Forum() {
                                 {/* Create Button */}
                                 <div className="w-full max-w-[1280px] pt-5 flex justify-center mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
                                     {/* Ask Question Button */}
-                                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
-                                        <div>
-                                            <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
-                                        </div>
-                                    </div>
-                                    {/* Close Panel Button */}
                                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
                                         <div>
                                             <button onClick={() => CreateQuestion()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Ask Question</button>

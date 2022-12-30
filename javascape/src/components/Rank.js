@@ -44,14 +44,14 @@ export default function Rank() {
                         {
                             userData.map((user, index) => {
                                 return (
-                                    <div className='flex justify-between hover:bg-black/20 rounded-lg'>
+                                    <div onClick={() => navigate(`/profile/${user.Username}`)} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
                                         <div className='w-full flex justify-center'>
                                             <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                 {index + 1}
                                             </span>
                                         </div>
                                         <div className='w-full flex justify-center'>
-                                            <span onClick={() => navigate(`/profile/${user.Username}`)} className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3 cursor-pointer underline'>
+                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                 {user.Username}
                                             </span>
                                         </div>
