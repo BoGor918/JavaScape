@@ -6,7 +6,7 @@ import { firestore } from "../firebase"
 import { doc, setDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 
-export default function Rank() {
+export default function Forum() {
     // call data from mapper context js
     const {
         currentUserDataSet,
@@ -24,15 +24,19 @@ export default function Rank() {
         const today = new Date()
         const timeCode = (currentUserDataSet[1] + today.getFullYear() + (today.getMonth() + 1) + "/" + today.getDate() + today.getHours() + today.getMinutes() + today.getSeconds()).replace("/", "")
 
-        await setDoc(doc(firestore, "Forum", timeCode), {
-            Question: question.current.value,
-            CreateUser: currentUserDataSet[1],
-            PositiveVote: 0,
-            NegativeVote: 0,
-            CreateDate: new Date(),
-        }).then(() => {
-            window.location.reload()
-        })
+        if (question.current.value !== "") {
+            await setDoc(doc(firestore, "Forum", timeCode), {
+                Question: question.current.value,
+                CreateUser: currentUserDataSet[1],
+                PositiveVote: 0,
+                NegativeVote: 0,
+                CreateDate: new Date(),
+            }).then(() => {
+                window.location.reload()
+            })
+        } else {
+            alert("Please Input Your Question")
+        }
     }
 
     // Popup detail
@@ -99,6 +103,7 @@ export default function Rank() {
                                 {/* Rank Lable */}
                                 <div className='flex justify-between'>
                                     <div className='w-full flex justify-center'>
+                                        {/* Question Field */}
                                         <div className='my-3 flex flex-col w-full max-w-[40rem]'>
                                             <span>Question : </span>
                                             <input ref={question} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />

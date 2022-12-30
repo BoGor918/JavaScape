@@ -26,17 +26,17 @@ export default function Rank() {
                         {/* Rank Lable */}
                         <div className='flex justify-between'>
                             <div className='w-full flex justify-center'>
-                                <span className='text-md sm:text-md md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                     Rank
                                 </span>
                             </div>
                             <div className='w-full flex justify-center'>
-                                <span className='text-md sm:text-md md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                     Username
                                 </span>
                             </div>
                             <div className='w-full flex justify-center'>
-                                <span className='text-md sm:text-md md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                     Total Score
                                 </span>
                             </div>
@@ -47,17 +47,17 @@ export default function Rank() {
                                 return (
                                     <div className='flex justify-between hover:bg-black/20 rounded-lg'>
                                         <div className='w-full flex justify-center'>
-                                            <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                 {index + 1}
                                             </span>
                                         </div>
                                         <div className='w-full flex justify-center'>
-                                            <span onClick={() => navigate(`/profile/${user.Username}`)} className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3 cursor-pointer underline'>
+                                            <span onClick={() => navigate(`/profile/${user.Username}`)} className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3 cursor-pointer underline'>
                                                 {user.Username}
                                             </span>
                                         </div>
                                         <div className='w-full flex justify-center'>
-                                            <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                 {user.TotalScore}
                                             </span>
                                         </div>

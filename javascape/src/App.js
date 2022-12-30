@@ -12,6 +12,7 @@ import Rank from './components/Rank';
 import AllUserProfile from './components/AllUserProfile';
 import Forum from './components/Forum';
 import ForumDetail from './components/ForumDetail';
+import Topic from './components/Topic';
 
 export default function App() {
   // call data from mapper context js
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/battle" element={<Battle />} />
         <Route path="/rank" element={<Rank />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/topic" element={<Topic />} />
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
         {/* gameplay link */}
