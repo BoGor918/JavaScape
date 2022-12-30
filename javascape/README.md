@@ -31,3 +31,7 @@
 
 # React Icon
 1. npm install react-icons --save
+
+# Moment
+1. npm install moment
+2. https://momentjs.com/docs/

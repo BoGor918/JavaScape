@@ -1,15 +1,18 @@
+/* eslint-disable no-useless-concat */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect, useState } from 'react'
 import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { firestore } from "../firebase"
-import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
+import { doc, setDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 
 export default function ForumDetail() {
     // call data from mapper context js
     const {
         forumData,
+        authUser,
         currentUserDataSet
     } = useContext(MapperContext)
 
@@ -22,8 +25,24 @@ export default function ForumDetail() {
     // forum detail variable
     const reply = useRef("");
 
+    // Reply Collection
+    const replyCollectionRef = collection(firestore, `Forum/${viewForum}/Reply`)
+    const [replyData, setReplyData] = useState([])
+
+    useEffect(() => {
+        const q = query(replyCollectionRef, orderBy("CreateDate", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setReplyData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+        return unsub;
+    }, [authUser]);
+
+    // Reply Submit Function
     const SubmitReply = async () => {
-        const docuementID = currentUserDataSet[1] + "ReplyTo" + viewForum
+        const today = new Date()
+        const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
+        const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + viewForum + "-" + timeCode
+
+        const createDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()
 
         if (reply.current.value !== "") {
             await setDoc(doc(firestore, `Forum/${viewForum}/Reply`, docuementID), {
@@ -31,14 +50,13 @@ export default function ForumDetail() {
                 ReplyUser: currentUserDataSet[1],
                 PositiveVote: 0,
                 NegativeVote: 0,
-                CreateDate: new Date(),
+                CreateDate: createDate,
             }).then(() => {
-                window.location.reload()
+                reply.current.value = ""
             })
         } else {
             alert("Please Input Your Reply Before Submit")
         }
-
     }
 
     return (
@@ -88,11 +106,29 @@ export default function ForumDetail() {
                             </div>
                         </div>
                         <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem]'>
+                            {/* Reply Content */}
+                            {
+                                replyData.map((reply) => {
+                                    return (
+                                        <div className='flex flex-col w-full px-[0.4rem] mb-4'>
+                                            <div className='flex items-center'>
+                                                <div className='w-full max-w-[5rem] flex justify-center text-[12px]'>
+                                                    <button className='px-2'>{reply.PositiveVote} &#43;</button>
+                                                    <button className='pr-2'>{reply.NegativeVote} &minus;</button>
+                                                </div>
+                                                <div className='flex flex-col'>
+                                                    <span>{reply.Content}</span>
+                                                    <span className='text-[12px]'>Reply By {reply.ReplyUser} {reply.CreateDate}</span>
+                                                </div>
+                                            </div>
 
-                            
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                         {/* Reply Content */}
-                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] placeholder-white' />
+                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
                         <div className="w-full max-w-[69.8rem] pt-5 flex justify-start mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
                             <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">

@@ -33,9 +33,11 @@ export default function Forum() {
 
     const CreateQuestion = async () => {
         const today = new Date()
-        const timeCode = (currentUserDataSet[1] + today.getFullYear() + (today.getMonth() + 1) + "/" + today.getDate() + today.getHours() + today.getMinutes() + today.getSeconds()).replace("/", "")
+        const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
 
         const forumImageRef = ref(storage, "Forum/" + timeCode)
+
+        const createDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()
 
         // add reply sub collection
         const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Reply');
@@ -52,12 +54,11 @@ export default function Forum() {
                                 CreateUser: currentUserDataSet[1],
                                 PositiveVote: 0,
                                 NegativeVote: 0,
-                                CreateDate: new Date(),
+                                CreateDate: createDate,
                             }).then(() => {
                                 addDoc(forumReplyRef, {
                                     ForumReply: "ForumReply",
                                 })
-
                                 window.location.reload()
                             })
                         } else {
@@ -114,22 +115,22 @@ export default function Forum() {
                     {
                         !modal && (
                             <div className='w-full flex flex-col justify-center items-center'>
-                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     {/* Forum Table */}
                                     {
                                         forumData.map((forum) => {
                                             return (
                                                 <div onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-5 py-[5px] cursor-pointer'>
-                                                    <div className='w-full max-w-[2.5rem] flex flex-col justify-center text-[12px]'>
+                                                    <div className='w-full max-w-[2.5rem] flex flex-col justify-center text-[12px] font-extrabold'>
                                                         <div className=''>{forum.PositiveVote} &#43;</div>
-                                                        <div className=''>{forum.PositiveVote} &minus;</div>
+                                                        <div className=''>{forum.NegativeVote} &minus;</div>
                                                     </div>
                                                     <div className='w-full flex flex-col justify-center'>
-                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
                                                             {forum.Question}
                                                         </span>
                                                         <span className='text-[12px]'>
-                                                            Create By {forum.CreateUser}
+                                                            Create By {forum.CreateUser} {forum.CreateDate}
                                                         </span>
                                                     </div>
                                                 </div>
