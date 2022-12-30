@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import NavBar from '../../NavBar'
-import Footer from '../../Footer'
 import { NavLink } from 'react-router-dom'
 import Level01IntroBanner from "../../../images/Levels/Level01/Level01IntroBanner.png"
 import { MapperContext } from '../../../globalVariables/MapperContextProvider'
@@ -46,7 +45,6 @@ export default function Battle() {
                         <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] lg:ml-[2.9rem]' />
                     </div>
                 </div>
-                <Footer />
             </div>
     )
 }

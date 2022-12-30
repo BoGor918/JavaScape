@@ -7,7 +7,6 @@ import Robot1 from '../images/Robot1.png'
 import Robot2 from '../images/Robot2.png'
 import Robot3 from '../images/Robot3.png'
 import { NavLink } from 'react-router-dom'
-import Footer from './Footer'
 
 export default function Home() {
   return (
@@ -55,8 +54,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   )
 }

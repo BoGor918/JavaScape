@@ -1,6 +1,5 @@
 import React from 'react'
 import NavBar from './NavBar'
-import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
 import Level01Banner from '../images/Levels/Level01/Level01Banner.png'
 import Level02Banner from '../images/Levels/Level02Banner.png'
@@ -23,7 +22,6 @@ export default function Battle() {
                     <NavLink><img src={Level04Banner} alt="" className='w-full max-w-[260px] cursor-pointer' /></NavLink>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

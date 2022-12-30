@@ -8,8 +8,6 @@ import { updateDoc, doc, collection, getDocs } from 'firebase/firestore'
 import { MapperContext } from "../../../globalVariables/MapperContextProvider";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../NavBar";
-import { NavLink } from "react-router-dom";
-import Footer from "../../Footer";
 
 export default function Level01() {
   // get user data from context
@@ -109,8 +107,6 @@ export default function Level01() {
               </div>
             </div>
           </div>
-          {/* Footer */}
-          <Footer />
         </div>
       </div>
   );

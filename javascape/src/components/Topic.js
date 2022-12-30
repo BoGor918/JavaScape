@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { collection, getDocs } from 'firebase/firestore'
 import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
-import Footer from './Footer'
 
 export default function Topic() {
     // call data from mapper context js
@@ -26,8 +24,6 @@ export default function Topic() {
                         <span className='self-center text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Coming Soon......</span>
                     </div>
                 </div>
-                {/* Footer */}
-                <Footer />
             </div>
     )
 }
