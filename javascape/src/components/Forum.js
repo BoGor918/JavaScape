@@ -52,6 +52,8 @@ export default function Forum() {
                                 CreateUser: currentUserDataSet[1],
                                 PositiveVote: 0,
                                 NegativeVote: 0,
+                                PositiveVotedUser: [],
+                                NegativeVotedUser: [],
                                 CreateDate: new Date(),
                             }).then(() => {
                                 addDoc(forumReplyRef, {
