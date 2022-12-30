@@ -21,6 +21,8 @@ export default function Login() {
     // Navigate function
     const navigate = useNavigate()
 
+    console.log(userArray)
+
     // Login function
     const Login = async () => {
         try {
@@ -33,27 +35,25 @@ export default function Login() {
             } else {
                 // if user is using username to login
                 var haveUsername = false;
-                for (var i = 0; i < userArray.length; i++) {
-                    if (Object.is(userArray[0][i], loginEmailOrUsername.current.value) === true) {
+                for (var i = 0; i < userArray[0].length; i++) {
+                    if (Object.is(userArray[0][i], loginEmailOrUsername.current.value)) {
                         const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
                         console.log(user)
-                        navigate("/profile")
                         haveUsername = true;
                         break;
                     }
-                    haveUsername = false;
                 }
-
+                console.log(haveUsername)
                 if (haveUsername === false) {
                     alert("Invalid Email / Username or Password, Plz Try Again")
                 }
             }
         } catch (error) {
             console.log(error)
+            console.log(haveUsername)
             alert("Invalid Email / Username or Password, Plz Try Again")
         }
     }
-
     // Enter key press event and call Login function
     useEffect(() => {
         const keyDownHandler = event => {

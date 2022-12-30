@@ -6,7 +6,7 @@ import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { firestore } from "../firebase"
-import { doc, setDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore'
+import { doc, setDoc, collection, query, orderBy, onSnapshot, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
 
 export default function ForumDetail() {
     // call data from mapper context js
@@ -42,20 +42,90 @@ export default function ForumDetail() {
         const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
         const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + viewForum + "-" + timeCode
 
-        const createDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()
-
         if (reply.current.value !== "") {
             await setDoc(doc(firestore, `Forum/${viewForum}/Reply`, docuementID), {
                 Content: reply.current.value,
                 ReplyUser: currentUserDataSet[1],
                 PositiveVote: 0,
                 NegativeVote: 0,
-                CreateDate: createDate,
+                PositiveVotedUser: [],
+                NegativeVotedUser: [],
+                CreateDate: new Date(),
             }).then(() => {
                 reply.current.value = ""
             })
         } else {
             alert("Please Input Your Reply Before Submit")
+        }
+    }
+
+    const PositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
+        const updateReplyVotePath = `Forum/${viewForum}/Reply/`
+        const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
+
+        var alreadyVotedPositive = false
+        for (let i = 0; i < positiveVotedUser.length; i++) {
+            if (positiveVotedUser[i] === currentUserDataSet[1]) {
+                alreadyVotedPositive = true
+            }
+        }
+
+        var alreadyVotedNegative = false
+        for (let i = 0; i < negativeVotedUser.length; i++) {
+            if (negativeVotedUser[i] === currentUserDataSet[1]) {
+                alreadyVotedNegative = true
+            }
+        }
+
+        if (alreadyVotedPositive === false) {
+            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
+            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
+        } else if (positiveVotedUser.length === 0) {
+            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
+            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
+        }
+
+        if (alreadyVotedNegative === true) {
+            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
+            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
+            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
+            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+    }
+
+    const NegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
+        const updateReplyVotePath = `Forum/${viewForum}/Reply/`
+        const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
+
+
+        var alreadyVotedNegative = false
+        for (let i = 0; i < negativeVotedUser.length; i++) {
+            if (negativeVotedUser[i] === currentUserDataSet[1]) {
+                alreadyVotedNegative = true
+            }
+        }
+
+        var alreadyVotedPositive = false
+        for (let i = 0; i < positiveVotedUser.length; i++) {
+            if (positiveVotedUser[i] === currentUserDataSet[1]) {
+                alreadyVotedPositive = true
+            }
+        }
+
+        if (alreadyVotedNegative === false) {
+            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
+            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
+        } else if (negativeVotedUser.length === 0) {
+            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
+            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
+        }
+
+
+        if (alreadyVotedPositive === true) {
+            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
+            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
+            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
+            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
         }
     }
 
@@ -105,20 +175,33 @@ export default function ForumDetail() {
                                 }
                             </div>
                         </div>
-                        <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem]'>
+                        <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] '>
                             {/* Reply Content */}
                             {
                                 replyData.map((reply) => {
                                     return (
-                                        <div className='flex flex-col w-full px-[0.4rem] mb-4'>
+                                        <div className='flex flex-col w-full px-[0.4rem] my-4'>
                                             <div className='flex items-center'>
-                                                <div className='w-full max-w-[5rem] flex justify-center text-[12px]'>
-                                                    <button className='px-2'>{reply.PositiveVote} &#43;</button>
-                                                    <button className='pr-2'>{reply.NegativeVote} &minus;</button>
-                                                </div>
+                                                {
+                                                    currentUserDataSet[1] === reply.ReplyUser ?
+                                                        <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
+                                                        </div> :
+                                                        <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
+                                                            {
+                                                                reply.PositiveVotedUser.includes(currentUserDataSet[1]) ?
+                                                                    <button onClick={() => PositiveVote(reply.PositiveVote, reply.NegativeVote, reply.PositiveVotedUser, reply.NegativeVotedUser, reply.id)} className='p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{reply.PositiveVote} &#43;</button> :
+                                                                    <button onClick={() => PositiveVote(reply.PositiveVote, reply.NegativeVote, reply.PositiveVotedUser, reply.NegativeVotedUser, reply.id)} className='p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{reply.PositiveVote} &#43;</button>
+                                                            }
+                                                            {
+                                                                reply.NegativeVotedUser.includes(currentUserDataSet[1]) ?
+                                                                    <button onClick={() => NegativeVote(reply.PositiveVote, reply.NegativeVote, reply.PositiveVotedUser, reply.NegativeVotedUser, reply.id)} className='p-1 mr-2 border-[1px] border-white rounded-md text-black bg-white'>{reply.NegativeVote} &minus;</button> :
+                                                                    <button onClick={() => NegativeVote(reply.PositiveVote, reply.NegativeVote, reply.PositiveVotedUser, reply.NegativeVotedUser, reply.id)} className='p-1 mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{reply.NegativeVote} &minus;</button>
+                                                            }
+                                                        </div>
+                                                }
                                                 <div className='flex flex-col'>
                                                     <span>{reply.Content}</span>
-                                                    <span className='text-[12px]'>Reply By {reply.ReplyUser} {reply.CreateDate}</span>
+                                                    <span className='text-[12px]'>Reply By {reply.ReplyUser} {reply.CreateDate.toDate().getDate() + "/" + (reply.CreateDate.toDate().getMonth() + 1) + "/" + reply.CreateDate.toDate().getFullYear() + " " + reply.CreateDate.toDate().getHours() + ":" + reply.CreateDate.toDate().getMinutes()}</span>
                                                 </div>
                                             </div>
 

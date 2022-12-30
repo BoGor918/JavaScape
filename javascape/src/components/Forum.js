@@ -37,8 +37,6 @@ export default function Forum() {
 
         const forumImageRef = ref(storage, "Forum/" + timeCode)
 
-        const createDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()
-
         // add reply sub collection
         const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Reply');
 
@@ -54,7 +52,7 @@ export default function Forum() {
                                 CreateUser: currentUserDataSet[1],
                                 PositiveVote: 0,
                                 NegativeVote: 0,
-                                CreateDate: createDate,
+                                CreateDate: new Date(),
                             }).then(() => {
                                 addDoc(forumReplyRef, {
                                     ForumReply: "ForumReply",
@@ -130,7 +128,7 @@ export default function Forum() {
                                                             {forum.Question}
                                                         </span>
                                                         <span className='text-[12px]'>
-                                                            Create By {forum.CreateUser} {forum.CreateDate}
+                                                            Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/"+ (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " " + forum.CreateDate.toDate().getHours() + ":" + forum.CreateDate.toDate().getMinutes()}
                                                         </span>
                                                     </div>
                                                 </div>

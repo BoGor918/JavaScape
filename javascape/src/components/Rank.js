@@ -1,16 +1,28 @@
-import React, { useContext } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect } from 'react'
 import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
+import { query, orderBy, onSnapshot } from 'firebase/firestore'
 
 export default function Rank() {
     // call data from mapper context js
     const {
-        userData,
+        authUser,
+        usersCollectionRef
     } = useContext(MapperContext)
+
+    const [userData, setUserData] = React.useState([]);
 
     // navigate function
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setUserData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+        return unsub;
+    }, [authUser]);
 
     return (
         <div className='Rank bg-[#09002B] bg-background text-white font-exo h-screen'>
