@@ -29,6 +29,7 @@ export default function ForumDetail() {
     const replyCollectionRef = collection(firestore, `Forum/${viewForum}/Reply`)
     const [replyData, setReplyData] = useState([])
 
+    // Get Reply Data
     useEffect(() => {
         const q = query(replyCollectionRef, orderBy("CreateDate", "desc"));
         const unsub = onSnapshot(q, (snapshot) =>
@@ -58,6 +59,8 @@ export default function ForumDetail() {
             alert("Please Input Your Reply Before Submit")
         }
     }
+
+    // Vote Function - Positive Vote
     const PositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, forumID) => {
         const updateDocRef = doc(firestore, "Forum", viewForum)
 
@@ -91,6 +94,7 @@ export default function ForumDetail() {
         }
     }
 
+    // Vote Function - Negative Vote
     const NegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, forumID) => {
         const updateDocRef = doc(firestore, "Forum", viewForum)
 
@@ -125,6 +129,7 @@ export default function ForumDetail() {
         }
     }
 
+    // Reply Vote Function - Positive Vote
     const ReplyPositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
         const updateReplyVotePath = `Forum/${viewForum}/Reply/`
         const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
@@ -159,6 +164,7 @@ export default function ForumDetail() {
         }
     }
 
+    // Reply Vote Function - Negative Vote
     const ReplyNegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
         const updateReplyVotePath = `Forum/${viewForum}/Reply/`
         const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
@@ -196,11 +202,10 @@ export default function ForumDetail() {
     }
 
     return (
-        <div className='Forum bg-[#09002B] bg-background text-white font-exo h-screen'>
+        <div className='ForumDetail bg-[#09002B] bg-background text-white font-exo h-screen'>
             <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
-                {/* Title */}
                 <div className='w-full flex flex-col items-center h-screen'>
                     {/* Title */}
                     {
@@ -213,7 +218,7 @@ export default function ForumDetail() {
                                 )
                         })
                     }
-                    {/* Back Button and detail */}
+                    {/* Question deatil and vote */}
                     {
                         forumData.map((forum) => {
                             if (forum.id === viewForum)
@@ -266,6 +271,7 @@ export default function ForumDetail() {
                                 }
                             </div>
                         </div>
+                        {/* Reply column */}
                         <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] '>
                             {/* Reply Content */}
                             {
@@ -301,7 +307,7 @@ export default function ForumDetail() {
                                 })
                             }
                         </div>
-                        {/* Reply Content */}
+                        {/* New Reply */}
                         <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
                         <div className="w-full max-w-[69.8rem] pt-5 flex justify-start mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">

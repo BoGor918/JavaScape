@@ -23,14 +23,15 @@ export default function Forum() {
     // Forum variables
     const question = useRef("");
     const description = useRef("");
+    const [image, setImage] = useState(undefined) // image state
+    const hiddenFileInput = useRef(null); // hidden file input
 
-    const [image, setImage] = useState(undefined)
-    const hiddenFileInput = useRef(null);
-
+    // handle image upload
     const handleImageUploaded = (event) => {
         setImage(event.target.files[0]);
     };
 
+    // Create Question
     const CreateQuestion = async () => {
         const today = new Date()
         const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
@@ -87,7 +88,7 @@ export default function Forum() {
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
                 <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Feel Free To Ask Your Teammates</span>
-                {/* Create Button */}
+                {/* Create Question Button */}
                 {
                     !modal && (
                         <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
@@ -99,6 +100,7 @@ export default function Forum() {
                         </div>
                     )
                 }
+                {/* Back Button just the create question button is clicked */}
                 {
                     modal && (
                         <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
@@ -110,8 +112,9 @@ export default function Forum() {
                         </div>
                     )
                 }
-                {/* Level Grid Column */}
+                {/* Forum Column */}
                 <div className='w-full flex flex-col justify-center items-center'>
+                    {/* All Question View */}
                     {
                         !modal && (
                             <div className='w-full flex flex-col justify-center items-center'>
@@ -130,7 +133,7 @@ export default function Forum() {
                                                             {forum.Question}
                                                         </span>
                                                         <span className='text-[12px]'>
-                                                            Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/"+ (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " " + forum.CreateDate.toDate().getHours() + ":" + forum.CreateDate.toDate().getMinutes()}
+                                                            Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " " + forum.CreateDate.toDate().getHours() + ":" + forum.CreateDate.toDate().getMinutes()}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -141,7 +144,7 @@ export default function Forum() {
                             </div>
                         )
                     }
-                    {/* Popup Model */}
+                    {/* Popup Model for create question */}
                     {
                         modal && (
                             <div className='w-full flex flex-col justify-center items-center'>
@@ -175,9 +178,8 @@ export default function Forum() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Create Button */}
+                                {/* Ask Question Button */}
                                 <div className="w-full max-w-[1280px] pt-5 flex justify-center mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
-                                    {/* Ask Question Button */}
                                     <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
                                         <div>
                                             <button onClick={() => CreateQuestion()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Ask Question</button>
