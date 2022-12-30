@@ -22,7 +22,7 @@ export default function Rank() {
                 <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Who is the best ?</span>
                 {/* Rank Content */}
                 <div className='w-full flex flex-col justify-center items-center'>
-                    <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                    <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-5'>
                         {/* Rank Lable */}
                         <div className='flex justify-between'>
                             <div className='w-full flex justify-center'>
@@ -45,7 +45,7 @@ export default function Rank() {
                         {
                             userData.map((user, index) => {
                                 return (
-                                    <div className='flex justify-between'>
+                                    <div className='flex justify-between hover:bg-black/20 rounded-lg'>
                                         <div className='w-full flex justify-center'>
                                             <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                 {index + 1}

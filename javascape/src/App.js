@@ -11,13 +11,15 @@ import Level01Intro from './components/Levels/Level01/Level01Intro';
 import Rank from './components/Rank';
 import AllUserProfile from './components/AllUserProfile';
 import Forum from './components/Forum';
+import ForumDetail from './components/ForumDetail';
 
 export default function App() {
   // call data from mapper context js
   const {
     currentUserDataSet,
     authUser,
-    userData
+    userData,
+    forumData,
   } = useContext(MapperContext);
 
   return (
@@ -44,6 +46,14 @@ export default function App() {
           userData.map((user) => {
             return (
               <Route path={"/profile/" + user.Username} element={<AllUserProfile />} />
+            )
+          })
+        }
+        {/* all forum link */}
+        {
+          forumData.map((forum) => {
+            return (
+              <Route path={"/forum/" + forum.id} element={<ForumDetail />} />
             )
           })
         }

@@ -16,6 +16,7 @@ export default function AllUserProfile() {
         userData,
     } = useContext(MapperContext)
 
+    // get the user name from the url
     const viewUser = window.location.pathname.replace("/profile/", "")
 
     // navigate function
