@@ -154,21 +154,21 @@ export default function ForumDetail() {
                 <div className='w-full flex flex-col items-center h-screen'>
                     {/* Title */}
                     {
-                        forumData.map((forum) => {
+                        forumData.map((forum, i) => {
                             if (forum.id === viewForum)
                                 return (
-                                    <>
-                                        <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>{forum.Question}</span>
-                                    </>
+                                    <div key={i} className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>
+                                        <span >{forum.Question}</span>
+                                    </div>
                                 )
                         })
                     }
                     {/* Question deatil and vote */}
                     {
-                        forumData.map((forum) => {
+                        forumData.map((forum, i) => {
                             if (forum.id === viewForum)
                                 return (
-                                    <div className="w-full max-w-[69.8rem] pb-5 flex justify-start items-center">
+                                    <div key={i} className="w-full max-w-[69.8rem] pb-5 flex justify-start items-center">
                                         <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                             <div>
                                                 <button onClick={() => navigate(-1)} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>

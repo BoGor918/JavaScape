@@ -85,10 +85,10 @@ export default function Level01() {
         <div className="Stage bg-[#09002B] bg-background flex flex-col text-white font-exo w-full">
           <div className="w-full h-screen flex flex-col justify-center items-center px-4 pt-4 sm:px-4 sm:pt-4 md:px-24 md:pt-24 lg:px-24 lg:pt-24">
             {
-              userLevel1Data.map((level1) => {
+              userLevel1Data.map((level1, i) => {
                 if (level1.Level === 1) {
                   return (
-                    <div className="w-full max-w-[1280px] text-3xl font-bold flex justify-between mb-3">
+                    <div key={i} className="w-full max-w-[1280px] text-3xl font-bold flex justify-between mb-3">
                       <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
                       <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
                     </div>

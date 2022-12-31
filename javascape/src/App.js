@@ -45,17 +45,17 @@ export default function App() {
         }
         {/* all User Profile Link */}
         {
-          userData.map((user) => {
+          userData.map((user, i) => {
             return (
-              <Route path={"/profile/" + user.Username} element={<AllUserProfile />} />
+              <Route key={i} path={"/profile/" + user.Username} element={<AllUserProfile />} />
             )
           })
         }
         {/* all forum link */}
         {
-          forumData.map((forum) => {
+          forumData.map((forum, i) => {
             return (
-              <Route path={"/forum/" + forum.id} element={<ForumDetail />} />
+              <Route key={i} path={"/forum/" + forum.id} element={<ForumDetail />} />
             )
           })
         }

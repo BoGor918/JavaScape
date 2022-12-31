@@ -121,9 +121,9 @@ export default function Forum() {
                                 <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     {/* Forum Table */}
                                     {
-                                        forumData.map((forum) => {
+                                        forumData.map((forum, i) => {
                                             return (
-                                                <div onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-5 py-[5px] cursor-pointer'>
+                                                <div key={i} onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-5 py-[5px] cursor-pointer'>
                                                     <div className='w-full max-w-[2.5rem] flex flex-col justify-center text-[12px] font-extrabold'>
                                                         <div className=''>{forum.PositiveVote} &#43;</div>
                                                         <div className=''>{forum.NegativeVote} &minus;</div>

@@ -137,7 +137,6 @@ const ReplySingle = ({ data, replyReplyID }) => {
     return (
         <div className=''>
             {/* Reply Content */}
-
             <div className='flex flex-col w-full pl-[5rem] my-4'>
                 <div className='flex items-center'>
                     {

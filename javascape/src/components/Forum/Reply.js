@@ -13,14 +13,8 @@ export default function Reply({ replyReplyID, commentUser }) {
         authUser,
     } = useContext(MapperContext)
 
-    // // navigate function
-    // const navigate = useNavigate();
-
     // Get forum id from url
     const viewForum = window.location.pathname.replace("/forum/", "")
-
-    // // Reply Input
-    // const reply = useRef("");
 
     // Reply Collection
     const replyCollectionRef = collection(firestore, `Forum/${viewForum}/Comment/${replyReplyID}/Reply`)
