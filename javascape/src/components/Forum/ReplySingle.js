@@ -39,6 +39,7 @@ const ReplySingle = ({ data, replyReplyID }) => {
             CreateDate: new Date(),
         }).then(() => {
             reply.current.value = ""
+            setCollapse(false)
         })
     }
 
