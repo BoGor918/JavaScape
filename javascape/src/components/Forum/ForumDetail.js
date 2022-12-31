@@ -30,7 +30,7 @@ export default function ForumDetail() {
 
     // Get Comment Data
     useEffect(() => {
-        const q = query(commentCollectionRef, orderBy("CreateDate", "desc"));
+        const q = query(commentCollectionRef, orderBy("CreateDate", "asc"));
         const unsub = onSnapshot(q, (snapshot) =>
             setCommentData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
         return unsub;
@@ -40,7 +40,7 @@ export default function ForumDetail() {
     const SubmitComment = async () => {
         const today = new Date()
         const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
-        const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + viewForum + "-" + timeCode
+        const docuementID = currentUserDataSet[1] + "-" + "CommentTo" + "-" + viewForum + "-" + timeCode
 
         // add reply to reply sub collection
         const replyRef = collection(firestore, 'Forum/' + viewForum + '/Comment' + '/' + docuementID + '/Reply');
@@ -48,7 +48,7 @@ export default function ForumDetail() {
         if (comment.current.value !== "") {
             await setDoc(doc(firestore, `Forum/${viewForum}/Comment`, docuementID), {
                 Content: comment.current.value,
-                ReplyUser: currentUserDataSet[1],
+                CommentUser: currentUserDataSet[1],
                 PositiveVote: 0,
                 NegativeVote: 0,
                 PositiveVotedUser: [],

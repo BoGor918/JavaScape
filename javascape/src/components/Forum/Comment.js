@@ -1,8 +1,9 @@
+/* eslint-disable no-useless-concat */
 import { useNavigate } from 'react-router-dom'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { firestore } from "../../firebase"
-import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { doc, updateDoc, arrayUnion, arrayRemove, setDoc } from 'firebase/firestore'
 import Reply from './Reply'
 
 const Comment = ({ data }) => {
@@ -11,12 +12,41 @@ const Comment = ({ data }) => {
 
     //For collapse
     const [collapse, setCollapse] = useState(false);
+    const [collapse2, setCollapse2] = useState(false);
 
     // navigate function
     const navigate = useNavigate();
 
     // Get forum id from url
     const viewForum = window.location.pathname.replace("/forum/", "")
+
+    // Reply Input
+    const reply = useRef("");
+
+    // Comment Submit Function
+    const SubmitReply = async () => {
+        const today = new Date()
+        const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
+        const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + data.id + "-" + timeCode
+
+        if (reply.current.value !== "") {
+            await setDoc(doc(firestore, `Forum/${viewForum}/Comment/${data.id}/Reply`, docuementID), {
+                Content: reply.current.value,
+                ReplyUser: currentUserDataSet[1],
+                ReplyTo: data.CommentUser,
+                PositiveVote: 0,
+                NegativeVote: 0,
+                PositiveVotedUser: [],
+                NegativeVotedUser: [],
+                CreateDate: new Date(),
+            }).then(() => {
+                reply.current.value = ""
+                setCollapse2(false)
+            })
+        } else {
+            alert("Please Input Your Reply Before Submit")
+        }
+    }
 
     // Reply Vote Function - Positive Vote
     const CommentPositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
@@ -104,7 +134,7 @@ const Comment = ({ data }) => {
         <div className='flex flex-col w-full px-[0.4rem] my-4'>
             <div className='flex items-center'>
                 {
-                    currentUserDataSet[1] === data.ReplyUser ?
+                    currentUserDataSet[1] === data.CommentUser ?
                         <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
                         </div> :
                         <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
@@ -122,20 +152,47 @@ const Comment = ({ data }) => {
                 }
                 <div className='flex flex-col'>
                     <span>{data.Content}</span>
-                    <div className='text-[12px]'>
+                    <div className='text-[12px] text-gray-300'>
                         <span>Reply By </span>
-                        <span onClick={() => navigate(`/profile/${data.ReplyUser}`)} className='hover:underline cursor-pointer'>{data.ReplyUser}</span>
+                        {
+                            currentUserDataSet[1] === data.CommentUser ?
+                                <span onClick={() => navigate(`/profile`)} className='hover:underline cursor-pointer'>{data.CommentUser}</span> :
+                                <span onClick={() => navigate(`/profile/${data.CommentUser}`)} className='hover:underline cursor-pointer'>{data.CommentUser}</span>
+                        }
                         <span> {data.CreateDate.toDate().getDate() + "/" + (data.CreateDate.toDate().getMonth() + 1) + "/" + data.CreateDate.toDate().getFullYear() + " "}</span>
                         <span>{data.CreateDate.toDate().getHours() < 10 ? "0" + data.CreateDate.toDate().getHours() + ":" : data.CreateDate.toDate().getHours() + ":"}</span>
                         <span>{data.CreateDate.toDate().getMinutes() < 10 ? "0" + data.CreateDate.toDate().getMinutes() : data.CreateDate.toDate().getMinutes()}</span>
                         <span> - </span>
                         <span onClick={() => setCollapse(prev => !prev)} className='hover:underline cursor-pointer'>Show Reply</span>
+                        {
+                            collapse ?
+                                collapse2 ?
+                                    <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Cancel Reply</span></span> :
+                                    <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Reply</span></span> :
+                                <></>
+                        }
+
                     </div>
                 </div>
             </div>
-            {collapse && <Reply replyReplyID={data.id} />}
+            {collapse && <Reply replyReplyID={data.id} commentUser={data.CommentUser} />}
+            {
+                collapse2 && (
+                    <div className='w-full max-w-[56.8rem] ml-auto'>
+                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
+                        {/* Submit Button */}
+                        <div className="w-full max-w-[69.8rem] pt-5 flex justify-start">
+                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                                <div>
+                                    <button onClick={SubmitReply} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Reply To {data.CommentUser}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }
 
-export default Comment;
+export default Comment
