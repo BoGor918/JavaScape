@@ -61,9 +61,10 @@ export default function ForumDetail() {
     }
 
     // Vote Function - Positive Vote
-    const PositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, forumID) => {
+    const PositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser) => {
         const updateDocRef = doc(firestore, "Forum", viewForum)
 
+        // check if user already voted to positive
         var alreadyVotedPositive = false
         for (let i = 0; i < positiveVotedUser.length; i++) {
             if (positiveVotedUser[i] === currentUserDataSet[1]) {
@@ -71,6 +72,7 @@ export default function ForumDetail() {
             }
         }
 
+        // check if user already voted to negative
         var alreadyVotedNegative = false
         for (let i = 0; i < negativeVotedUser.length; i++) {
             if (negativeVotedUser[i] === currentUserDataSet[1]) {
@@ -78,15 +80,18 @@ export default function ForumDetail() {
             }
         }
 
+        // if user not voted to positive yet add 1 to positive vote and add user to positive voted user
         if (alreadyVotedPositive === false) {
             updateDoc(updateDocRef, { PositiveVote: currentPositiveVote + 1 })
             updateDoc(updateDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
-        } else if (positiveVotedUser.length === 0) {
-            updateDoc(updateDocRef, { PositiveVote: currentPositiveVote + 1 })
-            updateDoc(updateDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
         }
-
-        if (alreadyVotedNegative === true) {
+        // if user already voted to positive and he click positive again remove 1 from positive vote and remove user from positive voted user
+        else if (alreadyVotedPositive === true) {
+            updateDoc(updateDocRef, { PositiveVote: currentPositiveVote - 1 })
+            updateDoc(updateDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+        // if user already voted to negative and he click positive remove 1 from negative vote and remove user from negative voted user and add 1 to positive vote and add user to positive voted user
+        else if (alreadyVotedNegative === true) {
             updateDoc(updateDocRef, { PositiveVote: currentPositiveVote + 1 })
             updateDoc(updateDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
             updateDoc(updateDocRef, { NegativeVote: currentNegativeVote - 1 })
@@ -95,9 +100,10 @@ export default function ForumDetail() {
     }
 
     // Vote Function - Negative Vote
-    const NegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, forumID) => {
+    const NegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser) => {
         const updateDocRef = doc(firestore, "Forum", viewForum)
 
+        // check if user already voted to negative
         var alreadyVotedNegative = false
         for (let i = 0; i < negativeVotedUser.length; i++) {
             if (negativeVotedUser[i] === currentUserDataSet[1]) {
@@ -105,6 +111,7 @@ export default function ForumDetail() {
             }
         }
 
+        // check if user already voted to positive
         var alreadyVotedPositive = false
         for (let i = 0; i < positiveVotedUser.length; i++) {
             if (positiveVotedUser[i] === currentUserDataSet[1]) {
@@ -112,16 +119,18 @@ export default function ForumDetail() {
             }
         }
 
+        // if user not voted to negative yet add 1 to negative vote and add user to negative voted user
         if (alreadyVotedNegative === false) {
             updateDoc(updateDocRef, { NegativeVote: currentNegativeVote + 1 })
             updateDoc(updateDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
-        } else if (negativeVotedUser.length === 0) {
-            updateDoc(updateDocRef, { NegativeVote: currentNegativeVote + 1 })
-            updateDoc(updateDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
         }
-
-
-        if (alreadyVotedPositive === true) {
+        // if user already voted to negative and he click negative again remove 1 from negative vote and remove user from negative voted user
+        else if (alreadyVotedNegative === true) {
+            updateDoc(updateDocRef, { NegativeVote: currentNegativeVote - 1 })
+            updateDoc(updateDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+        // if user already voted to positive and he click negative remove 1 from positive vote and remove user from positive voted user and add 1 to negative vote and add user to negative voted user
+        else if (alreadyVotedPositive === true) {
             updateDoc(updateDocRef, { NegativeVote: currentNegativeVote + 1 })
             updateDoc(updateDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
             updateDoc(updateDocRef, { PositiveVote: currentPositiveVote - 1 })
@@ -134,6 +143,7 @@ export default function ForumDetail() {
         const updateReplyVotePath = `Forum/${viewForum}/Reply/`
         const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
 
+        // check if user already voted to positive
         var alreadyVotedPositive = false
         for (let i = 0; i < positiveVotedUser.length; i++) {
             if (positiveVotedUser[i] === currentUserDataSet[1]) {
@@ -141,6 +151,7 @@ export default function ForumDetail() {
             }
         }
 
+        // check if user already voted to negative
         var alreadyVotedNegative = false
         for (let i = 0; i < negativeVotedUser.length; i++) {
             if (negativeVotedUser[i] === currentUserDataSet[1]) {
@@ -148,15 +159,18 @@ export default function ForumDetail() {
             }
         }
 
+        // if user not voted to positive yet add 1 to positive vote and add user to positive voted user
         if (alreadyVotedPositive === false) {
             updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
             updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
-        } else if (positiveVotedUser.length === 0) {
-            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
-            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
         }
-
-        if (alreadyVotedNegative === true) {
+        // if user already voted to positive and he click positive again remove 1 from positive vote and remove user from positive voted user
+        else if (alreadyVotedPositive === true) {
+            updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
+            updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+        // if user already voted to negative and he click positive remove 1 from negative vote and remove user from negative voted user and add 1 to positive vote and add user to positive voted user
+        else if (alreadyVotedNegative === true) {
             updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
             updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
             updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
@@ -169,7 +183,7 @@ export default function ForumDetail() {
         const updateReplyVotePath = `Forum/${viewForum}/Reply/`
         const updateReplyDocRef = doc(firestore, updateReplyVotePath, replyID)
 
-
+        // check if user already voted to negative
         var alreadyVotedNegative = false
         for (let i = 0; i < negativeVotedUser.length; i++) {
             if (negativeVotedUser[i] === currentUserDataSet[1]) {
@@ -177,6 +191,7 @@ export default function ForumDetail() {
             }
         }
 
+        // check if user already voted to positive
         var alreadyVotedPositive = false
         for (let i = 0; i < positiveVotedUser.length; i++) {
             if (positiveVotedUser[i] === currentUserDataSet[1]) {
@@ -184,16 +199,18 @@ export default function ForumDetail() {
             }
         }
 
+        // if user not voted to negative yet add 1 to negative vote and add user to negative voted user
         if (alreadyVotedNegative === false) {
             updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
             updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
-        } else if (negativeVotedUser.length === 0) {
-            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
-            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
         }
-
-
-        if (alreadyVotedPositive === true) {
+        // if user already voted to negative and he click negative again remove 1 from negative vote and remove user from negative voted user
+        else if (alreadyVotedNegative === true) {
+            updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
+            updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+        // if user already voted to positive and he click negative remove 1 from positive vote and remove user from positive voted user and add 1 to negative vote and add user to negative voted user
+        else if (alreadyVotedPositive === true) {
             updateDoc(updateReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
             updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
             updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
@@ -229,20 +246,24 @@ export default function ForumDetail() {
                                                 <button onClick={() => navigate(-1)} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
                                             </div>
                                         </div>
-                                        <span className='ml-2 font-extrabold'>Create by {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " " + forum.CreateDate.toDate().getHours() + ":" + forum.CreateDate.toDate().getMinutes()}</span>
+                                        <div className='ml-2 font-extrabold'>
+                                            <span>Create By {forum.ReplyUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " "}</span>
+                                            <span>{forum.CreateDate.toDate().getHours() < 10 ? "0" + forum.CreateDate.toDate().getHours() + ":" : forum.CreateDate.toDate().getHours() + ":"}</span>
+                                            <span>{forum.CreateDate.toDate().getMinutes() < 10 ? "0" + forum.CreateDate.toDate().getMinutes() : forum.CreateDate.toDate().getMinutes()}</span>
+                                        </div>
                                         {
                                             currentUserDataSet[1] === forum.CreateUser ?
                                                 <></> :
                                                 <>
                                                     {
                                                         forum.PositiveVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => PositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser, forum.id)} className='p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
-                                                            <button onClick={() => PositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser, forum.id)} className='p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
+                                                            <button onClick={() => PositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
+                                                            <button onClick={() => PositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser, "forum")} className='p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
                                                     }
                                                     {
                                                         forum.NegativeVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => NegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser, forum.id)} className='p-1 mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
-                                                            <button onClick={() => NegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser, forum.id)} className='p-1 mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
+                                                            <button onClick={() => NegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
+                                                            <button onClick={() => NegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
                                                     }
 
                                                 </>
@@ -298,7 +319,11 @@ export default function ForumDetail() {
                                                 }
                                                 <div className='flex flex-col'>
                                                     <span>{reply.Content}</span>
-                                                    <span className='text-[12px]'>Reply By {reply.ReplyUser} {reply.CreateDate.toDate().getDate() + "/" + (reply.CreateDate.toDate().getMonth() + 1) + "/" + reply.CreateDate.toDate().getFullYear() + " " + reply.CreateDate.toDate().getHours() + ":" + reply.CreateDate.toDate().getMinutes()}</span>
+                                                    <div className='text-[12px]'>
+                                                        <span>Reply By {reply.ReplyUser} {reply.CreateDate.toDate().getDate() + "/" + (reply.CreateDate.toDate().getMonth() + 1) + "/" + reply.CreateDate.toDate().getFullYear() + " "}</span>
+                                                        <span>{reply.CreateDate.toDate().getHours() < 10 ? "0" + reply.CreateDate.toDate().getHours() + ":" : reply.CreateDate.toDate().getHours() + ":"}</span>
+                                                        <span>{reply.CreateDate.toDate().getMinutes() < 10 ? "0" + reply.CreateDate.toDate().getMinutes() : reply.CreateDate.toDate().getMinutes()}</span>
+                                                    </div>
                                                 </div>
                                             </div>
 

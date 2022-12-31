@@ -132,9 +132,11 @@ export default function Forum() {
                                                         <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
                                                             {forum.Question}
                                                         </span>
-                                                        <span className='text-[12px]'>
-                                                            Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " " + forum.CreateDate.toDate().getHours() + ":" + forum.CreateDate.toDate().getMinutes()}
-                                                        </span>
+                                                        <div className='text-[12px]'>
+                                                            <span>Create By {forum.ReplyUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " "}</span>
+                                                            <span>{forum.CreateDate.toDate().getHours() < 10 ? "0" + forum.CreateDate.toDate().getHours() + ":" : forum.CreateDate.toDate().getHours() + ":"}</span>
+                                                            <span>{forum.CreateDate.toDate().getMinutes() < 10 ? "0" + forum.CreateDate.toDate().getMinutes() : forum.CreateDate.toDate().getMinutes()}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )
