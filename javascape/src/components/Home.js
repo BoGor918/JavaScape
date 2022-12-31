@@ -22,7 +22,7 @@ export default function Home() {
           {/* Welcome Message and hr line */}
           <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row w-full justify-between items-center mt-20'>
             <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>Welcome Member of javascape</span>
-            <hr class="md:max-w-[25rem] lg:max-w-[40rem] w-full h-[3px] bg-[#B154F0] rounded border-0 dark:bg-gray-700" />
+            <hr className="md:max-w-[25rem] lg:max-w-[40rem] w-full h-[3px] bg-[#B154F0] rounded border-0 dark:bg-gray-700" />
           </div>
           {/* First group paragraph and image */}
           <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row my-5 justify-center items-center'>

@@ -40,7 +40,7 @@ export default function NavBar() {
                         <li className='px-5'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
                     </ul>
                     {/* Login and Button */}
-                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-5">
+                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-5">
                         {/* Link to profile only user is logged in else show login button */}
                         <div>
                             {
@@ -72,7 +72,7 @@ export default function NavBar() {
                     <li className='p-5 border-b border-gray-500'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
                 </ul>
                 {/* Login and Button */}
-                <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
+                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
                     {/* Link to profile only user is logged in else show login button */}
                     <div>
                         {

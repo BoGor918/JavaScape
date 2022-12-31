@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
-import NavBar from './NavBar'
-import { MapperContext } from '../globalVariables/MapperContextProvider'
-import { firestore } from "../firebase"
+import NavBar from '../NavBar'
+import { MapperContext } from '../../globalVariables/MapperContextProvider'
+import { firestore } from "../../firebase"
 import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
 import { uploadBytes, ref, getStorage, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom'
@@ -39,7 +39,7 @@ export default function Forum() {
         const forumImageRef = ref(storage, "Forum/" + timeCode)
 
         // add reply sub collection
-        const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Reply');
+        const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Comment');
 
         await uploadBytes(forumImageRef, image).then(
             async () => {
@@ -58,7 +58,7 @@ export default function Forum() {
                                 CreateDate: new Date(),
                             }).then(() => {
                                 addDoc(forumReplyRef, {
-                                    ForumReply: "ForumReply",
+                                    Comment: "Comment",
                                 })
                                 window.location.reload()
                             })
@@ -92,7 +92,7 @@ export default function Forum() {
                 {
                     !modal && (
                         <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
-                            <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
                                 </div>
@@ -104,7 +104,7 @@ export default function Forum() {
                 {
                     modal && (
                         <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
-                            <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
                                 </div>
@@ -133,7 +133,7 @@ export default function Forum() {
                                                             {forum.Question}
                                                         </span>
                                                         <div className='text-[12px]'>
-                                                            <span>Create By {forum.ReplyUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " "}</span>
+                                                            <span>Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " "}</span>
                                                             <span>{forum.CreateDate.toDate().getHours() < 10 ? "0" + forum.CreateDate.toDate().getHours() + ":" : forum.CreateDate.toDate().getHours() + ":"}</span>
                                                             <span>{forum.CreateDate.toDate().getMinutes() < 10 ? "0" + forum.CreateDate.toDate().getMinutes() : forum.CreateDate.toDate().getMinutes()}</span>
                                                         </div>
@@ -182,7 +182,7 @@ export default function Forum() {
                                 </div>
                                 {/* Ask Question Button */}
                                 <div className="w-full max-w-[1280px] pt-5 flex justify-center mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
-                                    <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
+                                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
                                         <div>
                                             <button onClick={() => CreateQuestion()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Ask Question</button>
                                         </div>

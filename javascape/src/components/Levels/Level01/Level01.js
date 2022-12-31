@@ -100,7 +100,7 @@ export default function Level01() {
             <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
             {/* Exit Button */}
             <div className="w-full max-w-[1280px] pt-5">
-              <div class="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
+              <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
                 <div>
                   <button onClick={() => window.close()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
                 </div>
