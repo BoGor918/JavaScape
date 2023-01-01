@@ -30,8 +30,6 @@ export default function Login() {
             if (loginEmailOrUsername.current.value.includes('.') && loginEmailOrUsername.current.value.includes('@')) {
                 const user = await signInWithEmailAndPassword(auth, loginEmailOrUsername.current.value, loginPassword.current.value)
                 console.log(user)
-
-                navigate("/profile")
             } else {
                 // if user is using username to login
                 var haveUsername = false;

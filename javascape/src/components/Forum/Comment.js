@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import React, { useContext, useState, useRef } from 'react'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { firestore } from "../../firebase"
-import { doc, updateDoc, arrayUnion, arrayRemove, setDoc } from 'firebase/firestore'
+import { doc, updateDoc, arrayUnion, arrayRemove, setDoc, deleteDoc } from 'firebase/firestore'
 import Reply from './Reply'
 
 const Comment = ({ data }) => {
@@ -22,6 +22,15 @@ const Comment = ({ data }) => {
 
     // Reply Input
     const reply = useRef("");
+
+    // Comment Delete Function
+    if (data.NegativeVote > 20)
+    {
+        const deleteCommentVotePath = `Forum/${viewForum}/Comment/`
+        const deleteCommentDocRef = doc(firestore, deleteCommentVotePath, data.id)
+
+        deleteDoc(deleteCommentDocRef)
+    }
 
     // Comment Submit Function
     const SubmitReply = async () => {
@@ -127,6 +136,10 @@ const Comment = ({ data }) => {
             updateDoc(updateReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
             updateDoc(updateReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
             updateDoc(updateReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+        }
+
+        if (currentNegativeVote > 20) {
+            deleteDoc(updateReplyDocRef)
         }
     }
 

@@ -5,7 +5,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { firestore } from "../../firebase"
-import { doc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { doc, setDoc, updateDoc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore'
 
 const ReplySingle = ({ data, replyReplyID }) => {
     // call data from mapper context js
@@ -21,6 +21,14 @@ const ReplySingle = ({ data, replyReplyID }) => {
 
     // Reply Input
     const reply = useRef("");
+
+    // Comment Delete Function
+    if (data.NegativeVote > 20) {
+        const deleteCommentVotePath = `Forum/${viewForum}/Comment/${replyReplyID}/Reply`
+        const deleteCommentDocRef = doc(firestore, deleteCommentVotePath, data.id)
+
+        deleteDoc(deleteCommentDocRef)
+    }
 
     // Comment Submit Function
     const SubmitReply = async () => {
