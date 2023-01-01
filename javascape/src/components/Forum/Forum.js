@@ -128,7 +128,7 @@ export default function Forum() {
                                                         <div className=''>{forum.PositiveVote} &#43;</div>
                                                         <div className=''>{forum.NegativeVote} &minus;</div>
                                                     </div>
-                                                    <div className='w-full flex flex-col justify-center'>
+                                                    <div className='w-full flex flex-col justify-center text-gray-300'>
                                                         <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
                                                             {forum.Question}
                                                         </span>
