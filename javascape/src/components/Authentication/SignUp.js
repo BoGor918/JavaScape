@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth, firestore } from "../firebase"
+import { auth, firestore } from "../../firebase"
 import { doc, setDoc } from "firebase/firestore"
-import Logo from '../images/Logo.png'
+import Logo from '../../images/Logo.png'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import { MapperContext } from '../globalVariables/MapperContextProvider'
+import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
 export default function SignUp() {
     // call data from mapper context js

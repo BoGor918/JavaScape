@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 import React, { useContext, useEffect, useState } from 'react'
-import { auth, firestore } from "../firebase"
+import { auth, firestore } from "../../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
 import { collection, getDocs } from 'firebase/firestore'
-import NavBar from './NavBar'
-import Logo from "../images/Logo.png"
-import { MapperContext } from '../globalVariables/MapperContextProvider'
+import NavBar from '../NavBar'
+import Logo from "../../images/Logo.png"
+import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
 export default function Profile() {
     // call data from mapper context js

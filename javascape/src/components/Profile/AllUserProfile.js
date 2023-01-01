@@ -4,9 +4,9 @@
 /* eslint-disable array-callback-return */
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavBar from './NavBar'
-import Logo from "../images/Logo.png"
-import { MapperContext } from '../globalVariables/MapperContextProvider'
+import NavBar from '../NavBar'
+import Logo from "../../images/Logo.png"
+import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
 export default function AllUserProfile() {
     // call data from mapper context js

@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef } from 'react'
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../firebase"
-import Logo from "../images/Logo.png"
+import { auth } from "../../firebase"
+import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import { MapperContext } from '../globalVariables/MapperContextProvider'
+import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
 export default function Login() {
     // Get user data from context

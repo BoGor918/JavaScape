@@ -163,13 +163,15 @@ const Comment = ({ data }) => {
                         <span>{data.CreateDate.toDate().getHours() < 10 ? "0" + data.CreateDate.toDate().getHours() + ":" : data.CreateDate.toDate().getHours() + ":"}</span>
                         <span>{data.CreateDate.toDate().getMinutes() < 10 ? "0" + data.CreateDate.toDate().getMinutes() : data.CreateDate.toDate().getMinutes()}</span>
                         <span> - </span>
-                        <span onClick={() => setCollapse(prev => !prev)} className='hover:underline cursor-pointer'>Show Reply</span>
                         {
                             collapse ?
-                                collapse2 ?
-                                    <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Cancel Reply</span></span> :
-                                    <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Reply</span></span> :
-                                <></>
+                                <span onClick={() => setCollapse(prev => !prev)} className='hover:underline cursor-pointer'>Hide Reply</span> :
+                                <span onClick={() => setCollapse(prev => !prev)} className='hover:underline cursor-pointer'>Show Reply</span>
+                        }
+                        {
+                            !collapse2 ?
+                                <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Reply</span></span> :
+                                <span> - <span onClick={() => setCollapse2(prev => !prev)} className='hover:underline cursor-pointer'>Cancel Reply</span></span>
                         }
 
                     </div>
@@ -178,7 +180,7 @@ const Comment = ({ data }) => {
             {collapse && <Reply replyReplyID={data.id} commentUser={data.CommentUser} />}
             {
                 collapse2 && (
-                    <div className='w-full max-w-[56.8rem] ml-auto'>
+                    <div className='w-full max-w-[56.9rem] ml-auto'>
                         <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
                         <div className="w-full max-w-[69.8rem] pt-5 flex justify-start">

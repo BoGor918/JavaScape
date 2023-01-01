@@ -137,7 +137,7 @@ const ReplySingle = ({ data, replyReplyID }) => {
     return (
         <div className=''>
             {/* Reply Content */}
-            <div className='flex flex-col w-full pl-[5rem] my-4'>
+            <div className='flex flex-col w-full my-4'>
                 <div className='flex items-center'>
                     {
                         currentUserDataSet[1] === data.ReplyUser ?
@@ -190,7 +190,7 @@ const ReplySingle = ({ data, replyReplyID }) => {
             {/* New Reply with target user */}
             {
                 collapse && (
-                    <div className='w-full max-w-[46.8rem] ml-auto'>
+                    <div className='w-full max-w-[51.8rem] ml-auto'>
                         <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
                         <div className="w-full max-w-[69.8rem] pt-5 flex justify-start">
