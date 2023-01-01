@@ -61,7 +61,7 @@ export default function ForumDetail() {
                 comment.current.value = ""
             })
         } else {
-            alert("Please Input Your Reply Before Submit")
+            alert("Please Input Your Comment Before Submit")
         }
     }
 
