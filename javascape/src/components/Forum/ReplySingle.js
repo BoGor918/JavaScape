@@ -28,19 +28,24 @@ const ReplySingle = ({ data, replyReplyID }) => {
         const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
         const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + replyReplyID + "-" + timeCode
 
-        await setDoc(doc(firestore, `Forum/${viewForum}/Comment/${replyReplyID}/Reply`, docuementID), {
-            Content: reply.current.value,
-            ReplyUser: currentUserDataSet[1],
-            ReplyTo: currentReplyName,
-            PositiveVote: 0,
-            NegativeVote: 0,
-            PositiveVotedUser: [],
-            NegativeVotedUser: [],
-            CreateDate: new Date(),
-        }).then(() => {
-            reply.current.value = ""
-            setCollapse(false)
-        })
+        if (reply.current.value !== "") {
+            await setDoc(doc(firestore, `Forum/${viewForum}/Comment/${replyReplyID}/Reply`, docuementID), {
+                Content: reply.current.value,
+                ReplyUser: currentUserDataSet[1],
+                ReplyTo: currentReplyName,
+                PositiveVote: 0,
+                NegativeVote: 0,
+                PositiveVotedUser: [],
+                NegativeVotedUser: [],
+                CreateDate: new Date(),
+            }).then(() => {
+                reply.current.value = ""
+                setCollapse(false)
+            })
+        } else {
+            alert("Please Input Your Reply Before Submit")
+        }
+
     }
 
     // Reply Vote Function - Positive Vote
