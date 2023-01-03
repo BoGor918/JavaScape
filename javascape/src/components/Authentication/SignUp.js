@@ -31,7 +31,7 @@ export default function SignUp() {
         var canReg = [true, true, true, true];
 
         // error checking
-        for (let i = 0; i < userArray.length; i++) {
+        for (let i = 0; i < userArray[1].length; i++) {
             if (userArray[1][i] === registerEmail.current.value) {
                 canReg[0] = false;
             }
@@ -43,7 +43,7 @@ export default function SignUp() {
             canReg[1] = false;
         }
 
-        for (let i = 0; i < userArray.length; i++) {
+        for (let i = 0; i < userArray[0].length; i++) {
             if (userArray[0][i] === registerUsername.current.value) {
                 canReg[2] = false;
             }

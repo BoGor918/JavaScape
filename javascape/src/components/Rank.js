@@ -9,7 +9,8 @@ export default function Rank() {
     // call data from mapper context js
     const {
         authUser,
-        usersCollectionRef
+        usersCollectionRef,
+        currentUserDataSet,
     } = useContext(MapperContext)
 
     const [userData, setUserData] = React.useState([]);
@@ -56,23 +57,45 @@ export default function Rank() {
                         {
                             userData.map((user, index) => {
                                 return (
-                                    <div key={index} onClick={() => navigate(`/profile/${user.Username}`)} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
-                                        <div className='w-full flex justify-center'>
-                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
-                                                {index + 1}
-                                            </span>
-                                        </div>
-                                        <div className='w-full flex justify-center'>
-                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
-                                                {user.Username}
-                                            </span>
-                                        </div>
-                                        <div className='w-full flex justify-center'>
-                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
-                                                {user.TotalScore}
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <>
+                                        {
+                                            user.Username === currentUserDataSet[1] ?
+                                                <div key={index} onClick={() => navigate("/profile")} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {index + 1}
+                                                        </span>
+                                                    </div>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {user.Username}
+                                                        </span>
+                                                    </div>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {user.TotalScore}
+                                                        </span>
+                                                    </div>
+                                                </div> :
+                                                <div key={index} onClick={() => navigate(`/profile/${user.Username}`)} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {index + 1}
+                                                        </span>
+                                                    </div>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {user.Username}
+                                                        </span>
+                                                    </div>
+                                                    <div className='w-full flex justify-center'>
+                                                        <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                            {user.TotalScore}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                        }
+                                    </>
                                 )
                             })
                         }
