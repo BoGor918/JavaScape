@@ -91,7 +91,7 @@ export default function Forum() {
                 {/* Create Question Button */}
                 {
                     !modal && (
-                        <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
+                        <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start">
                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
@@ -103,7 +103,7 @@ export default function Forum() {
                 {/* Back Button just the create question button is clicked */}
                 {
                     modal && (
-                        <div className="w-full max-w-[54.9rem] pb-5 flex justify-start">
+                        <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start">
                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
@@ -118,12 +118,12 @@ export default function Forum() {
                     {
                         !modal && (
                             <div className='w-full flex flex-col justify-center items-center'>
-                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     {/* Forum Table */}
                                     {
                                         forumData.map((forum, i) => {
                                             return (
-                                                <div key={i} onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-5 py-[5px] cursor-pointer'>
+                                                <div key={i} onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-[1px] sm:px-[1px] md:px-5 lg:px-5 py-[5px] cursor-pointer'>
                                                     <div className='w-full max-w-[2.5rem] flex flex-col justify-center text-[12px] font-extrabold'>
                                                         <div className=''>{forum.PositiveVote} &#43;</div>
                                                         <div className=''>{forum.NegativeVote} &minus;</div>
@@ -150,7 +150,7 @@ export default function Forum() {
                     {
                         modal && (
                             <div className='w-full flex flex-col justify-center items-center'>
-                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-[25px] md:lg:px-[50px]'>
+                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-[25px] md:lg:px-[50px]'>
                                     {/* Rank Lable */}
                                     <div className='flex justify-between'>
                                         <div className='w-full flex flex-col justify-center items-center'>

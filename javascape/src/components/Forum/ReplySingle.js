@@ -203,10 +203,10 @@ const ReplySingle = ({ data, replyReplyID }) => {
             {/* New Reply with target user */}
             {
                 collapse && (
-                    <div className='w-full max-w-[51.8rem] ml-auto'>
-                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
+                    <div className='w-full max-w-[18.1rem] md:max-w-[26.9rem] lg:max-w-[51.8rem] ml-auto'>
+                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
-                        <div className="w-full max-w-[69.8rem] pt-5 flex justify-start">
+                        <div className="w-full max-w-[69.8rem] pt-2 sm:pt-2 md:pt-5 lg:pt-5 flex justify-start">
                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={SubmitReply} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Reply To {currentReplyName}</button>

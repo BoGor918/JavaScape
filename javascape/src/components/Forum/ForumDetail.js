@@ -168,7 +168,7 @@ export default function ForumDetail() {
                         forumData.map((forum, i) => {
                             if (forum.id === viewForum)
                                 return (
-                                    <div key={i} className="w-full max-w-[69.8rem] pb-5 flex justify-start items-center">
+                                    <div key={i} className="text-[12px] sm:text-[12px] md:text-md lg:text-[16px] w-full max-w-[20.8rem] sm:max-w-[20.8rem] md:max-w-[44.8rem] lg:max-w-[69.8rem] pb-5 flex justify-start items-center">
                                         <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                             <div>
                                                 <button onClick={() => navigate(-1)} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
@@ -187,13 +187,13 @@ export default function ForumDetail() {
                                                 <>
                                                     {
                                                         forum.PositiveVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
-                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
+                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
+                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
                                                     }
                                                     {
                                                         forum.NegativeVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
-                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='p-1 mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
+                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
+                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
                                                     }
 
                                                 </>
@@ -204,35 +204,42 @@ export default function ForumDetail() {
                     }
                     {/* Forum Content */}
                     <div className='w-full flex flex-col justify-center items-center'>
-                        <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px]'>
+                        <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 md:py-5 md:px-[50px] lg:py-5 lg:px-[50px]'>
                             {/* Forum Detail */}
-                            <div className='flex justify-center my-[1rem] rounded-lg px-5 py-[5px]'>
-                                {
-                                    forumData.map((forum, i) => {
-                                        if (forum.id === viewForum)
-                                            return (
-                                                <div key={i} className='flex flex-col'>
-                                                    <a href={forum.Image} target="_blank" rel="noreferrer">
-                                                        <img src={forum.Image} alt="" className='w-full object-contain cursor-pointer' />
-                                                    </a>
-                                                    <span className='text-justify text-white'>{forum.Description}</span>
-                                                </div>
-                                            )
-                                    })
-                                }
-                            </div>
+
+                            {
+                                forumData.map((forum, i) => {
+                                    if (forum.id === viewForum)
+                                        return (
+                                            <div key={i} className='flex flex-col justify-center my-[1rem] rounded-lg px-5 py-[5px]'>
+                                                <a href={forum.Image} target="_blank" rel="noreferrer">
+                                                    <img src={forum.Image} alt="" className='w-full object-contain cursor-pointer' />
+                                                </a>
+                                                <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text:md'>{forum.Description}</span>
+                                            </div>
+                                        )
+                                })
+                            }
+
                         </div>
                         {/* Comment column */}
-                        <div className='flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] '>
-                            {/* Comment Content */}
-                            {
-                                commentData.map((data, i) => <Comment key={i} data={data} />)
-                            }
-                        </div>
+                        {
+                            commentData.length === 0 ?
+                                <div className='flex flex-col justify-center items-center max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] '>
+                                    <span className='text-justify text-white text-[12px] sm:text-[12px] md:text-md lg:text-[16px]'>There is no comment yet......</span>
+                                </div> :
+                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 md:py-5 md:px-[50px] lg:py-5 lg:px-[50px] mt-[1rem] '>
+                                    {/* Comment Content */}
+                                    {
+                                        commentData.map((data, i) => <Comment key={i} data={data} />)
+                                    }
+                                </div>
+                        }
+
                         {/* New Comment */}
-                        <textarea ref={comment} type="comment" placeholder='Type Your Comment Here......' className='text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[70px] mt-[1rem] placeholder-white' />
+                        <textarea ref={comment} type="comment" placeholder='Type Your Comment Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
-                        <div className="w-full max-w-[69.8rem] pt-5 flex justify-start mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
+                        <div className="w-full max-w-[20.9rem] sm:max-w-[20.9rem] md:max-w-[44.9rem] lg:max-w-[69.8rem] pt-5 flex justify-start mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                 <div>
                                     <button onClick={SubmitComment} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Submit Your Comment</button>

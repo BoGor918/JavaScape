@@ -31,7 +31,7 @@ export default function Reply({ replyReplyID, commentUser }) {
     return (
         <div className=''>
             {/* Reply Content */}
-            <div className='flex flex-col w-full pl-[5rem] my-4'>
+            <div className='flex flex-col w-full pl-[1rem] md:pl-[5rem] lg:pl-[5rem] my-4'>
                 {
                     replyData.map((reply, i) => <ReplySingle key={i} data={reply} replyReplyID={replyReplyID} />)
                 }
