@@ -215,7 +215,7 @@ export default function ForumDetail() {
                                                 <a href={forum.Image} target="_blank" rel="noreferrer">
                                                     <img src={forum.Image} alt="" className='w-full object-contain cursor-pointer' />
                                                 </a>
-                                                <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text:md'>{forum.Description}</span>
+                                                <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text-[16px]'>{forum.Description}</span>
                                             </div>
                                         )
                                 })
