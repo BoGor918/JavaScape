@@ -81,23 +81,22 @@ export default function Login() {
                     {/* Login text */}
                     <span className='font-bold text-2xl text-white my-5'>Login</span>
                     {/* Email field */}
-                    <div className='my-3 flex flex-col w-full'>
-                        <span>Email Address / Username : </span>
-                        <input ref={loginEmailOrUsername} type="email" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                    <div class="w-full relative group my-5">
+                        <input ref={loginEmailOrUsername} type="text" id="email" required class="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                        <label for="email" class="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Email Address / Username :</label>
                     </div>
                     {/* Password field */}
-                    <div className='my-3 flex flex-col w-full'>
-                        <span>Password : </span>
-                        <input ref={loginPassword} type="password" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                    <div class="w-full relative group my-5">
+                        <input ref={loginPassword} type="password" id="email" required class="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                        <label for="email" class="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Password :</label>
                     </div>
-                    {/* Login button */}
                     <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
                         <div>
                             <button onClick={Login} className='uppercase w-full h-[3rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Login</button>
                         </div>
                     </div>
                     {/* Link to sign up view */}
-                    <div className='my-3 text-sm sm:text-sm md:text-md lg:text-md'>
+                    <div className='my-3 text-xs sm:text-sm md:text-md lg:text-md'>
                         <span>Do not have a account ? <a href='/sign-up' className='underline'>Sign Up</a></span>
                     </div>
                 </div>
