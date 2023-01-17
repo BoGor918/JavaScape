@@ -10,7 +10,8 @@ import { doc, setDoc, updateDoc, arrayUnion, arrayRemove, deleteDoc } from 'fire
 const ReplySingle = ({ data, replyReplyID }) => {
     // call data from mapper context js
     const {
-        currentUserDataSet
+        currentUserDataSet,
+        authUser,
     } = useContext(MapperContext)
 
     // navigate function
@@ -32,109 +33,120 @@ const ReplySingle = ({ data, replyReplyID }) => {
 
     // Comment Submit Function
     const SubmitReply = async () => {
-        const today = new Date()
-        const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
-        const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + replyReplyID + "-" + timeCode
-
-        if (reply.current.value !== "") {
-            await setDoc(doc(firestore, `Forum/${viewForum}/Comment/${replyReplyID}/Reply`, docuementID), {
-                Content: reply.current.value,
-                ReplyUser: currentUserDataSet[1],
-                ReplyTo: currentReplyName,
-                PositiveVote: 0,
-                NegativeVote: 0,
-                PositiveVotedUser: [],
-                NegativeVotedUser: [],
-                CreateDate: new Date(),
-            }).then(() => {
-                reply.current.value = ""
-                setCollapse(false)
-            })
+        if (authUser === null) {
+            navigate("/login")
         } else {
-            alert("Please Input Your Reply Before Submit")
-        }
+            const today = new Date()
+            const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
+            const docuementID = currentUserDataSet[1] + "-" + "ReplyTo" + "-" + replyReplyID + "-" + timeCode
 
+            if (reply.current.value !== "") {
+                await setDoc(doc(firestore, `Forum/${viewForum}/Comment/${replyReplyID}/Reply`, docuementID), {
+                    Content: reply.current.value,
+                    ReplyUser: currentUserDataSet[1],
+                    ReplyTo: currentReplyName,
+                    PositiveVote: 0,
+                    NegativeVote: 0,
+                    PositiveVotedUser: [],
+                    NegativeVotedUser: [],
+                    CreateDate: new Date(),
+                }).then(() => {
+                    reply.current.value = ""
+                    setCollapse(false)
+                })
+            } else {
+                alert("Please Input Your Reply Before Submit")
+            }
+        }
     }
 
     // Reply Vote Function - Positive Vote
     const ReplyPositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
-        const updateReplyReplyVotePath = `Forum/${viewForum}/Comment/${replyReplyID}/Reply`
-        const updateReplyReplyDocRef = doc(firestore, updateReplyReplyVotePath, replyID)
+        if (authUser === null) {
+            navigate("/login")
+        } else {
+            const updateReplyReplyVotePath = `Forum/${viewForum}/Comment/${replyReplyID}/Reply`
+            const updateReplyReplyDocRef = doc(firestore, updateReplyReplyVotePath, replyID)
 
-        // check if user already voted to positive
-        var alreadyVotedPositive = false
-        for (let i = 0; i < positiveVotedUser.length; i++) {
-            if (positiveVotedUser[i] === currentUserDataSet[1]) {
-                alreadyVotedPositive = true
+            // check if user already voted to positive
+            var alreadyVotedPositive = false
+            for (let i = 0; i < positiveVotedUser.length; i++) {
+                if (positiveVotedUser[i] === currentUserDataSet[1]) {
+                    alreadyVotedPositive = true
+                }
             }
-        }
 
-        // check if user already voted to negative
-        var alreadyVotedNegative = false
-        for (let i = 0; i < negativeVotedUser.length; i++) {
-            if (negativeVotedUser[i] === currentUserDataSet[1]) {
-                alreadyVotedNegative = true
+            // check if user already voted to negative
+            var alreadyVotedNegative = false
+            for (let i = 0; i < negativeVotedUser.length; i++) {
+                if (negativeVotedUser[i] === currentUserDataSet[1]) {
+                    alreadyVotedNegative = true
+                }
             }
-        }
 
-        // if user not voted to positive yet add 1 to positive vote and add user to positive voted user
-        if (alreadyVotedPositive === false) {
-            updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
-            updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
-        }
-        // if user already voted to positive and he click positive again remove 1 from positive vote and remove user from positive voted user
-        else {
-            updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
-            updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
-        }
+            // if user not voted to positive yet add 1 to positive vote and add user to positive voted user
+            if (alreadyVotedPositive === false) {
+                updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
+                updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
+            }
+            // if user already voted to positive and he click positive again remove 1 from positive vote and remove user from positive voted user
+            else {
+                updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
+                updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+            }
 
-        // if user already voted to negative and he click positive remove 1 from negative vote and remove user from negative voted user and add 1 to positive vote and add user to positive voted user
-        if (alreadyVotedNegative === true) {
-            updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
-            updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
-            updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
-            updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+            // if user already voted to negative and he click positive remove 1 from negative vote and remove user from negative voted user and add 1 to positive vote and add user to positive voted user
+            if (alreadyVotedNegative === true) {
+                updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote + 1 })
+                updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayUnion(currentUserDataSet[1]) })
+                updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
+                updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+            }
         }
     }
 
     // Reply Vote Function - Negative Vote
     const ReplyNegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser, replyID) => {
-        const updateReplyReplyVotePath = `Forum/${viewForum}/Comment/${replyReplyID}/Reply`
-        const updateReplyReplyDocRef = doc(firestore, updateReplyReplyVotePath, replyID)
+        if (authUser === null) {
+            navigate("/login")
+        } else {
+            const updateReplyReplyVotePath = `Forum/${viewForum}/Comment/${replyReplyID}/Reply`
+            const updateReplyReplyDocRef = doc(firestore, updateReplyReplyVotePath, replyID)
 
-        // check if user already voted to negative
-        var alreadyVotedNegative = false
-        for (let i = 0; i < negativeVotedUser.length; i++) {
-            if (negativeVotedUser[i] === currentUserDataSet[1]) {
-                alreadyVotedNegative = true
+            // check if user already voted to negative
+            var alreadyVotedNegative = false
+            for (let i = 0; i < negativeVotedUser.length; i++) {
+                if (negativeVotedUser[i] === currentUserDataSet[1]) {
+                    alreadyVotedNegative = true
+                }
             }
-        }
 
-        // check if user already voted to positive
-        var alreadyVotedPositive = false
-        for (let i = 0; i < positiveVotedUser.length; i++) {
-            if (positiveVotedUser[i] === currentUserDataSet[1]) {
-                alreadyVotedPositive = true
+            // check if user already voted to positive
+            var alreadyVotedPositive = false
+            for (let i = 0; i < positiveVotedUser.length; i++) {
+                if (positiveVotedUser[i] === currentUserDataSet[1]) {
+                    alreadyVotedPositive = true
+                }
             }
-        }
 
-        // if user not voted to negative yet add 1 to negative vote and add user to negative voted user
-        if (alreadyVotedNegative === false) {
-            updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
-            updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
-        }
-        // if user already voted to negative and he click negative again remove 1 from negative vote and remove user from negative voted user
-        else {
-            updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
-            updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
-        }
+            // if user not voted to negative yet add 1 to negative vote and add user to negative voted user
+            if (alreadyVotedNegative === false) {
+                updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
+                updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
+            }
+            // if user already voted to negative and he click negative again remove 1 from negative vote and remove user from negative voted user
+            else {
+                updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote - 1 })
+                updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayRemove(currentUserDataSet[1]) })
+            }
 
-        // if user already voted to positive and he click negative remove 1 from positive vote and remove user from positive voted user and add 1 to negative vote and add user to negative voted user
-        if (alreadyVotedPositive === true) {
-            updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
-            updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
-            updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
-            updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+            // if user already voted to positive and he click negative remove 1 from positive vote and remove user from positive voted user and add 1 to negative vote and add user to negative voted user
+            if (alreadyVotedPositive === true) {
+                updateDoc(updateReplyReplyDocRef, { NegativeVote: currentNegativeVote + 1 })
+                updateDoc(updateReplyReplyDocRef, { NegativeVotedUser: arrayUnion(currentUserDataSet[1]) })
+                updateDoc(updateReplyReplyDocRef, { PositiveVote: currentPositiveVote - 1 })
+                updateDoc(updateReplyReplyDocRef, { PositiveVotedUser: arrayRemove(currentUserDataSet[1]) })
+            }
         }
     }
 
