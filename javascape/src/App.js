@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/rank" element={<Rank />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/topic" element={<Topic />} />
+        
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
         {/* gameplay link */}
