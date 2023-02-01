@@ -41,3 +41,6 @@
 
 # Debounce
 1. npm i use-debounce
+
+# Email JS
+1. npm i @emailjs/browser

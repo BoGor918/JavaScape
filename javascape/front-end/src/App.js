@@ -14,6 +14,7 @@ import Forum from './components/Forum/Forum';
 import ForumDetail from './components/Forum/ForumDetail';
 import Topic from './components/Topic';
 import Query from './components/Query';
+import Email from './components/Email';
 
 export default function App() {
   // call data from mapper context js
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/topic" element={<Topic />} />
         <Route path="/query" element={<Query />} />
+        <Route path="/email" element={<Email />} />
 
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
