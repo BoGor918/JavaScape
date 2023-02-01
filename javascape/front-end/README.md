@@ -35,3 +35,9 @@
 # Moment
 1. npm install moment
 2. https://momentjs.com/docs/
+
+# Axios
+1. npm i axios
+
+# Debounce
+1. npm i use-debounce
