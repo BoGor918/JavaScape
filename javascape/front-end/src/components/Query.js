@@ -22,7 +22,14 @@ export default function Query() {
         <div>
             <input type="text" onChange={(e) => setQuery(e.target.value)} />
             {data.map((item, i) => {
-                return <div key={i}>{item.title}</div>;
+                return (
+                    <div>
+                        <div>{i + 1}</div>
+                        <div key={i}>{item.title}</div>
+                        <div key={i}>{item.description}</div>
+                        <div key={i} className="mb-10">{item.link}</div>
+                    </div>
+                )
             })}
         </div>
     );
