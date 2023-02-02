@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useContext, useRef, useState } from 'react'
 import NavBar from '../NavBar'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
@@ -56,6 +57,7 @@ export default function Forum() {
                                 PositiveVotedUser: [],
                                 NegativeVotedUser: [],
                                 CreateDate: new Date(),
+                                EmailStatus: false,
                             }).then(() => {
                                 addDoc(forumReplyRef, {
                                     Comment: "Comment",

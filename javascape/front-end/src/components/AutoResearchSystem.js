@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "./Utils/axios";
-import { useDebounce } from "use-debounce";
+import { useLocation } from "react-router-dom"
 
-export default function Query() {
-    const [query, setQuery] = useState("");
-    const [value] = useDebounce(query, 1000);
+export default function AutoResearchSystem() {
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const query = params.get("question")
     const [data, setData] = useState([]);
 
     const search = async (query) => {
@@ -13,21 +14,20 @@ export default function Query() {
     };
 
     useEffect(() => {
-        search(value).then((data) => {
+        search(query).then((data) => {
             setData(data);
         });
-    }, [value]);
+    }, [query]);
 
     return (
         <div>
-            <input type="text" onChange={(e) => setQuery(e.target.value)} />
             {data.map((item, i) => {
                 return (
-                    <div>
+                    <div key={i}>
                         <div>{i + 1}</div>
-                        <div key={i}>{item.title}</div>
-                        <div key={i}>{item.description}</div>
-                        <div key={i} className="mb-10">{item.link}</div>
+                        <div>{item.title}</div>
+                        <div>{item.description}</div>
+                        <div className="mb-10">{item.link}</div>
                     </div>
                 )
             })}

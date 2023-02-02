@@ -3,8 +3,9 @@
 import React from 'react'
 import { createContext, useEffect, useState } from "react"
 import { firestore, auth } from "../firebase"
-import { collection, query, orderBy, onSnapshot, getDocs } from 'firebase/firestore'
+import { collection, query, orderBy, onSnapshot, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from "firebase/auth"
+import { send } from 'emailjs-com';
 
 export const MapperContext = createContext()
 
@@ -39,7 +40,7 @@ export default function MapperContextProvider(props) {
             currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore)
         }
     })
-    
+
     useEffect(() => {
         const GetUserData = async () => {
             const userDataRef = await getDocs(usersCollectionRef)
@@ -54,7 +55,40 @@ export default function MapperContextProvider(props) {
             setForumData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
         return unsub;
     }, [authUser]);
-    
+
+    // if form Vote exist amount of number then send a email
+    const CheckVote = async () => {
+        forumData.map((forum) => {
+            if (forum.PositiveVote >= 20 && forum.EmailStatus === false) {
+                // confirm that the email has been sent message 
+                console.log("Question of " + forum.Question + " has been sent to JavaScape email.")
+
+                // send email data
+                const toSend = ({
+                    question: forum.Question,
+                    autoResearchURL: `http://${window.location.host}/autoresearch?question=${forum.Question.replace(/ /g, '-')}`
+                });
+
+                // send email function by email js com service
+                send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, toSend, process.env.REACT_APP_EMAILJS_USER_ID)
+                    .then((response) => {
+                        console.log('SUCCESS!', response.status, response.text);
+
+                        const updateDocRef = doc(firestore, "Forum", forum.id)
+                        updateDoc(updateDocRef, { EmailStatus: true })
+                    })
+                    .catch((err) => {
+                        console.log('FAILED...', err);
+                    });
+            }
+        })
+    }
+
+    // call CheckVote function
+    useEffect(() => {
+        CheckVote()
+    })
+
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{

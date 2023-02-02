@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+// import { useNavigate } from 'react-router-dom'
 import NavBar from './NavBar'
-import { MapperContext } from '../globalVariables/MapperContextProvider'
+// import { MapperContext } from '../globalVariables/MapperContextProvider'
 
 export default function Topic() {
     // call data from mapper context js
-    const {
-        authUser,
-    } = useContext(MapperContext)
+    // const {
+    //     authUser,
+    // } = useContext(MapperContext)
 
     // navigate function
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo'>
