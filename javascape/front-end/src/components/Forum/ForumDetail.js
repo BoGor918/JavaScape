@@ -198,13 +198,13 @@ export default function ForumDetail() {
                                                 <>
                                                     {
                                                         forum.PositiveVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
-                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
+                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[3rem] p-1 mx-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.PositiveVote} &#43;</button> :
+                                                            <button onClick={() => ForumPositiveVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[3rem] p-1 mx-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.PositiveVote} &#43;</button>
                                                     }
                                                     {
                                                         forum.NegativeVotedUser.includes(currentUserDataSet[1]) ?
-                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
-                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[2.2rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
+                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[3rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md text-black bg-white'>{forum.NegativeVote} &minus;</button> :
+                                                            <button onClick={() => ForumNegativeVote(forum.PositiveVote, forum.NegativeVote, forum.PositiveVotedUser, forum.NegativeVotedUser)} className='w-full max-w-[3rem] p-1 md:mr-2 lg:mr-2 border-[1px] border-white rounded-md hover:text-black hover:bg-white'>{forum.NegativeVote} &minus;</button>
                                                     }
 
                                                 </>
