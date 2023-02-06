@@ -2,11 +2,19 @@
 import NavBar from './NavBar'
 import React from "react";
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from "react-router-dom"
+import JavaOutput from './Topics/JavaOutput';
+import JavaForLoop from './Topics/JavaForLoop';
 
 export default function Topic() {
-
+    // Get query from URL
+    const location = useLocation()
+    // set params
+    const params = new URLSearchParams(location.search)
     // navigate function
     const navigate = useNavigate();
+
+    console.log(params.get("name"))
 
     return (
         <div className='Topic bg-[#09002B] bg-background text-white font-exo h-screen'>
@@ -18,16 +26,36 @@ export default function Topic() {
                 {/* Results Column */}
                 <div className='w-full flex flex-col justify-center items-center'>
                     {/* All Results View */}
-                    <div className='w-full flex flex-col justify-center items-center'>
-                        <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
-                            <div onClick={() => navigate("/topic/javaoutput")} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-[1px] sm:px-[1px] md:px-5 lg:px-5 py-[5px] cursor-pointer'>
-                                <div className='w-full flex flex-col justify-center text-gray-300'>
-                                    <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
-                                        Java Output / Print
-                                    </span>
-                                </div>
-                            </div>
+                    <div className='w-full flex justify-center items-center'>
+                        <div className='flex flex-col items-center h-full mr-10 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
+                            <span className='underline font-bold'>Topic</span>
+                            {
+                                params.get("name") === "javaoutput" ?
+                                    <>
+                                        <span className='font-thin bg-black/20 rounded cursor-pointer px-5 my-3' onClick={() => navigate("/topic?name=javaoutput")}>Java Output / Print</span>
+                                        <span className='font-thin hover:bg-black/20 rounded cursor-pointer px-5' onClick={() => navigate("/topic?name=javaforloop")}>Java For Loop</span>
+                                    </>
+                                    :
+                                    params.get("name") === "javaforloop" ?
+                                        <>
+                                            <span className='font-thin hover:bg-black/20 rounded cursor-pointer px-5 my-3' onClick={() => navigate("/topic?name=javaoutput")}>Java Output / Print</span>
+                                            <span className='font-thin bg-black/20 rounded cursor-pointer px-5' onClick={() => navigate("/topic?name=javaforloop")}>Java For Loop</span>
+                                        </>
+                                        :
+                                        <>
+                                        </>
+                            }
                         </div>
+                        {
+                            params.get("name") === "javaoutput" ?
+                                <div className='flex flex-col h-full max-w-[80rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                    <JavaOutput />
+                                </div>
+                                :
+                                <div className='flex flex-col h-full max-w-[80rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                    <JavaForLoop />
+                                </div>
+                        }
                     </div>
                 </div>
             </div>

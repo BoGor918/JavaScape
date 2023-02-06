@@ -34,7 +34,7 @@ export default function NavBar() {
                     {/* Nav Text */}
                     <ul className='flex'>
                         <li className='px-5'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
-                        <li className='px-5'><NavLink to="/topic" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
+                        <li className='px-5'><NavLink to="/topic?name=javaoutput" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
                         <li className='px-5'><NavLink to="/battle" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Battle</NavLink></li>
                         <li className='px-5'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
                         <li className='px-5'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>

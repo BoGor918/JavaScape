@@ -1,34 +1,32 @@
-/* eslint-disable array-callback-return */
-import NavBar from '../NavBar'
 import React from "react";
-import { useNavigate } from 'react-router-dom'
 
 export default function JavaOutput() {
 
-    // navigate function
-    const navigate = useNavigate();
-
     return (
-        <div className='JavaOutput bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
-            {/* Content */}
-            <div className='w-full h-full overflow-auto flex flex-col items-center'>
-                {/* Title */}
-                <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Java Output / Print</span>
-                {/* Results Column */}
-                <div className='w-full flex flex-col justify-center items-center'>
-                    {/* All Results View */}
-                    <div className='w-full flex flex-col justify-center items-center'>
-                        <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
-                            <div onClick={() => navigate()} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-[1px] sm:px-[1px] md:px-5 lg:px-5 py-[5px] cursor-pointer'>
-                                <div className='w-full flex flex-col justify-center text-gray-300'>
-                                    <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
-                                        Java Output / Print
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div className='JavaOutput flex flex-col'>
+            <span className="font-bold text-2xl">Java Output / Print</span>
+            <hr className="w-full h-[1px] bg-white rounded border-0 opacity-70 my-6" />
+            <span className="font-bold text-xl">Print Text</span>
+            <span className="my-3">You learned from the previous chapter that you can use the <span className="bg-white text-[#DD4A68] px-1">println()</span> method to output values or print text in Java:</span>
+            <div className="bg-black/20 rounded flex flex-col p-5">
+                <span className="text-lg">Example</span>
+                <div className="flex flex-col bg-white text-black border-l-[5px] border-l-[#b962f4] p-3 my-5">
+                    <span><span className="text-[#DD4A68]">System</span>.out.<span className="text-[#DD4A68]">println</span><span className="text-[#690]">("Hello World!");</span></span>
+                </div>
+                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                    <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
+                </div>
+            </div>
+            <span className="my-3">You can add as many <span className="bg-white text-[#DD4A68] px-1">println()</span> methods as you want. Note that it will add a new line for each method:</span>
+            <div className="bg-black/20 rounded flex flex-col p-5">
+                <span className="text-lg">Example</span>
+                <div className="flex flex-col bg-white text-black border-l-[5px] border-l-[#b962f4] p-3 my-5">
+                    <span><span className="text-[#DD4A68]">System</span>.out.<span className="text-[#DD4A68]">println</span><span className="text-[#690]">("Hello World!");</span></span>
+                    <span><span className="text-[#DD4A68]">System</span>.out.<span className="text-[#DD4A68]">println</span><span className="text-[#690]">("I am learning Java.");</span></span>
+                    <span><span className="text-[#DD4A68]">System</span>.out.<span className="text-[#DD4A68]">println</span><span className="text-[#690]">("It is awesome!");</span></span>
+                </div>
+                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                    <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
                 </div>
             </div>
         </div>
