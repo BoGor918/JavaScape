@@ -27,7 +27,7 @@ export default function Topic() {
                 <div className='w-full flex flex-col justify-center items-center'>
                     <div className='w-full flex justify-center items-center'>
                         {/* Category View */}
-                        <div className='flex flex-col items-center h-full mr-10 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
+                        <div className='flex flex-col items-center h-full mr-4 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
                             <span className='underline font-bold'>Topic</span>
                             {
                                 params.get("name") === "javaoutput" ?
