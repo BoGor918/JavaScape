@@ -47,3 +47,6 @@
 
 # Copy to Clipboard
 1. npm i react-copy-to-clipboard
+
+# React Syntax Highlighter
+1. npm install react-syntax-highlighter --save
