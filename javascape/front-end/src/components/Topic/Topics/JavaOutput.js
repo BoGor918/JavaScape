@@ -17,7 +17,7 @@ export default function JavaOutput() {
                     <span><span className="text-[#DD4A68]">System</span>.out.<span className="text-[#DD4A68]">println</span><span className="text-[#690]">("Hello World!");</span></span>
                 </div>
                 <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                    <button onClick={() => navigate("/compiler?program=print-text-hello-world")} className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
+                    <button onClick={() => navigate("/compiler?program=print-string-hello-world")} className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
                 </div>
             </div>
             <span className="my-3">You can add as many <span className="bg-white text-[#DD4A68] px-1">println()</span> methods as you want. Note that it will add a new line for each method:</span>
