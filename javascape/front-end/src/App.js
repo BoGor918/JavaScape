@@ -12,8 +12,9 @@ import Rank from './components/Rank';
 import AllUserProfile from './components/Profile/AllUserProfile';
 import Forum from './components/Forum/Forum';
 import ForumDetail from './components/Forum/ForumDetail';
-import Topic from './components/Topic';
+import Topic from './components/Topic/Topic';
 import AutoResearchSystem from './components/AutoResearchSystem';
+import Compiler from './components/Topic/Compiler';
 
 export default function App() {
   // call data from mapper context js
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/rank" element={<Rank />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/autoresearch" element={<AutoResearchSystem />} />
+        <Route path="/compiler" element={<Compiler />} />
 
         <Route path="/topic" element={<Topic />} />
 

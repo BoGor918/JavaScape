@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import NavBar from './NavBar'
+import NavBar from '../NavBar'
 import React from "react";
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
@@ -22,7 +22,7 @@ export default function Topic() {
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
-                <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Find your favourite Java Topics here</span>
+                <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[9rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Find your favourite Java Topics here</span>
                 {/* Results Column */}
                 <div className='w-full flex flex-col justify-center items-center'>
                     {/* All Results View */}
