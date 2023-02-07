@@ -44,3 +44,6 @@
 
 # Email JS
 1. npm i @emailjs/browser
+
+# Copy to Clipboard
+1. npm i react-copy-to-clipboard
