@@ -14,8 +14,8 @@ export default function Home() {
       {/* NavBar */}
       <NavBar />
       {/* Website Banner */}
-      <div>
-        <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" />
+      <div className='min-h-screen bg-banner bg-cover bg-no-repeat flex justify-center items-center bg-fixed mt-16 sm:mt-26 md:mt-0 lg:mt-0'>
+        {/* <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" /> */}
       </div>
       {/* Website Content */}
       <div className='max-w-[300px] sm:max-w-[300px] md:max-w-[800px] lg:max-w-[1240px] w-full mx-auto'>
