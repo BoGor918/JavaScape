@@ -21,7 +21,7 @@ export default function CateMenu() {
     }
 
     return (
-        <div className='ml-auto'>
+        <div className='ml-auto z-50'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
 
                 {/* Mobile Responsive Burger Tag */}

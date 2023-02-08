@@ -8,7 +8,7 @@ export default function JavaOutput() {
     const navigate = useNavigate();
 
     return (
-        <div className='JavaOutput flex flex-col'>
+        <div className='JavaOutput flex flex-col z-0'>
             <span className="font-bold text-2xl">Java Output / Print</span>
             <hr className="w-full h-[1px] bg-white rounded border-0 opacity-70 my-6" />
             <span className="font-bold text-xl">Print Text</span>
