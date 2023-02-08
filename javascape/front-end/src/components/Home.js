@@ -15,13 +15,13 @@ export default function Home() {
       <NavBar />
       {/* Website Banner */}
       <div>
-        <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" />
+        <img src={Banner} alt="" className="mt-[5rem] sm:mt-[5rem] md:mt-[4rem] lg:mt-0" />
       </div>
       {/* Website Content */}
       <div className='max-w-[300px] sm:max-w-[300px] md:max-w-[800px] lg:max-w-[1240px] w-full mx-auto'>
         <div className='flex flex-col items-center'>
           {/* Welcome Message and hr line */}
-          <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row w-full justify-between items-center mt-20'>
+          <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row w-full justify-between items-center mt-10 sm:mt-10 md:mt-10 lg:mt-20'>
             <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>Welcome Member of javascape</span>
             <hr className="md:max-w-[25rem] lg:max-w-[40rem] w-full h-[3px] bg-[#B154F0] rounded border-0 dark:bg-gray-700" />
           </div>
