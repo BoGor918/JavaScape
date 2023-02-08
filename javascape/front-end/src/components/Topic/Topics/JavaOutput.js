@@ -37,7 +37,7 @@ export default function JavaOutput() {
                 <SyntaxHighlighter className="flex flex-col bg-white text-black border-l-[5px] border-l-[#b962f4] p-3 my-5" language="java" style={docco}>{`System.out.println("This sentence will work!");`}</SyntaxHighlighter>
                 <SyntaxHighlighter className="flex flex-col bg-white text-black border-l-[5px] border-l-[#DD4A68] p-3 mb-5" language="java" style={docco}>{`System.out.println(This sentence will produce an error);`}</SyntaxHighlighter>
                 <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                    <button className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
+                    <button onClick={() => navigate("/compiler?program=double-quote")} className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
                 </div>
             </div>
         </div>

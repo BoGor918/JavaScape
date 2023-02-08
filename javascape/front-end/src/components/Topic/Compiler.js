@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from "react-router-dom"
 import PrintStringHelloWorld from './Compilers/PrintStringHelloWorld'
 import PrintMultipleString from './Compilers/PrintMultipleString'
+import DoubleQuote from './Compilers/DoubleQuote'
 
 export default function Compiler() {
     // Get query from URL
@@ -20,7 +21,10 @@ export default function Compiler() {
                     {
                         params.get("program") === "print-single-string" ? <PrintStringHelloWorld />
                             :
-                            params.get("program") === "print-multiple-string" ? <PrintMultipleString /> : null
+                            params.get("program") === "print-multiple-string" ? <PrintMultipleString />
+                                :
+                                params.get("program") === "double-quote" ? <DoubleQuote />
+                                    : null
                     }
                 </div>
             </div>
