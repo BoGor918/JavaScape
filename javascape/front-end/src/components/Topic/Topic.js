@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
 import JavaOutput from './Topics/JavaOutput';
 import JavaForLoop from './Topics/JavaForLoop';
+import CateMenu from "./CateMenu";
 
 export default function Topic() {
     // Get query from URL
@@ -20,12 +21,13 @@ export default function Topic() {
             {/* Content */}
             <div className='w-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
-                <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Find your favourite Java Topics here</span>
+                <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[0rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0] text-center'>Find your favourite Java Topics here</span>
                 {/* Topic Column */}
+                <CateMenu className="visible sm:visible md:visible lg:hidden" />
                 <div className='w-full flex flex-col justify-center items-center'>
-                    <div className='w-full flex justify-center'>
+                    <div className='w-full flex flex-col sm:flex-col md:flex-col lg:flex-row justify-center items-end sm:items-end md:items-center lg:items-start'>
                         {/* Category View */}
-                        <div className='flex flex-col items-center h-full mr-4 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
+                        <div className='hidden sm:hidden md:hidden lg:flex flex-col items-center h-full mr-4 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
                             <span className='underline font-bold'>Topic</span>
                             {
                                 params.get("name") === "javaoutput" ?
