@@ -6,6 +6,7 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Logo from "../../images/Logo.png"
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
+import NavBar from '../NavBar'
 
 export default function AllUserProfile() {
     // call data from mapper context js
@@ -21,6 +22,7 @@ export default function AllUserProfile() {
 
     return (
         <div className='AllUserProfile flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* All User Profile */}
             <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
                 {

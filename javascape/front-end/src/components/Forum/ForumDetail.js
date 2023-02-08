@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { firestore } from "../../firebase"
 import { doc, setDoc, collection, query, orderBy, onSnapshot, updateDoc, arrayUnion, arrayRemove, addDoc } from 'firebase/firestore'
 import Comment from "./Comment";
+import NavBar from '../NavBar'
 
 export default function ForumDetail() {
     // call data from mapper context js
@@ -158,6 +159,7 @@ export default function ForumDetail() {
 
     return (
         <div className='ForumDetail flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 <div className='w-full flex flex-col items-center h-screen'>

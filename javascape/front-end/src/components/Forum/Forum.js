@@ -5,6 +5,7 @@ import { firestore } from "../../firebase"
 import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
 import { uploadBytes, ref, getStorage, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom'
+import NavBar from '../NavBar';
 
 export default function Forum() {
     // call data from mapper context js
@@ -84,6 +85,8 @@ export default function Forum() {
 
     return (
         <div className='Forum flex flex-col text-white font-exo w-full'>
+            {/* Navbar */}
+            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

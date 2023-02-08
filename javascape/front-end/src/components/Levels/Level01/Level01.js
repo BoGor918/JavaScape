@@ -7,6 +7,7 @@ import { firestore } from "../../../firebase"
 import { updateDoc, doc, collection, getDocs } from 'firebase/firestore'
 import { MapperContext } from "../../../globalVariables/MapperContextProvider";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../../NavBar";
 
 export default function Level01() {
   // get user data from context
@@ -79,6 +80,7 @@ export default function Level01() {
   return (
     authUser === null ? navigate("/login") :
       <div>
+        <NavBar />
         <div className="Stage flex flex-col text-white font-exo w-full">
           <div className="w-full h-screen flex flex-col justify-center items-center px-4 pt-4 sm:px-4 sm:pt-4 md:px-24 md:pt-24 lg:px-24 lg:pt-24">
             {

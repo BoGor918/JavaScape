@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import PrintStringHelloWorld from './Compilers/PrintStringHelloWorld'
 import PrintMultipleString from './Compilers/PrintMultipleString'
 import DoubleQuote from './Compilers/DoubleQuote'
+import NavBar from '../NavBar'
 
 export default function Compiler() {
     // Get query from URL
@@ -12,6 +13,7 @@ export default function Compiler() {
 
     return (
         <div className='Compiler flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

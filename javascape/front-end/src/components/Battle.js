@@ -4,10 +4,12 @@ import Level01Banner from '../images/Levels/Level01/Level01Banner.png'
 import Level02Banner from '../images/Levels/Level02Banner.png'
 import Level03Banner from '../images/Levels/Level03Banner.png'
 import Level04Banner from '../images/Levels/Level04Banner.png'
+import NavBar from './NavBar'
 
 export default function Battle() {
     return (
         <div className='Battle flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full flex flex-col justify-center items-center'>
                 {/* Title */}

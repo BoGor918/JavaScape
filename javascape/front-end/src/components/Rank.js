@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { query, orderBy, onSnapshot } from 'firebase/firestore'
+import NavBar from './NavBar'
 
 export default function Rank() {
     // call data from mapper context js
@@ -26,6 +27,7 @@ export default function Rank() {
 
     return (
         <div className='Rank flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center uppercase'>
                 {/* Title */}

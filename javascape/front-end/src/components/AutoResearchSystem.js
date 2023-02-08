@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "./Utils/axios";
 import { useLocation } from "react-router-dom"
+import NavBar from "./NavBar";
 
 export default function AutoResearchSystem() {
     // Get query from URL
@@ -28,6 +29,7 @@ export default function AutoResearchSystem() {
 
     return (
         <div className='AutoResearchSystem flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

@@ -6,10 +6,13 @@ import Robot1 from '../images/Robot1.png'
 import Robot2 from '../images/Robot2.png'
 import Robot3 from '../images/Robot3.png'
 import { NavLink } from 'react-router-dom'
+import NavBar from './NavBar'
 
 export default function Home() {
   return (
     <div className='Home flex flex-col text-white font-exo w-full'>
+      {/* NavBar */}
+      <NavBar />
       {/* Website Banner */}
       <div>
         <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" />

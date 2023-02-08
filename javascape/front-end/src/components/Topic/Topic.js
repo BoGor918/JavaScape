@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 import JavaOutput from './Topics/JavaOutput';
 import JavaForLoop from './Topics/JavaForLoop';
 import CateMenu from "./CateMenu";
+import NavBar from "../NavBar";
 
 export default function Topic() {
     // Get query from URL
@@ -18,6 +19,7 @@ export default function Topic() {
 
     return (
         <div className='Topic flex flex-col text-white font-exo w-full'>
+            <NavBar />
             {/* Content */}
             <div className='w-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
