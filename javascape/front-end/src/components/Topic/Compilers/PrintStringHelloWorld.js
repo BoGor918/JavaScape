@@ -24,9 +24,9 @@ export default function PrintStringHelloWorld() {
           </div>
         </div>
         {/* Two Side Panel */}
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex flex-col sm:flex-col md:flex-col lg:flex-row justify-center items-center sm:items-center md:items-center lg:items-start'>
           {/* Description Panel */}
-          <div className='flex flex-col p-5 mr-4 max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[28rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
+          <div className='flex flex-col p-5 mr-0 sm:mr-0 md:mr-0 lg:mr-4 mb-4 sm:mb-4 md:mb-4 lg:mb-0 max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[28rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>
             <span className='font-bold underline self-center'>Description - Click To Copy</span>
             <CopyToClipboard text={`System.out.println("Hello World!");`} onCopy={() => setCopied(true)}>
               <button><SyntaxHighlighter className="flex flex-col bg-white text-black border-l-[5px] border-l-[#b962f4] p-3 my-5 text-left" language="java" style={docco}>{`// Print Out string values Hello World!\nSystem.out.println("Hello World!");`}</SyntaxHighlighter></button>
