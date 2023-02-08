@@ -20,7 +20,7 @@ export default function AllUserProfile() {
     const navigate = useNavigate();
 
     return (
-        <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo'>
+        <div className='AllUserProfile flex flex-col text-white font-exo w-full'>
             {/* All User Profile */}
             <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
                 {

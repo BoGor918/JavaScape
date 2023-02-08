@@ -25,7 +25,7 @@ export default function Rank() {
     }, [authUser]);
 
     return (
-        <div className='Rank bg-[#09002B] bg-background text-white font-exo h-screen'>
+        <div className='Rank flex flex-col text-white font-exo w-full'>
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center uppercase'>
                 {/* Title */}

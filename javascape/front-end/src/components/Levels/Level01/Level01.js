@@ -79,7 +79,7 @@ export default function Level01() {
   return (
     authUser === null ? navigate("/login") :
       <div>
-        <div className="Stage bg-[#09002B] bg-background flex flex-col text-white font-exo w-full">
+        <div className="Stage flex flex-col text-white font-exo w-full">
           <div className="w-full h-screen flex flex-col justify-center items-center px-4 pt-4 sm:px-4 sm:pt-4 md:px-24 md:pt-24 lg:px-24 lg:pt-24">
             {
               userLevel1Data.map((level1, i) => {

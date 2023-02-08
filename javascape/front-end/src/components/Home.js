@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function Home() {
   return (
-    <div className='Home bg-[#09002B] bg-background flex flex-col text-white font-exo w-full'>
+    <div className='Home flex flex-col text-white font-exo w-full'>
       {/* Website Banner */}
       <div>
         <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" />

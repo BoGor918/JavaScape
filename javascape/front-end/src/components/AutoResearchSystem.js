@@ -27,7 +27,7 @@ export default function AutoResearchSystem() {
     }, [query]);
 
     return (
-        <div className='AutoResearchSystem bg-[#09002B] bg-background text-white font-exo h-screen'>
+        <div className='AutoResearchSystem flex flex-col text-white font-exo w-full'>
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

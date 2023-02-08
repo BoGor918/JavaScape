@@ -20,7 +20,7 @@ export default function Battle() {
 
     return (
         authUser === null ? window.location.replace("/login") :
-            <div className='Home bg-[#09002B] bg-background text-white font-exo w-full'>
+            <div className='Level01Intro flex flex-col text-white font-exo w-full'>
                 <div className='flex flex-col justify-center items-center'>
                     {/* Level Banner */}
                     <div className='w-full max-w-[350px] sm:max-w-[350px] md:max-w-[700px] lg:max-w-[1280px] relative block group mt-[130px] lg:mt-40'>

@@ -157,7 +157,7 @@ export default function ForumDetail() {
     }
 
     return (
-        <div className='ForumDetail bg-[#09002B] bg-background text-white font-exo h-screen'>
+        <div className='ForumDetail flex flex-col text-white font-exo w-full'>
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 <div className='w-full flex flex-col items-center h-screen'>

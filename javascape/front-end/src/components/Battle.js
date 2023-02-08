@@ -7,7 +7,7 @@ import Level04Banner from '../images/Levels/Level04Banner.png'
 
 export default function Battle() {
     return (
-        <div className='Battle bg-[#09002B] bg-background text-white font-exo'>
+        <div className='Battle flex flex-col text-white font-exo w-full'>
             {/* Content */}
             <div className='w-full flex flex-col justify-center items-center'>
                 {/* Title */}

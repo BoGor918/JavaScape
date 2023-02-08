@@ -10,7 +10,7 @@ export default function Compiler() {
     const params = new URLSearchParams(location.search)
 
     return (
-        <div className='Compiler bg-[#09002B] bg-background text-white font-exo h-screen'>
+        <div className='Compiler flex flex-col text-white font-exo w-full'>
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

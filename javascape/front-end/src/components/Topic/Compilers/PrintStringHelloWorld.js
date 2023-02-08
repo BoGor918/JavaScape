@@ -8,7 +8,7 @@ export default function PrintStringHelloWorld() {
   const [copied, setCopied] = useState(false)
 
   return (
-    <div className='w-full flex justify-center items-center'>
+    <div className='w-full flex justify-center'>
       {/* Description View */}
       <div className='flex flex-col items-center h-full mr-4 max-w-[25rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 p-5'>
         <span className='font-bold underline'>Description - Click To Copy</span>
