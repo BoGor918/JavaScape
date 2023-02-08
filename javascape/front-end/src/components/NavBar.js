@@ -66,7 +66,7 @@ export default function NavBar() {
                 {/* Nav Text */}
                 <ul className="pt-5 px-5">
                     <li className='p-5 border-b border-gray-500'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
-                    <li className='p-5 border-b border-gray-500'><NavLink to="/topic" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/topic?name=javaoutput" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/battle" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Battle</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
