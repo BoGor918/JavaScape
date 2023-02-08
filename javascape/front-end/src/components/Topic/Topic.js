@@ -26,7 +26,7 @@ export default function Topic() {
                 <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[0rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0] text-center'>Find your favourite Java Topics here</span>
                 {/* Topic Column */}
                 <CateMenu className="visible sm:visible md:visible lg:hidden" />
-                <div className='w-full flex flex-col justify-center items-center mt-[-1rem]'>
+                <div className='w-full flex flex-col justify-center items-center'>
                     <div className='w-full flex flex-col sm:flex-col md:flex-col lg:flex-row justify-center items-end sm:items-end md:items-center lg:items-start'>
                         {/* Category View */}
                         <div className='hidden sm:hidden md:hidden lg:flex flex-col items-center h-full mr-4 max-w-[14rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5'>

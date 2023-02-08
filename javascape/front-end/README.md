@@ -50,6 +50,3 @@
 
 # React Syntax Highlighter
 1. npm install react-syntax-highlighter --save
-
-# Burger Tag
-1. npm install hamburger-react
