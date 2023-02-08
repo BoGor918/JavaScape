@@ -45,7 +45,7 @@ export default function Home() {
             <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>What are you waiting for ?</span>
             {/* First group */}
             <div className="flex justify-center content-center flex-col sm:flex-col md:flex-row lg:flex-row mt-10 mb-0 sm:mb-0 md:mb-20 lg:mb-20">
-              <NavLink to="/topic"><img src={Robot1} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mr-[5rem] lg:my-0 lg:max-w-[27rem] lg:max-h-[24.5rem] lg:mr-[7rem]" /></NavLink>
+              <NavLink to="/topic?name=javaoutput"><img src={Robot1} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mr-[5rem] lg:my-0 lg:max-w-[27rem] lg:max-h-[24.5rem] lg:mr-[7rem]" /></NavLink>
               <NavLink to="battle"><img src={Robot2} alt="" className="my-5 sm:my-5 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:ml-[5rem] lg:my-0 lg:max-w-[27rem] lg:max-h-[24.3rem] lg:ml-[7rem]" /></NavLink>
             </div>
             {/* Second group */}
