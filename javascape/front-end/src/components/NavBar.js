@@ -4,6 +4,7 @@ import Logo from "../images/Logo.png"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { NavLink } from 'react-router-dom'
+import Hamburger from 'hamburger-react'
 
 export default function NavBar() {
     // call data from mapper context js
@@ -24,7 +25,7 @@ export default function NavBar() {
     const inactiveLink = "text-[#B154F0] hover:text-white active:text-white duration-300"
 
     return (
-        <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute'>
+        <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute z-50'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
                 {/* Logo */}
                 <div>
@@ -53,12 +54,12 @@ export default function NavBar() {
                 </div>
                 {/* Mobile Responsive Burger Tag */}
                 <div onClick={handleNav} className="block md:hidden">
-                    {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+                    <Hamburger size={20} onClick={handleNav} className='block md:hidden' />
                 </div>
             </div>
 
             {/* Mobile Responsive Menu */}
-            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%]'}>
+            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%] top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500'}>
                 {/* Logo */}
                 <div className='mx-[1rem] my-[1.3rem]'>
                     <img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" />

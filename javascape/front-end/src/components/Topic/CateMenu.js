@@ -4,6 +4,7 @@ import Logo from "../../images/Logo.png"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
+import Hamburger from 'hamburger-react'
 
 export default function CateMenu() {
     // Get query from URL
@@ -26,12 +27,12 @@ export default function CateMenu() {
 
                 {/* Mobile Responsive Burger Tag */}
                 <div onClick={handleNav} className="block md:visible lg:hidden">
-                    {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+                    <Hamburger size={20} onClick={handleNav} className='block md:hidden' />
                 </div>
             </div>
 
             {/* Mobile Responsive Menu */}
-            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%]'}>
+            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%] top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500'}>
                 {/* Logo */}
                 <div className='mx-[1rem] my-[1.3rem]'>
                     <img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" />
@@ -44,11 +45,11 @@ export default function CateMenu() {
                             </div>
                             :
                             params.get("name") === "javaforloop" ?
-                            <div className='flex flex-col justify-center items-center text-center mt-5'>
-                                <span className='font-thin rounded underline px-5 my-3'>Topics</span>
-                                <span className='font-thin hover:text-[#B154F0] cursor-pointer px-5 my-3' onClick={() => navigate("/topic?name=javaoutput")}>Java Output / Print</span>
-                                <span className='font-thin text-[#B154F0] cursor-pointer px-5' onClick={() => navigate("/topic?name=javaforloop")}>Java For Loop</span>
-                            </div>
+                                <div className='flex flex-col justify-center items-center text-center mt-5'>
+                                    <span className='font-thin rounded underline px-5 my-3'>Topics</span>
+                                    <span className='font-thin hover:text-[#B154F0] cursor-pointer px-5 my-3' onClick={() => navigate("/topic?name=javaoutput")}>Java Output / Print</span>
+                                    <span className='font-thin text-[#B154F0] cursor-pointer px-5' onClick={() => navigate("/topic?name=javaforloop")}>Java For Loop</span>
+                                </div>
                                 :
                                 <>
                                 </>
