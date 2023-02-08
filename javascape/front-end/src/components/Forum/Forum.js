@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import React, { useContext, useRef, useState } from 'react'
-import NavBar from '../NavBar'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { firestore } from "../../firebase"
 import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
@@ -85,7 +84,6 @@ export default function Forum() {
 
     return (
         <div className='Forum bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

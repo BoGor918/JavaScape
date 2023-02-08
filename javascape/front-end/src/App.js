@@ -15,6 +15,7 @@ import ForumDetail from './components/Forum/ForumDetail';
 import Topic from './components/Topic/Topic';
 import AutoResearchSystem from './components/AutoResearchSystem';
 import Compiler from './components/Topic/Compiler';
+import NavBar from './components/NavBar';
 
 export default function App() {
   // call data from mapper context js
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <Router>
+      <NavBar />
       <Routes>
         {/* common link */}
         <Route path="/" element={<Home />} />

@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-import NavBar from './NavBar'
 import React, { useEffect, useState } from "react";
 import axios from "./Utils/axios";
 import { useLocation } from "react-router-dom"
@@ -29,7 +28,6 @@ export default function AutoResearchSystem() {
 
     return (
         <div className='AutoResearchSystem bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

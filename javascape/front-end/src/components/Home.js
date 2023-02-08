@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './NavBar'
 import Banner from '../images/Banner.png'
 import Intro1 from '../images/Intro1.png'
 import Intro2 from '../images/Intro2.png'
@@ -11,7 +10,6 @@ import { NavLink } from 'react-router-dom'
 export default function Home() {
   return (
     <div className='Home bg-[#09002B] bg-background flex flex-col text-white font-exo w-full'>
-      <NavBar />
       {/* Website Banner */}
       <div>
         <img src={Banner} alt="" className="mt-16 sm:mt-26 md:mt-0 lg:mt-0" />

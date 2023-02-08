@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react'
-import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { query, orderBy, onSnapshot } from 'firebase/firestore'
@@ -27,7 +26,6 @@ export default function Rank() {
 
     return (
         <div className='Rank bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center uppercase'>
                 {/* Title */}

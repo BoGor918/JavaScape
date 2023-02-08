@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 import React, { useContext, useRef, useEffect, useState } from 'react'
-import NavBar from '../NavBar'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { useNavigate } from 'react-router-dom'
 import { firestore } from "../../firebase"
@@ -159,7 +158,6 @@ export default function ForumDetail() {
 
     return (
         <div className='ForumDetail bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 <div className='w-full flex flex-col items-center h-screen'>

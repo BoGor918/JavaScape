@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import NavBar from '../../NavBar'
 import { NavLink } from 'react-router-dom'
 import Level01IntroBanner from "../../../images/Levels/Level01/Level01IntroBanner.png"
 import { MapperContext } from '../../../globalVariables/MapperContextProvider'
@@ -22,7 +21,6 @@ export default function Battle() {
     return (
         authUser === null ? window.location.replace("/login") :
             <div className='Home bg-[#09002B] bg-background text-white font-exo w-full'>
-                <NavBar />
                 <div className='flex flex-col justify-center items-center'>
                     {/* Level Banner */}
                     <div className='w-full max-w-[350px] sm:max-w-[350px] md:max-w-[700px] lg:max-w-[1280px] relative block group mt-[130px] lg:mt-40'>

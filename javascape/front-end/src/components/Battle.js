@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './NavBar'
 import { NavLink } from 'react-router-dom'
 import Level01Banner from '../images/Levels/Level01/Level01Banner.png'
 import Level02Banner from '../images/Levels/Level02Banner.png'
@@ -9,7 +8,6 @@ import Level04Banner from '../images/Levels/Level04Banner.png'
 export default function Battle() {
     return (
         <div className='Battle bg-[#09002B] bg-background text-white font-exo'>
-            <NavBar />
             {/* Content */}
             <div className='w-full flex flex-col justify-center items-center'>
                 {/* Title */}

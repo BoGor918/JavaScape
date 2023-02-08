@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from '../NavBar'
 import { useLocation } from "react-router-dom"
 import PrintStringHelloWorld from './Compilers/PrintStringHelloWorld'
 import PrintMultipleString from './Compilers/PrintMultipleString'
@@ -12,7 +11,6 @@ export default function Compiler() {
 
     return (
         <div className='Compiler bg-[#09002B] bg-background text-white font-exo h-screen'>
-            <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
                 {/* Title */}

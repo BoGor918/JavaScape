@@ -4,7 +4,6 @@
 /* eslint-disable array-callback-return */
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../NavBar'
 import Logo from "../../images/Logo.png"
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
@@ -22,8 +21,6 @@ export default function AllUserProfile() {
 
     return (
         <div className='flex flex-col justify-between bg-background bg-[#09002B] text-white font-exo'>
-            {/* Nav bar component */}
-            <NavBar />
             {/* All User Profile */}
             <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
                 {
