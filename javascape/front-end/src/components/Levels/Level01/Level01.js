@@ -42,12 +42,12 @@ export default function Level01() {
       currentLevelDataSet.push(level1.Level, level1.Username, level1.HighestScore)
     }
   })
-
+  
   // unity context
   const { unityProvider, addEventListener, removeEventListener } =
     useUnityContext({
       loaderUrl: "/Level01/Level01.loader.js",
-      dataUrl: "/Level01/Level01.data",
+      dataUrl: "  /Level01/Level01.data",
       frameworkUrl: "/Level01/Level01.framework.js",
       codeUrl: "/Level01/Level01.wasm",
     });

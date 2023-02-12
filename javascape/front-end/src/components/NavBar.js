@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useContext } from 'react'
 import Logo from "../images/Logo.png"
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { NavLink } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
