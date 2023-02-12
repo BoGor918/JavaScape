@@ -15,8 +15,6 @@ export default function Topic() {
     // navigate function
     const navigate = useNavigate();
 
-    console.log(params.get("name"))
-
     return (
         <div className='Topic flex flex-col text-white font-exo w-full'>
             <NavBar />

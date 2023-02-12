@@ -4,6 +4,8 @@ import PrintStringHelloWorld from './Compilers/PrintStringHelloWorld'
 import PrintMultipleString from './Compilers/PrintMultipleString'
 import DoubleQuote from './Compilers/DoubleQuote'
 import NavBar from '../NavBar'
+import ForLoopSyntax from './Compilers/ForLoopSyntax'
+import NestedLoop from './Compilers/NestedLoop'
 
 export default function Compiler() {
     // Get query from URL
@@ -26,7 +28,11 @@ export default function Compiler() {
                             params.get("program") === "print-multiple-string" ? <PrintMultipleString />
                                 :
                                 params.get("program") === "double-quote" ? <DoubleQuote />
-                                    : null
+                                    :
+                                    params.get("program") === "for-loop-print" ? <ForLoopSyntax />
+                                        :
+                                        params.get("program") === "nested-loops" ? <NestedLoop />
+                                            : null
                     }
                 </div>
             </div>
