@@ -18,8 +18,9 @@ export default function MapperContextProvider(props) {
     // Logged user data
     const [authUser, setAuthUser] = useState({})
     // user data set
-    const currentUserDataSet = [];
-    var currentUserSkillSet;
+    const currentUserDataSet = []
+    // user skill set
+    var currentUserSkillSet, currentUserSkillLength
     // get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
     const forumCollection = collection(firestore, "Forum")
@@ -40,20 +41,24 @@ export default function MapperContextProvider(props) {
         if (user.Email === authUser?.email) {
             currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore)
 
-            var userSkill = null
+            currentUserSkillLength = user.Skill.length
 
-            for (let i = 0; i < user.Skill.length; i++) {
-                if (i === user.Skill.length - 1) {
-                    userSkill += `skill${i + 1}=`;  // add separator
-                    userSkill += user.Skill[i]; // add value
+            if (user.Skill.length !== 0) {
+                var userSkill = null
+
+                for (let i = 0; i < user.Skill.length; i++) {
+                    if (i === user.Skill.length - 1) {
+                        userSkill += `skill${i + 1}=`;  // add separator
+                        userSkill += user.Skill[i]; // add value
+                    }
+                    if (i < user.Skill.length - 1) {
+                        userSkill += `skill${i + 1}=`;  // add separator
+                        userSkill += user.Skill[i] + "&"; // add value
+                    }
                 }
-                if (i < user.Skill.length - 1) {
-                    userSkill += `skill${i + 1}=`;  // add separator
-                    userSkill += user.Skill[i] + "&"; // add value
-                }
+
+                currentUserSkillSet = `?${userSkill.replace("null", "")}`
             }
-
-            currentUserSkillSet = `?${userSkill.replace("null", "")}`
         }
     })
 
@@ -114,7 +119,8 @@ export default function MapperContextProvider(props) {
             userData,
             forumData,
             usersCollectionRef,
-            currentUserSkillSet
+            currentUserSkillSet,
+            currentUserSkillLength
         }}>
             {props.children}
         </MapperContext.Provider>

@@ -7,6 +7,7 @@ import { firestore } from "../../../firebase"
 import { updateDoc, doc, collection, getDocs } from 'firebase/firestore'
 import { MapperContext } from "../../../globalVariables/MapperContextProvider";
 import NavBar from "../../NavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function Level01() {
   // get user data from context
@@ -14,6 +15,9 @@ export default function Level01() {
     authUser,
     currentUserDataSet,
   } = useContext(MapperContext);
+
+  // navigate function
+  const navigate = useNavigate();
 
   // data set receive from unity
   const [score, setScore] = useState();
@@ -74,8 +78,8 @@ export default function Level01() {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   const LeaveGame = () => {
-    window.open("/", "_blank");
-    window.close()
+    navigate("/")
+    window.location.reload()
   }
 
   return (
@@ -101,7 +105,7 @@ export default function Level01() {
           <div className="w-full max-w-[1280px] pt-5">
             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
               <div>
-                <button onClick={() => LeaveGame()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
+                <button onClick={() => LeaveGame()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
               </div>
             </div>
           </div>

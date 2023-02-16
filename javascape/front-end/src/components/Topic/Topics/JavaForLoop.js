@@ -36,7 +36,7 @@ export default function JavaForLoop() {
   System.out.println(i);
 }`}             </SyntaxHighlighter>
                 <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                    <button onClick={() => navigate("/compiler?program=for-loop-print")} className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
+                    <button onClick={() => navigate("/compiler?program=for-loop-print")} className='px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
                 </div>
             </div>
             <span className="mt-3">Example explained:</span>
@@ -61,7 +61,7 @@ for (int i = 1; i <= 2; i++) {
   }
 } `}</SyntaxHighlighter>
                 <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                    <button onClick={() => navigate("/compiler?program=nested-loops")} className='px-3 h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
+                    <button onClick={() => navigate("/compiler?program=nested-loops")} className='px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Try Yourself</button>
                 </div>
             </div>
         </div>
