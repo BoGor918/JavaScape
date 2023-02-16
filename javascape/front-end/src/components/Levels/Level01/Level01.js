@@ -43,7 +43,7 @@ export default function Level01() {
   const { unityProvider, addEventListener, removeEventListener } =
     useUnityContext({
       loaderUrl: "/Level01/Level01.loader.js",
-      dataUrl: "  /Level01/Level01.data",
+      dataUrl: "/Level01/Level01.data",
       frameworkUrl: "/Level01/Level01.framework.js",
       codeUrl: "/Level01/Level01.wasm",
     });
@@ -73,6 +73,11 @@ export default function Level01() {
     };
   }, [addEventListener, removeEventListener, handleGameOver]);
 
+  const LeaveGame = () => {
+    window.open("/", "_blank");
+    window.close()
+  }
+
   return (
     <div>
       <NavBar />
@@ -96,7 +101,7 @@ export default function Level01() {
           <div className="w-full max-w-[1280px] pt-5">
             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
               <div>
-                <button onClick={() => window.close()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
+                <button onClick={() => LeaveGame()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
               </div>
             </div>
           </div>
