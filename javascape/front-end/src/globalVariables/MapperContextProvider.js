@@ -19,6 +19,7 @@ export default function MapperContextProvider(props) {
     const [authUser, setAuthUser] = useState({})
     // user data set
     const currentUserDataSet = [];
+    var currentUserSkillSet;
     // get users collection from firestore
     const usersCollectionRef = collection(firestore, "Users")
     const forumCollection = collection(firestore, "Forum")
@@ -38,6 +39,21 @@ export default function MapperContextProvider(props) {
     userData.map((user) => {
         if (user.Email === authUser?.email) {
             currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore)
+
+            var userSkill = null
+
+            for (let i = 0; i < user.Skill.length; i++) {
+                if (i === user.Skill.length - 1) {
+                    userSkill += `skill${i + 1}=`;  // add separator
+                    userSkill += user.Skill[i]; // add value
+                }
+                if (i < user.Skill.length - 1) {
+                    userSkill += `skill${i + 1}=`;  // add separator
+                    userSkill += user.Skill[i] + "&"; // add value
+                }
+            }
+
+            currentUserSkillSet = `?${userSkill.replace("null", "")}`
         }
     })
 
@@ -97,7 +113,8 @@ export default function MapperContextProvider(props) {
             currentUserDataSet,
             userData,
             forumData,
-            usersCollectionRef
+            usersCollectionRef,
+            currentUserSkillSet
         }}>
             {props.children}
         </MapperContext.Provider>

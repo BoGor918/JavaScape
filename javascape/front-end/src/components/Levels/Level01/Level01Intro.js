@@ -10,7 +10,8 @@ import NavBar from '../../NavBar'
 export default function Battle() {
     const {
         authUser,
-        currentUserDataSet
+        currentUserDataSet,
+        currentUserSkillSet
     } = useContext(MapperContext);
 
     const hoverButton = {
@@ -34,7 +35,7 @@ export default function Battle() {
                                         ?
                                         <NavLink to={`/login`}><button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button></NavLink>
                                         :
-                                        <NavLink to={`/battle/level01/${currentUserDataSet[1]}`} target="_blank"><button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button></NavLink>
+                                        <NavLink to={`/battle/level01/${currentUserDataSet[1]}${currentUserSkillSet}`} target="_blank"><button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button></NavLink>
                                 }
 
                             </div>
