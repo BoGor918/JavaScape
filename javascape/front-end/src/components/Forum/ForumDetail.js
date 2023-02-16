@@ -162,7 +162,7 @@ export default function ForumDetail() {
             <NavBar />
             {/* Content */}
             <div className='w-full h-full overflow-auto flex flex-col items-center'>
-                <div className='w-full flex flex-col items-center h-screen'>
+                <div className='w-full flex flex-col items-center'>
                     {/* Title */}
                     {
                         forumData.map((forum, i) => {

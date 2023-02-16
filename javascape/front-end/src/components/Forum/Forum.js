@@ -88,7 +88,7 @@ export default function Forum() {
             {/* Navbar */}
             <NavBar />
             {/* Content */}
-            <div className='w-full h-full overflow-auto flex flex-col items-center'>
+            <div className='w-full overflow-auto flex flex-col items-center'>
                 {/* Title */}
                 <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Feel Free To Ask Your Teammates</span>
                 {/* Create Question Button */}
