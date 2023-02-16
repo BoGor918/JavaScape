@@ -72,6 +72,7 @@ export default function SignUp() {
                 Position: "Private (E-1)",
                 TotalScore: 0,
                 CreateDate: new Date(),
+                Skill: [],
             }).then(async () => {
                 await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {
                     Username: registerUsername.current.value,

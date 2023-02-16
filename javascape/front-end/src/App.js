@@ -40,9 +40,7 @@ export default function App() {
         <Route path="/autoresearch" element={<AutoResearchSystem />} />
         <Route path="/compiler" element={<Compiler />} />
         <Route path="/test" element={<Test />} />
-
         <Route path="/topic" element={<Topic />} />
-
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
         {/* gameplay link */}
