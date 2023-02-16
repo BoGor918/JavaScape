@@ -15,7 +15,6 @@ import ForumDetail from './components/Forum/ForumDetail';
 import Topic from './components/Topic/Topic';
 import AutoResearchSystem from './components/AutoResearchSystem';
 import Compiler from './components/Topic/Compiler';
-import Test from './components/Test';
 
 export default function App() {
   // call data from mapper context js
@@ -39,7 +38,6 @@ export default function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/autoresearch" element={<AutoResearchSystem />} />
         <Route path="/compiler" element={<Compiler />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/topic" element={<Topic />} />
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
