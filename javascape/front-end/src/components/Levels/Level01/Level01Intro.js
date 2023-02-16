@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
 import Level01IntroBanner from "../../../images/Levels/Level01/Level01IntroBanner.png"
 import { MapperContext } from '../../../globalVariables/MapperContextProvider'
 import M01 from "../../../images/Levels/Level01/M01.png"
 import M02 from "../../../images/Levels/Level01/M02.png"
 import M03 from "../../../images/Levels/Level01/M03.png"
 import NavBar from '../../NavBar'
+import { useNavigate } from 'react-router-dom'
 
 export default function Battle() {
     const {
@@ -18,6 +18,8 @@ export default function Battle() {
         left: "50%",
         transform: "translate(-50%, -50%)",
     };
+
+    const navigate = useNavigate();
 
     return (
         <div className='Level01Intro flex flex-col text-white font-exo w-full'>
@@ -32,25 +34,25 @@ export default function Battle() {
                                 {
                                     authUser === null
                                         ?
-                                        <NavLink to={`/login`}><button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button></NavLink>
+                                        <button onClick={() => navigate("/login")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
                                         :
-                                        <NavLink to={`/battle/level01/${currentUserDataSet[1]}`} target="_blank"><button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button></NavLink>
+                                        <button onClick={() => navigate(`/battle/level01/${currentUserDataSet[1]}`)} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
                                 }
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* Level Content */}
-            <div className='flex flex-col justify-center items-center'>
-                <span className='mt-[3rem] sm:mt-[3rem] md:mt-[5rem] lg:mt-[8rem] my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
-                <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px] mb-[5rem]'>
-                    <img src={M01} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
-                    <img src={M02} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
-                    <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] lg:ml-[2.9rem]' />
-                </div>
-            </div>
         </div>
+            {/* Level Content */ }
+    <div className='flex flex-col justify-center items-center'>
+        <span className='mt-[3rem] sm:mt-[3rem] md:mt-[5rem] lg:mt-[8rem] my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
+        <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px] mb-[5rem]'>
+            <img src={M01} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
+            <img src={M02} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
+            <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] lg:ml-[2.9rem]' />
+        </div>
+    </div>
+        </div >
     )
 }

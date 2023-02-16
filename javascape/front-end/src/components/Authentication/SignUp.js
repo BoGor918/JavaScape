@@ -135,7 +135,7 @@ export default function SignUp() {
                     </div>
                     {/* Link to login view */}
                     <div className='my-3 text-xs sm:text-sm md:text-md lg:text-md'>
-                        <span>Already have a account ? <a href='/login' className='underline'>Login</a></span>
+                        <span>Already have a account ? <span onClick={() => navigate("/login")} className='underline cursor-pointer'>Login</span></span>
                     </div>
                 </div>
             </div>
