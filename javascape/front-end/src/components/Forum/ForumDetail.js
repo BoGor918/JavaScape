@@ -8,6 +8,7 @@ import { firestore } from "../../firebase"
 import { doc, setDoc, collection, query, orderBy, onSnapshot, updateDoc, arrayUnion, arrayRemove, addDoc } from 'firebase/firestore'
 import Comment from "./Comment";
 import NavBar from '../NavBar'
+import { send } from 'emailjs-com';
 
 export default function ForumDetail() {
     // call data from mapper context js
@@ -27,6 +28,39 @@ export default function ForumDetail() {
     const comment = useRef("");
     const commentCollectionRef = collection(firestore, `Forum/${viewForum}/Comment`)
     const [commentData, setCommentData] = useState([]);
+
+    // if form Vote exist amount of number then send a email
+    const CheckVote = async () => {
+        forumData.map((forum) => {
+            if (forum.PositiveVote >= 20 && forum.EmailStatus === false) {
+                // confirm that the email has been sent message 
+                console.log("Question of " + forum.Question + " has been sent to JavaScape email.")
+
+                // send email data
+                const toSend = ({
+                    question: forum.Question,
+                    autoResearchURL: `http://${window.location.host}/autoresearch?question=${forum.Question.replace(/ /g, '-')}`
+                });
+
+                // send email function by email js com service
+                send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, toSend, process.env.REACT_APP_EMAILJS_USER_ID)
+                    .then((response) => {
+                        console.log('SUCCESS!', response.status, response.text);
+
+                        const updateDocRef = doc(firestore, "Forum", forum.id)
+                        updateDoc(updateDocRef, { EmailStatus: true })
+                    })
+                    .catch((err) => {
+                        console.log('FAILED...', err);
+                    });
+            }
+        })
+    }
+
+    // call CheckVote function
+    useEffect(() => {
+        CheckVote()
+    })
 
     // Get Comment Data
     useEffect(() => {
