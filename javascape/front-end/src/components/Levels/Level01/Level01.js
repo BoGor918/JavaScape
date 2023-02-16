@@ -43,7 +43,7 @@ export default function Level01() {
   const { unityProvider, addEventListener, removeEventListener } =
     useUnityContext({
       loaderUrl: "/Level01/Level01.loader.js",
-      dataUrl: "  /Level01/Level01.data",
+      dataUrl: "/Level01/Level01.data",
       frameworkUrl: "/Level01/Level01.framework.js",
       codeUrl: "/Level01/Level01.wasm",
     });
