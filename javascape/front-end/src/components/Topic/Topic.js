@@ -49,11 +49,11 @@ export default function Topic() {
                         {/* Content View */}
                         {
                             params.get("name") === "javaoutput" ?
-                                <div className='flex flex-col h-full max-w-[80rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     <JavaOutput />
                                 </div>
                                 :
-                                <div className='flex flex-col h-full max-w-[80rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     <JavaForLoop />
                                 </div>
                         }
