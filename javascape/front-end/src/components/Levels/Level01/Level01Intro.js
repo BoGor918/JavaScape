@@ -52,9 +52,9 @@ export default function Battle() {
                 </div>
             </div>
             {/* Level Content */}
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                 <span className='mt-[3rem] sm:mt-[3rem] md:mt-[5rem] lg:mt-[8rem] my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
-                <div className='hidden sm:hidden md:grid lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px] mb-[5rem]'>
+                <div className='hidden sm:hidden md:grid lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px]'>
                     <img src={M01} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                     <img src={M02} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                     <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] lg:ml-[2.9rem]' />

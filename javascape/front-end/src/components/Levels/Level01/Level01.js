@@ -44,7 +44,7 @@ export default function Level01() {
   })
 
   // unity context
-  const { unityProvider, addEventListener, removeEventListener } =
+  const { unityProvider, addEventListener, removeEventListener, loadingProgression, isLoaded } =
     useUnityContext({
       loaderUrl: "/Level01/Level01.loader.js",
       dataUrl: "/Level01/Level01.data",
@@ -78,9 +78,9 @@ export default function Level01() {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   return (
-    <div>
+    <div className="Level01 flex flex-col text-white font-exo w-full">
       <NavBar />
-      <div className="Stage flex flex-col justify-center items-center text-white font-exo w-full">
+      <div className="mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]">
         <div className="w-full flex flex-col justify-center items-center px-4 sm:px-4 md:px-24 lg:px-24 pt-[10rem]">
           {
             userLevel1Data.map((level1, i) => {
@@ -94,6 +94,11 @@ export default function Level01() {
               }
             })
           }
+          {!isLoaded && (
+            <div className="flex justify-center items-center text-lg sm:text-lg md:text-2xl lg:text-2xl mt-[10rem] md:mt-[20rem] lg:mt-[20rem]">
+              <span>Loading Application... {Math.round(loadingProgression * 100)}%</span>
+            </div>
+          )}
           {/* Unity Game Content */}
           <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
           {/* Exit Button */}
