@@ -34,7 +34,7 @@ export default function NavBar() {
     }
 
     return (
-        <div className='bg-[#19002A] w-full text-white font-exo uppercase absolute z-50'>
+        <div className='bg-[#19002A] w-full text-white font-exo uppercase fixed z-50'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
                 {/* Logo */}
                 <div>
