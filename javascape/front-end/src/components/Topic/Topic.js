@@ -19,9 +19,9 @@ export default function Topic() {
         <div className='Topic flex flex-col text-white font-exo w-full'>
             <NavBar />
             {/* Content */}
-            <div className='w-full overflow-auto flex flex-col items-center'>
+            <div className='w-full overflow-auto flex flex-col items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                 {/* Title */}
-                <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[0rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0] text-center'>Find your favourite Java Topics here</span>
+                <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[0rem] sm:mb-[0rem] lg:mb-[2rem] text-[1.5rem] sm:text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0] text-center'>Find your favourite Java Topics here</span>
                 {/* Topic Column */}
                 <CateMenu className="visible sm:visible md:visible lg:hidden" />
                 <div className='w-full flex flex-col justify-center items-center mt-[-1rem]'>
@@ -49,11 +49,11 @@ export default function Topic() {
                         {/* Content View */}
                         {
                             params.get("name") === "javaoutput" ?
-                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     <JavaOutput />
                                 </div>
                                 :
-                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                <div className='flex flex-col self-center h-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[60rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
                                     <JavaForLoop />
                                 </div>
                         }

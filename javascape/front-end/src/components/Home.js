@@ -10,7 +10,7 @@ import NavBar from './NavBar'
 
 export default function Home() {
   return (
-    <div className='Home flex flex-col text-white font-exo w-full'>
+    <div className='Home flex flex-col justify-between text-white font-exo w-full'>
       {/* NavBar */}
       <NavBar />
       {/* Website Banner */}
@@ -18,7 +18,7 @@ export default function Home() {
         <img src={Banner} alt="" className="mt-[5rem] sm:mt-[5rem] md:mt-[4rem] lg:mt-0" />
       </div>
       {/* Website Content */}
-      <div className='max-w-[300px] sm:max-w-[300px] md:max-w-[800px] lg:max-w-[1240px] w-full mx-auto'>
+      <div className='max-w-[300px] sm:max-w-[300px] md:max-w-[800px] lg:max-w-[1240px] w-full mx-auto mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
         <div className='flex flex-col items-center'>
           {/* Welcome Message and hr line */}
           <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row w-full justify-between items-center mt-10 sm:mt-10 md:mt-10 lg:mt-20'>
@@ -40,7 +40,7 @@ export default function Home() {
             <img src={Intro2} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
           </div>
           {/* Navigation part */}
-          <div className='flex flex-col my-[5rem] justify-center items-center'>
+          <div className='flex flex-col mt-[5rem] justify-center items-center'>
             {/* text topic */}
             <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>What are you waiting for ?</span>
             {/* First group */}
@@ -50,7 +50,7 @@ export default function Home() {
             </div>
             {/* Second group */}
             <div className="flex">
-              <NavLink to="/forum"><img src={Robot3} alt="" className="my-20 sm:my-20 md:my-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mx-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem]" /></NavLink>
+              <NavLink to="/forum"><img src={Robot3} alt="" className="mt-20 sm:mt-20 md:mt-0 max-w-[14rem] sm:max-w-[14rem] md:max-w-[18rem] md:max-h-[18rem] md:mx-[5rem] lg:my-0 lg:max-w-[25rem] lg:max-h-[25rem]" /></NavLink>
             </div>
           </div>
         </div>

@@ -17,11 +17,11 @@ export default function Compiler() {
         <div className='Compiler flex flex-col text-white font-exo w-full'>
             <NavBar />
             {/* Content */}
-            <div className='w-full h-full overflow-auto flex flex-col items-center'>
+            <div className='w-full h-full overflow-auto flex flex-col items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                 {/* Title */}
                 <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>{params.get("program").replace(/-/g, ' ')}</span>
                 {/* Compiler Content */}
-                <div className='w-full flex flex-col justify-center items-center mb-[6rem]'>
+                <div className='w-full flex flex-col justify-center items-center'>
                     {
                         params.get("program") === "print-single-string" ? <PrintStringHelloWorld />
                             :
@@ -36,6 +36,6 @@ export default function Compiler() {
                     }
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
