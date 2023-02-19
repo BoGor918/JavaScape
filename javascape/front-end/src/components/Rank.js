@@ -57,10 +57,10 @@ export default function Rank() {
                         {
                             userData.map((user, index) => {
                                 return (
-                                    <>
+                                    <div key={index}>
                                         {
                                             user.Username === currentUserDataSet[1] ?
-                                                <div key={index} onClick={() => navigate("/profile")} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
+                                                <div onClick={() => navigate("/profile")} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
                                                     <div className='w-full flex justify-center'>
                                                         <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                             {index + 1}
@@ -77,7 +77,7 @@ export default function Rank() {
                                                         </span>
                                                     </div>
                                                 </div> :
-                                                <div key={index} onClick={() => navigate(`/profile/${user.Username}`)} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
+                                                <div onClick={() => navigate(`/profile/${user.Username}`)} className='flex justify-between hover:bg-black/20 rounded-lg cursor-pointer'>
                                                     <div className='w-full flex justify-center'>
                                                         <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                             {index + 1}
@@ -95,7 +95,7 @@ export default function Rank() {
                                                     </div>
                                                 </div>
                                         }
-                                    </>
+                                    </div>
                                 )
                             })
                         }

@@ -126,7 +126,7 @@ export default function Forum() {
                                     {
                                         forumData.map((forum, i) => {
                                             return (
-                                                <div key={i} onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-[1px] sm:px-[1px] md:px-5 lg:px-5 py-[5px] cursor-pointer'>
+                                                <div key={i} onClick={() => navigate(`/forum/${forum.id}`)} className='flex justify-center my-[1rem] hover:bg-black/20 rounded-lg px-[7px] sm:px-[7px] md:px-5 lg:px-5 py-[5px] cursor-pointer'>
                                                     <div className='w-full max-w-[2.5rem] flex flex-col justify-center text-[12px] font-extrabold'>
                                                         <div className=''>{forum.PositiveVote} &#43;</div>
                                                         <div className=''>{forum.NegativeVote} &minus;</div>
