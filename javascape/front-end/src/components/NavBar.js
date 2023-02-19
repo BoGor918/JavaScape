@@ -58,19 +58,18 @@ export default function NavBar() {
             </div>
 
             {/* Mobile Responsive Menu */}
-            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%] top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500'}>
+            <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500 z-40' : 'fixed left-[-100%] top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500 z-40'}>
                 {/* Logo */}
                 <div className='mx-[1rem] my-[1.3rem]'>
-                    <img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" />
+                    <NavLink to="/"><img src={Logo} alt="" className="max-w-[8rem] sm:max-w-[8rem] md:max-w-[10rem] lg:max-w-[10rem]" /></NavLink>
                 </div>
                 {/* Nav Text */}
                 <ul className="pt-5 px-5">
-                <li className='p-5 border-b border-gray-500'><NavLink to="/" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/topic?name=javaoutput" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Topic</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/battle" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Battle</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/rank" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Rank</NavLink></li>
                     <li className='p-5 border-b border-gray-500'><NavLink to="/forum" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Forum</NavLink></li>
-                    <li className='p-5 border-b border-gray-500'><NavLink to="/shop" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Shop</NavLink></li>               
+                    <li className='p-5 border-b border-gray-500'><NavLink to="/shop" className={({ isActive }) => isActive ? activeLink : inactiveLink}>Shop</NavLink></li>
                 </ul>
                 {/* Login and Button */}
                 <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit my-7 mx-[27px]">
