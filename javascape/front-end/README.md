@@ -50,3 +50,6 @@
 
 # React Syntax Highlighter
 1. npm install react-syntax-highlighter --save
+
+# Mobile Detect
+1. npm install react-device-detect --save

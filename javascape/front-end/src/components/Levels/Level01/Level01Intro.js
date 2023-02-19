@@ -6,6 +6,7 @@ import M02 from "../../../images/Levels/Level01/M02.png"
 import M03 from "../../../images/Levels/Level01/M03.png"
 import NavBar from '../../NavBar'
 import { useNavigate } from 'react-router-dom'
+import { isMobile } from 'react-device-detect';
 
 export default function Battle() {
     const {
@@ -32,21 +33,27 @@ export default function Battle() {
                     <img src={Level01IntroBanner} alt="" className="object-cover w-full group-hover:opacity-50 duration-500" />
                     <div className='opacity-0 duration-500 group-hover:opacity-100'>
                         <div style={hoverButton} className="absolute bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] sm:max-w-[7rem] md:max-w-[13rem]  lg:max-w-[17rem] w-full">
-                            <div>
-                                {
-                                    authUser === null
-                                        ?
-                                        <button onClick={() => navigate("/login")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
-                                        :
-                                        currentUserSkillLength === 0 ?
-                                            <button onClick={() => window.open(`/battle/level01/${currentUserDataSet[1]}`, 
-                                            "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
-                                            :
-                                            <button onClick={() => window.open(`/battle/level01/${currentUserDataSet[1]}${currentUserSkillSet}`, 
-                                            "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
-                                }
+                            {
 
-                            </div>
+                                isMobile ?
+                                    <></>
+                                    :
+                                    <div>
+                                        {
+                                            authUser === null
+                                                ?
+                                                <button onClick={() => navigate("/login")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
+                                                :
+                                                currentUserSkillLength === 0 ?
+                                                    <button onClick={() => window.open(`/battle/level01/${currentUserDataSet[1]}`,
+                                                        "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
+                                                    :
+                                                    <button onClick={() => window.open(`/battle/level01/${currentUserDataSet[1]}${currentUserSkillSet}`,
+                                                        "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
+                                        }
+                                    </div>
+                            }
+
                         </div>
                     </div>
                 </div>
