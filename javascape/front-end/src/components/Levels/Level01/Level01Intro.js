@@ -32,7 +32,7 @@ export default function Battle() {
                 <div className='w-full max-w-[350px] sm:max-w-[350px] md:max-w-[700px] lg:max-w-[1280px] relative block group mt-[130px] lg:mt-40'>
                     <img src={Level01IntroBanner} alt="" className="object-cover w-full group-hover:opacity-50 duration-500" />
                     <div className='opacity-0 duration-500 group-hover:opacity-100'>
-                        <div style={hoverButton} className="absolute bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] sm:max-w-[7rem] md:max-w-[13rem]  lg:max-w-[17rem] w-full">
+                        <div style={hoverButton} className="absolute bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[10rem] sm:max-w-[8rem] md:max-w-[13rem] lg:max-w-[17rem] w-full">
                             {
 
                                 isMobile ?
@@ -57,7 +57,6 @@ export default function Battle() {
                                         }
                                     </div>
                             }
-
                         </div>
                     </div>
                 </div>
