@@ -23,13 +23,11 @@ export default function CateMenu() {
     return (
         <div className='ml-auto z-40'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>
-
                 {/* Mobile Responsive Burger Tag */}
                 <div onClick={handleNav} className="block md:visible lg:hidden">
                     <Hamburger size={20} onClick={handleNav} className='block md:hidden' />
                 </div>
             </div>
-
             {/* Mobile Responsive Menu */}
             <div className={!nav ? 'fixed left-0 top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500' : 'fixed left-[-100%] top-0 w-[50%] bg-[#19002A] h-full ease-in-out duration-500'}>
                 {/* Logo */}
