@@ -36,7 +36,11 @@ export default function Battle() {
                             {
 
                                 isMobile ?
-                                    <></>
+                                    <div>
+                                        {
+                                            <button className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Use PC Device To Play</button>
+                                        }
+                                    </div>
                                     :
                                     <div>
                                         {
