@@ -15,8 +15,8 @@ export default function Topic() {
                 {/* Title */}
                 <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Find your ability</span>
                 <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px] sm:gap-[50px] md:gap-[100px] lg:gap-[100px]'>
-                    <NavLink to="/battle/level01"><img src={DamageX2} alt="" className='w-full max-w-[300px] cursor-pointer' /></NavLink>
-                    <NavLink><img src={HealthX2} alt="" className='w-full max-w-[300px] cursor-pointer' /></NavLink>
+                    <NavLink to="/ability?ability=damage-x2"><img src={DamageX2} alt="" className='w-full max-w-[300px] cursor-pointer' /></NavLink>
+                    <NavLink to="/ability?ability=health-x2"><img src={HealthX2} alt="" className='w-full max-w-[300px] cursor-pointer' /></NavLink>
                     <NavLink><img src={TBDAbility} alt="" className='w-full max-w-[300px] cursor-pointer' /></NavLink>
                 </div>
             </div>
