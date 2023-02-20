@@ -36,7 +36,7 @@ export default function Ability() {
                         <div className='w-full flex flex-col justify-center items-center'>
                             <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-8 sm:py-8 md:py-10 lg:py-10  px-5 sm:px-5 md:px-10 lg:px-10'>
                                 <img src={params.get("ability") === "damage-x2" ? DamageX2 : HealthX2} alt="" className='w-full max-w-[300px] cursor-pointer' />
-                                <div className="flex flex-col justify-between ml-[0rem] sm:ml-[0rem] md:ml-[4rem] lg:ml-[4rem] py-0 sm:py-0 md:py-8 lg:py-8">
+                                <div className="flex flex-col justify-between ml-[0rem] sm:ml-[0rem] md:ml-[4rem] lg:ml-[4rem] py-0 sm:py-0 md:py-8 lg:py-8 pt-3 sm:pt-3 md:pt-0 lg:pt-0">
                                     <div className="flex flex-col pl-[1rem] sm:pl-[1rem] md:pl-[0rem] lg:pl-[0rem]">
                                         <span className='uppercase text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Ability: {params.get("ability").replace(/-/g, ' ')}</span>
                                         <span className='uppercase text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Space Coin: {params.get("ability") === "damage-x2" ? "400SC" : "470SC"}</span>
