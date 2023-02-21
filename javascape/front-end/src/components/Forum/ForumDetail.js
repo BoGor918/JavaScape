@@ -39,7 +39,7 @@ export default function ForumDetail() {
     // Comment Submit Function
     const SubmitComment = async () => {
         if (authUser === null) {
-            navigate(`/login?prevurl=${window.location.pathname}`)
+            navigate("/login")
         } else {
             const today = new Date()
             const timeCode = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
@@ -72,7 +72,7 @@ export default function ForumDetail() {
     // Vote Function - Positive Vote
     const ForumPositiveVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser) => {
         if (authUser === null) {
-            navigate(`/login?prevurl=${window.location.pathname}`)
+            navigate("/login")
         } else {
             const updateDocRef = doc(firestore, "Forum", viewForum)
 
@@ -116,7 +116,7 @@ export default function ForumDetail() {
     // Vote Function - Negative Vote
     const ForumNegativeVote = async (currentPositiveVote, currentNegativeVote, positiveVotedUser, negativeVotedUser) => {
         if (authUser === null) {
-            navigate(`/login?prevurl=${window.location.pathname}`)
+            navigate("/login")
         } else {
             const updateDocRef = doc(firestore, "Forum", viewForum)
 

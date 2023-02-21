@@ -76,7 +76,7 @@ export default function Forum() {
     const [modal, setModal] = useState(false);
 
     const toggleModal = () => {
-        authUser == null ? navigate(`/login?prevurl=${window.location.pathname}`) : setModal(!modal)
+        authUser == null ? navigate("/login") : setModal(!modal)
     };
 
     if (modal) {

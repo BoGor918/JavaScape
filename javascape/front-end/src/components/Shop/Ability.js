@@ -87,7 +87,7 @@ export default function Ability() {
                 {
                     buying === true && authUser === null
                         ?
-                        navigate(`/login?prevurl=${window.location.pathname}?ability=${params.get("ability")}`)
+                        navigate("/login")
                         :
                         <></>
                 }

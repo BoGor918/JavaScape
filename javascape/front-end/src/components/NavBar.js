@@ -46,7 +46,7 @@ export default function NavBar() {
                             {
                                 authUser === null
                                     ?
-                                    <button className='px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to={`/login?prevurl=${window.location.pathname}`}>Login</NavLink></button>
+                                    <button className='px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/login">Login</NavLink></button>
                                     :
                                     <button className='px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'><NavLink to="/profile">{currentUserDataSet[1]}</NavLink></button>
                             }

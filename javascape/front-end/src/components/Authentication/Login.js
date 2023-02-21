@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebase"
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom'
-import { useLocation } from "react-router-dom"
 import { NavLink } from 'react-router-dom'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 
@@ -19,10 +18,6 @@ export default function Login() {
     const loginEmailOrUsername = useRef("");
     const loginPassword = useRef("");
     
-    // Get query from URL
-    const location = useLocation()
-    // set params
-    const params = new URLSearchParams(location.search)
     // Navigate function
     const navigate = useNavigate()
 
@@ -73,7 +68,7 @@ export default function Login() {
     }, []);
 
     return (
-        authUser !== null ? navigate(params.get("prevurl")) :
+        authUser !== null ? navigate(-1) :
             <div className='Login w-full flex flex-col justify-center items-center h-screen text-white font-exo uppercase'>
                 {/* Logo */}
                 <div>
