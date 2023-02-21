@@ -10,7 +10,6 @@ import { send } from 'emailjs-com';
 export const MapperContext = createContext()
 
 export default function MapperContextProvider(props) {
-
     // User data set from firestore
     const [userData, setUserData] = useState([])
     // Forum data set from firestore
