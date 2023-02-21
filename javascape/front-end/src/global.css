@@ -5,9 +5,60 @@
 
 body {
     background-image: url('/src/images/Background.png');
-    height:'100vh';
-    marginTop:'-70px';
+    height: '100vh';
+    marginTop: '-70px';
     backgroundSize: 'cover';
     backgroundRepeat: 'no-repeat';
     background-color: #09002B;
+}
+
+.main {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.circle {
+    width: 50px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: circle 3s linear infinite;
+}
+
+.rocket {
+    animation: rocket 3s linear infinite;
+}
+
+@keyframes rocket {
+    0% {
+        transform: rotate(0deg);
+
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes circle {
+    0% {
+        transform: rotate(0deg) translate(-80px) rotate(0deg);
+
+    }
+
+    100% {
+        transform: rotate(360deg) translate(-80px) rotate(-360deg);
+    }
 }
