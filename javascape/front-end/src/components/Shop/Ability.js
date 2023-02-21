@@ -1,12 +1,18 @@
 /* eslint-disable array-callback-return */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import NavBar from "../NavBar";
 import DamageX2 from "../../images/Shop/DamageX2.png";
 import HealthX2 from "../../images/Shop/HealthX2.png";
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
+import { MapperContext } from "../../globalVariables/MapperContextProvider";
 
 export default function Ability() {
+    // get user data from context
+    const {
+        authUser
+    } = useContext(MapperContext);
+
     // Get query from URL
     const location = useLocation()
     // set params
@@ -56,7 +62,7 @@ export default function Ability() {
                     )
                 }
                 {
-                    buying === true && (
+                    buying === true && authUser !== null && (
                         <div className='w-full flex flex-col justify-center items-center'>
                             <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-8 sm:py-8 md:py-10 lg:py-10  px-5 sm:px-5 md:px-10 lg:px-10'>
                                 <span className='self-center text-center uppercase text-md sm:text-md md:text-2xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Are you sure you want to buy "{params.get("ability").replace(/-/g, ' ')}" as your ability ?</span>
@@ -77,6 +83,13 @@ export default function Ability() {
                             </div>
                         </div>
                     )
+                }
+                {
+                    buying === true && authUser === null
+                        ?
+                        navigate("/login")
+                        :
+                        <></>
                 }
             </div>
         </div>
