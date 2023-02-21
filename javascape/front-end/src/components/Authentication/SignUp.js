@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useContext, useRef } from 'react'
+import React, { useEffect, useContext, useRef, useState } from 'react'
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, firestore } from "../../firebase"
 import { doc, setDoc } from "firebase/firestore"
@@ -7,6 +7,7 @@ import Logo from '../../images/Logo.png'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
+import Loading from "../Loading";
 
 export default function SignUp() {
     // call data from mapper context js
@@ -85,6 +86,16 @@ export default function SignUp() {
         }
     }
 
+    // loading function
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+    }, [])
+
     // Enter key press event and call Register function
     useEffect(() => {
         const keyDownHandler = event => {
@@ -103,42 +114,47 @@ export default function SignUp() {
     }, []);
 
     return (
-        authUser !== null ? navigate('/profile') :
-            <div className='SignUp flex flex-col justify-center items-center h-screen text-white font-exo uppercase'>
-                {/* Logo */}
-                <div>
-                    <NavLink to="/"><img src={Logo} alt="" className="max-w-[13rem] sm:max-w-[13rem] md:max-w-[17rem] lg:max-w-[17rem] my-10" /></NavLink>
-                </div>
-                {/* Sign up form */}
-                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[28rem] lg:max-w-[28rem] w-full items-center px-[4rem] sm:px-[4rem] md:px-[5.5rem] lg:px-[5.5rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>
-                    {/* Sign up text */}
-                    <span className='font-bold text-2xl text-white my-5'>Sign Up</span>
-                    {/* Email field */}
-                    <div className="w-full relative group my-5">
-                        <input ref={registerEmail} type="text" id="email" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
-                        <label htmlFor="email" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Email Address :</label>
-                    </div>
-                    {/* Username field */}
-                    <div className="w-full relative group my-5">
-                        <input ref={registerUsername} type="text" id="username" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
-                        <label htmlFor="username" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Username :</label>
-                    </div>
-                    {/* Password field */}
-                    <div className="w-full relative group my-5">
-                        <input ref={registerPassword} type="password" id="password" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
-                        <label htmlFor="password" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Password : &#8805; 6</label>
-                    </div>
-                    {/* Sign up button */}
-                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
-                        <div>
-                            <button onClick={Register} className='uppercase w-full h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
+        <div>
+            {
+                authUser !== null ? navigate('/profile') :
+                    loading ? <Loading /> :
+                        <div className='SignUp flex flex-col justify-center items-center h-screen text-white font-exo uppercase'>
+                            {/* Logo */}
+                            <div>
+                                <NavLink to="/"><img src={Logo} alt="" className="max-w-[13rem] sm:max-w-[13rem] md:max-w-[17rem] lg:max-w-[17rem] my-10" /></NavLink>
+                            </div>
+                            {/* Sign up form */}
+                            <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[28rem] lg:max-w-[28rem] w-full items-center px-[4rem] sm:px-[4rem] md:px-[5.5rem] lg:px-[5.5rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>
+                                {/* Sign up text */}
+                                <span className='font-bold text-2xl text-white my-5'>Sign Up</span>
+                                {/* Email field */}
+                                <div className="w-full relative group my-5">
+                                    <input ref={registerEmail} type="text" id="email" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                                    <label htmlFor="email" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Email Address :</label>
+                                </div>
+                                {/* Username field */}
+                                <div className="w-full relative group my-5">
+                                    <input ref={registerUsername} type="text" id="username" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                                    <label htmlFor="username" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Username :</label>
+                                </div>
+                                {/* Password field */}
+                                <div className="w-full relative group my-5">
+                                    <input ref={registerPassword} type="password" id="password" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                                    <label htmlFor="password" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Password : &#8805; 6</label>
+                                </div>
+                                {/* Sign up button */}
+                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[7rem] w-full">
+                                    <div>
+                                        <button onClick={Register} className='uppercase w-full h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30'>Sign Up</button>
+                                    </div>
+                                </div>
+                                {/* Link to login view */}
+                                <div className='my-3 text-xs sm:text-sm md:text-md lg:text-md'>
+                                    <span>Already have a account ? <span onClick={() => navigate("/login")} className='underline cursor-pointer'>Login</span></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    {/* Link to login view */}
-                    <div className='my-3 text-xs sm:text-sm md:text-md lg:text-md'>
-                        <span>Already have a account ? <span onClick={() => navigate("/login")} className='underline cursor-pointer'>Login</span></span>
-                    </div>
-                </div>
-            </div>
+            }
+        </div>
     )
 }
