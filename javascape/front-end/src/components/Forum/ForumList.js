@@ -6,7 +6,7 @@ export default function ForumList({ listData }) {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <>
             {
                 listData.map((forum, i) => {
                     return (
@@ -29,6 +29,6 @@ export default function ForumList({ listData }) {
                     )
                 })
             }
-        </div>
+        </>
     )
 }

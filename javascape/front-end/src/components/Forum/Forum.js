@@ -98,7 +98,7 @@ export default function Forum() {
 
     // Pagination forum
     const [currentPage, setCurrentPage] = useState(1)
-    const [postPerPage, setPostPerPage] = useState(5)
+    const postPerPage = 5
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
     const currentPost = forumData.slice(firstPostIndex, lastPostIndex)
@@ -149,7 +149,7 @@ export default function Forum() {
                                                 <ForumList listData={currentPost} />
                                             </div>
                                             {/* Pagination */}
-                                            <ForumPagination totalPosts={forumData.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} />
+                                            <ForumPagination totalPosts={forumData.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                                         </div>
                                     )
                                 }
