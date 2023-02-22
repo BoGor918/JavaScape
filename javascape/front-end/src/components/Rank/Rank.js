@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
-import { useNavigate } from 'react-router-dom'
 import { query, orderBy, onSnapshot } from 'firebase/firestore'
 import NavBar from '../NavBar'
 import Loading from '../Loading'
 import RankList from './RankList'
+import RankPagination from './RankPagination'
 
 export default function Rank() {
     // call data from mapper context js
@@ -20,7 +20,7 @@ export default function Rank() {
     useEffect(() => {
         const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
         const unsub = onSnapshot(q, (snapshot) =>
-            setUserData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+            setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
         return unsub;
     }, [authUser]);
 
@@ -33,6 +33,13 @@ export default function Rank() {
             setLoading(false);
         }, 1500);
     }, [])
+
+    // Pagination forum
+    const [currentPage, setCurrentPage] = useState(1)
+    const postPerPage = 5
+    const lastPostIndex = currentPage * postPerPage
+    const firstPostIndex = lastPostIndex - postPerPage
+    const currentPost = userData.slice(firstPostIndex, lastPostIndex)
 
     return (
         <div>
@@ -66,9 +73,11 @@ export default function Rank() {
                                         </div>
                                     </div>
                                     {/* Rank Table */}
-                                    <RankList listData={userData} currentUserDataSet={currentUserDataSet}/>
+                                    <RankList listData={currentPost} currentUserDataSet={currentUserDataSet} />
                                 </div>
                             </div>
+                            {/* Pagination */}
+                            <RankPagination totalPosts={userData.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                         </div>
                     </div>
             }
