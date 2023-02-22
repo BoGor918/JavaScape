@@ -8,7 +8,7 @@ import Level01 from './components/Levels/Level01/Level01';
 import { MapperContext } from './globalVariables/MapperContextProvider';
 import Battle from './components/Battle';
 import Level01Intro from './components/Levels/Level01/Level01Intro';
-import Rank from './components/Rank';
+import Rank from './components/Rank/Rank';
 import AllUserProfile from './components/Profile/AllUserProfile';
 import Forum from './components/Forum/ForumComponents/Forum';
 import ForumDetail from './components/Forum/ForumDetail';
