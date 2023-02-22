@@ -16,7 +16,7 @@ export default function Topic() {
     // navigate function
     const navigate = useNavigate();
     // loading function
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);

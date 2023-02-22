@@ -11,7 +11,7 @@ import Loading from './Loading'
 
 export default function Home() {
   // loading function
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);

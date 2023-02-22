@@ -14,7 +14,7 @@ export default function Compiler() {
     // set params
     const params = new URLSearchParams(location.search)
     // loading function
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);

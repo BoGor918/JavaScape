@@ -25,7 +25,7 @@ export default function Ability() {
     const [buying, setBuying] = useState(false)
 
     // loading function
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);

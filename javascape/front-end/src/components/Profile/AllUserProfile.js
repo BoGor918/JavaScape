@@ -22,7 +22,7 @@ export default function AllUserProfile() {
     const navigate = useNavigate();
 
     // loading function
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);

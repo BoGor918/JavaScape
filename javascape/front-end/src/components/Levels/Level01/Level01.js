@@ -79,7 +79,7 @@ export default function Level01() {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   // loading function
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
