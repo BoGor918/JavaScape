@@ -1,12 +1,12 @@
 /* eslint-disable array-callback-return */
 import React, { useContext, useRef, useState, useEffect } from 'react'
-import { MapperContext } from '../../globalVariables/MapperContextProvider'
-import { firestore } from "../../firebase"
+import { MapperContext } from '../../../globalVariables/MapperContextProvider'
+import { firestore } from "../../../firebase"
 import { doc, setDoc, addDoc, collection } from 'firebase/firestore'
 import { uploadBytes, ref, getStorage, getDownloadURL } from "firebase/storage"
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../NavBar'
-import Loading from '../Loading'
+import NavBar from '../../NavBar'
+import Loading from '../../Loading'
 import ForumList from './ForumList'
 import ForumPagination from './ForumPagination'
 
@@ -76,7 +76,7 @@ export default function Forum() {
     }
 
     // Popup detail
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(false)
 
     const toggleModal = () => {
         authUser == null ? navigate("/login") : setModal(!modal)
@@ -87,7 +87,7 @@ export default function Forum() {
     }
 
     // loading function
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         setLoading(true)
