@@ -68,7 +68,7 @@ export default function SignUp() {
         if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
             await setDoc(doc(firestore, "Users", registerUsername.current.value), {
                 Username: registerUsername.current.value,
-                Email: registerEmail.current.value,
+                Email: registerEmail.current.value.toLowerCase(),
                 Password: registerPassword.current.value,
                 Position: "Private (E-1)",
                 TotalScore: 0,
@@ -134,8 +134,8 @@ export default function SignUp() {
                                 </div>
                                 {/* Username field */}
                                 <div className="w-full relative group my-5">
-                                    <input ref={registerUsername} type="text" id="username" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
-                                    <label htmlFor="username" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Username :</label>
+                                    <input maxLength={8} ref={registerUsername} type="text" id="username" required className="text-sm sm:text-sm md:text-md lg:text-[16px] w-full h-10 peer border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent outline-none" />
+                                    <label htmlFor="username" className="text-sm sm:text-sm md:text-md lg:text-[16px] transform transition-all absolute top-0 left-0 h-full flex items-center group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0">Username : &#8804; 8</label>
                                 </div>
                                 {/* Password field */}
                                 <div className="w-full relative group my-5">
