@@ -5,6 +5,7 @@ import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import { firestore } from "../../firebase"
 import { doc, updateDoc, arrayUnion, arrayRemove, setDoc, deleteDoc } from 'firebase/firestore'
 import Reply from './Reply'
+import { isMobile } from 'react-device-detect'
 
 const Comment = ({ data }) => {
     // call data from mapper context js
@@ -157,6 +158,13 @@ const Comment = ({ data }) => {
         }
     }
 
+    // show more section
+    const [showMoreComment, setShowMoreComment] = useState(false);
+
+    const handleShowMoreComment = () => {
+        setShowMoreComment(!showMoreComment)
+    }
+
     return (
         <div className='flex flex-col w-full px-[0.4rem] my-4'>
             <div className='flex items-center'>
@@ -178,7 +186,104 @@ const Comment = ({ data }) => {
                         </div>
                 }
                 <div className='flex flex-col'>
-                    <span>{data.Content}</span>
+                    <span className='max-w-[40rem] sm:max-w-[40rem] md:max-w-[100rem] lg:max-w-[100rem] text-[13px] sm:text-[13px] md:text:md lg:text-[16px]'>
+                        {
+                            <>
+                                {
+                                    isMobile ?
+                                        <>
+                                            {
+                                                data.Content.length >= 100 ?
+                                                    <>
+                                                        {
+                                                            !data.Content.includes(' ') ?
+                                                                <>
+                                                                    <span className='break-all'>
+                                                                        {
+                                                                            showMoreComment === false ?
+                                                                                data.Content.substring(0, 50) + "......" :
+                                                                                data.Content + " - "
+                                                                        }
+                                                                    </span>
+                                                                    <button onClick={() => handleShowMoreComment()} className='hover:underline'>
+                                                                        {
+                                                                            showMoreComment === false ? "Show More" : "Show Less"
+                                                                        }
+                                                                    </button>
+                                                                </> :
+                                                                <>
+                                                                    <span className='break-words'>
+                                                                        {
+                                                                            showMoreComment === false ?
+                                                                                data.Content.substring(0, 50) + "......" :
+                                                                                data.Content + " - "
+                                                                        }
+                                                                    </span>
+                                                                    <button onClick={() => handleShowMoreComment()} className='hover:underline'>
+                                                                        {
+                                                                            showMoreComment === false ? "Show More" : "Show Less"
+                                                                        }
+                                                                    </button>
+                                                                </>
+                                                        }
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {
+                                                            !data.Content.includes(' ') ? <span className='break-all'>{data.Content}</span> : <span className='break-words'>{data.Content}</span>
+                                                        }
+                                                    </>
+                                            }
+                                        </>
+                                        :
+                                        <>
+                                            {
+                                                data.Content.length >= 200 ?
+                                                    <>
+                                                        {
+                                                            !data.Content.includes(' ') ?
+                                                                <>
+                                                                    <span className='break-all'>
+                                                                        {
+                                                                            showMoreComment === false ?
+                                                                                data.Content.substring(0, 200) + "......" :
+                                                                                data.Content + " - "
+                                                                        }
+                                                                    </span>
+                                                                    <button onClick={() => handleShowMoreComment()} className='hover:underline'>
+                                                                        {
+                                                                            showMoreComment === false ? "Show More" : "Show Less"
+                                                                        }
+                                                                    </button>
+                                                                </> :
+                                                                <>
+                                                                    <span className='break-words'>
+                                                                        {
+                                                                            showMoreComment === false ?
+                                                                                data.Content.substring(0, 200) + "......" :
+                                                                                data.Content + " - "
+                                                                        }
+                                                                    </span>
+                                                                    <button onClick={() => handleShowMoreComment()} className='hover:underline'>
+                                                                        {
+                                                                            showMoreComment === false ? "Show More" : "Show Less"
+                                                                        }
+                                                                    </button>
+                                                                </>
+                                                        }
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {
+                                                            !data.Content.includes(' ') ? <span className='break-all'>{data.Content}</span> : <span className='break-words'>{data.Content}</span>
+                                                        }
+                                                    </>
+                                            }
+                                        </>
+                                }
+                            </>
+                        }
+                    </span>
                     <div className='text-[12px] text-gray-300'>
                         <span>Reply By </span>
                         {
@@ -208,7 +313,7 @@ const Comment = ({ data }) => {
             {
                 collapse2 && (
                     <div className='w-full max-w-[19.1rem] md:max-w-[31.9rem] lg:max-w-[56.9rem] ml-auto'>
-                        <textarea ref={reply} type="reply" placeholder='Type Your Reply Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
+                        <textarea ref={reply} type="reply" maxLength={400} placeholder='Type Your Reply Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[20rem] sm:max-w-[20rem] md:max-w-[45rem] lg:md:max-w-[70rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
                         {/* Submit Button */}
                         <div className="w-full max-w-[69.8rem] pt-2 sm:pt-2 md:pt-5 lg:pt-5 flex justify-start">
                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">

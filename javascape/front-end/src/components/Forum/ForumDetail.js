@@ -207,7 +207,7 @@ export default function ForumDetail() {
                                                                                     {
                                                                                         !forum.Question.includes(' ') ?
                                                                                             <>
-                                                                                                <span className='break-all cursor-pointer hover:underline '>
+                                                                                                <span className='break-all'>
                                                                                                     {
                                                                                                         showMoreTitle === false ?
                                                                                                             forum.Question.substring(0, 50) + "......" :
@@ -252,7 +252,7 @@ export default function ForumDetail() {
                                                                                     {
                                                                                         !forum.Question.includes(' ') ?
                                                                                             <>
-                                                                                                <span className='break-all cursor-pointer hover:underline '>
+                                                                                                <span className='break-all'>
                                                                                                     {
                                                                                                         showMoreTitle === false ?
                                                                                                             forum.Question.substring(0, 100) + "......" :
@@ -467,7 +467,7 @@ export default function ForumDetail() {
                                     }
 
                                     {/* New Comment */}
-                                    <textarea ref={comment} type="comment" placeholder='Type Your Comment Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
+                                    <textarea ref={comment} maxLength={400} type="comment" placeholder='Type Your Comment Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
                                     {/* Submit Button */}
                                     <div className="w-full max-w-[20.9rem] sm:max-w-[20.9rem] md:max-w-[44.9rem] lg:max-w-[69.8rem] pt-5 flex justify-start">
                                         <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
