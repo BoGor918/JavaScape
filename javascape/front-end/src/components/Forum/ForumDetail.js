@@ -9,6 +9,7 @@ import { doc, setDoc, collection, query, orderBy, onSnapshot, updateDoc, arrayUn
 import Comment from "./Comment";
 import NavBar from '../NavBar'
 import Loading from '../Loading'
+import { isMobile } from 'react-device-detect'
 
 export default function ForumDetail() {
     // call data from mapper context js
@@ -168,6 +169,18 @@ export default function ForumDetail() {
         }, 1500);
     }, [])
 
+    // show more section
+    const [showMoreTitle, setShowMoreTitle] = useState(false);
+    const [showMoreContent, setShowMoreContent] = useState(false);
+
+    const handleShowMoreTitle = () => {
+        setShowMoreTitle(!showMoreTitle)
+    }
+
+    const handleShowMoreContent = () => {
+        setShowMoreContent(!showMoreContent)
+    }
+
     return (
         <div>
             {
@@ -182,8 +195,103 @@ export default function ForumDetail() {
                                     forumData.map((forum, i) => {
                                         if (forum.id === viewForum)
                                             return (
-                                                <div key={i} className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>
-                                                    <span >{forum.Question}</span>
+                                                <div key={i} className='max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[70rem] text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.5rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>
+                                                    {
+                                                        <>
+                                                            {
+                                                                isMobile ?
+                                                                    <>
+                                                                        {
+                                                                            forum.Question.length >= 100 ?
+                                                                                <>
+                                                                                    {
+                                                                                        !forum.Question.includes(' ') ?
+                                                                                            <>
+                                                                                                <span className='break-all cursor-pointer hover:underline '>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ?
+                                                                                                            forum.Question.substring(0, 50) + "......" :
+                                                                                                            forum.Question + " - "
+                                                                                                    }
+                                                                                                </span>
+                                                                                                <button onClick={() => handleShowMoreTitle()} className='hover:underline'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ? "Show More" : "Show Less"
+                                                                                                    }
+                                                                                                </button>
+                                                                                            </> :
+                                                                                            <>
+                                                                                                <span className='break-words'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ?
+                                                                                                            forum.Question.substring(0, 50) + "......" :
+                                                                                                            forum.Question + " - "
+                                                                                                    }
+                                                                                                </span>
+                                                                                                <button onClick={() => handleShowMoreTitle()} className='hover:underline'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ? "Show More" : "Show Less"
+                                                                                                    }
+                                                                                                </button>
+                                                                                            </>
+                                                                                    }
+                                                                                </>
+                                                                                :
+                                                                                <>
+                                                                                    {
+                                                                                        !forum.Question.includes(' ') ? <span className='break-all'>{forum.Question}</span> : <span className='break-words'>{forum.Question}</span>
+                                                                                    }
+                                                                                </>
+                                                                        }
+                                                                    </>
+                                                                    :
+                                                                    <>
+                                                                        {
+                                                                            forum.Question.length >= 100 ?
+                                                                                <>
+                                                                                    {
+                                                                                        !forum.Question.includes(' ') ?
+                                                                                            <>
+                                                                                                <span className='break-all cursor-pointer hover:underline '>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ?
+                                                                                                            forum.Question.substring(0, 100) + "......" :
+                                                                                                            forum.Question + " - "
+                                                                                                    }
+                                                                                                </span>
+                                                                                                <button onClick={() => handleShowMoreTitle()} className='hover:underline'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ? "Show More" : "Show Less"
+                                                                                                    }
+                                                                                                </button>
+                                                                                            </> :
+                                                                                            <>
+                                                                                                <span className='break-words'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ?
+                                                                                                            forum.Question.substring(0, 100) + "......" :
+                                                                                                            forum.Question + " - "
+                                                                                                    }
+                                                                                                </span>
+                                                                                                <button onClick={() => handleShowMoreTitle()} className='hover:underline'>
+                                                                                                    {
+                                                                                                        showMoreTitle === false ? "Show More" : "Show Less"
+                                                                                                    }
+                                                                                                </button>
+                                                                                            </>
+                                                                                    }
+                                                                                </>
+                                                                                :
+                                                                                <>
+                                                                                    {
+                                                                                        !forum.Question.includes(' ') ? <span className='break-all'>{forum.Question}</span> : <span className='break-words'>{forum.Question}</span>
+                                                                                    }
+                                                                                </>
+                                                                        }
+                                                                    </>
+                                                            }
+                                                        </>
+                                                    }
                                                 </div>
                                             )
                                     })
@@ -238,9 +346,106 @@ export default function ForumDetail() {
                                                     return (
                                                         <div key={i} className='flex flex-col justify-center my-[1rem] rounded-lg px-5 py-[5px]'>
                                                             <a href={forum.Image} target="_blank" rel="noreferrer">
-                                                                <img src={forum.Image} alt="" className='w-full object-contain cursor-pointer' />
+                                                                <img src={forum.Image} alt="" className='w-full object-cover cursor-pointer h-[10rem] sm:h-[10rem] md:h-[15rem] lg:h-[25rem]' />
                                                             </a>
-                                                            <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text-[16px]'>{forum.Description}</span>
+                                                            <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text-[16px]'>
+                                                                {
+                                                                    <>
+                                                                        {
+                                                                            isMobile ?
+                                                                                <>
+                                                                                    {
+                                                                                        forum.Description.length >= 500 ?
+                                                                                            <>
+                                                                                                {
+                                                                                                    !forum.Description.includes(' ') ?
+                                                                                                        <>
+                                                                                                            <span className='break-all'>
+                                                                                                                {
+                                                                                                                    showMoreContent === false ?
+                                                                                                                        forum.Description.substring(0, 500) + "......" :
+                                                                                                                        forum.Description + " - "
+                                                                                                                }
+                                                                                                            </span>
+                                                                                                            <button onClick={() => handleShowMoreContent()} className="hover:underline">
+                                                                                                                {
+                                                                                                                    showMoreContent === false ? "Show More" : "Show Less"
+                                                                                                                }
+                                                                                                            </button>
+                                                                                                        </> :
+                                                                                                        <>
+                                                                                                            <span className='break-words'>
+                                                                                                                {
+                                                                                                                    showMoreContent === false ?
+                                                                                                                        forum.Description.substring(0, 500) + "......" :
+                                                                                                                        forum.Description + " - "
+                                                                                                                }
+                                                                                                            </span>
+                                                                                                            <button onClick={() => handleShowMoreContent()} className="hover:underline">
+                                                                                                                {
+                                                                                                                    showMoreContent === false ? "Show More" : "Show Less"
+                                                                                                                }
+                                                                                                            </button>
+                                                                                                        </>
+                                                                                                }
+                                                                                            </>
+                                                                                            :
+                                                                                            <>
+                                                                                                {
+                                                                                                    !forum.Description.includes(' ') ? <span className='break-all'>{forum.Description}</span> : <span className='break-words'>{forum.Description}</span>
+                                                                                                }
+                                                                                            </>
+                                                                                    }
+                                                                                </>
+                                                                                :
+                                                                                <>
+                                                                                    {
+                                                                                        forum.Description.length >= 1000 ?
+                                                                                            <>
+                                                                                                {
+                                                                                                    !forum.Description.includes(' ') ?
+                                                                                                        <>
+                                                                                                            <span className='break-all'>
+                                                                                                                {
+                                                                                                                    showMoreContent === false ?
+                                                                                                                        forum.Description.substring(0, 1000) + "......" :
+                                                                                                                        forum.Description + " - "
+                                                                                                                }
+                                                                                                            </span>
+                                                                                                            <button onClick={() => handleShowMoreContent()} className="hover:underline">
+                                                                                                                {
+                                                                                                                    showMoreContent === false ? "Show More" : "Show Less"
+                                                                                                                }
+                                                                                                            </button>
+                                                                                                        </> :
+                                                                                                        <>
+                                                                                                            <span className='break-words'>
+                                                                                                                {
+                                                                                                                    showMoreContent === false ?
+                                                                                                                        forum.Description.substring(0, 1000) + "......" :
+                                                                                                                        forum.Description + " - "
+                                                                                                                }
+                                                                                                            </span>
+                                                                                                            <button onClick={() => handleShowMoreContent()} className="hover:underline font-extrabold">
+                                                                                                                {
+                                                                                                                    showMoreContent === false ? "Show More" : "Show Less"
+                                                                                                                }
+                                                                                                            </button>
+                                                                                                        </>
+                                                                                                }
+                                                                                            </>
+                                                                                            :
+                                                                                            <>
+                                                                                                {
+                                                                                                    !forum.Question.includes(' ') ? <span className='break-all'>{forum.Description}</span> : <span className='break-words'>{forum.Description}</span>
+                                                                                                }
+                                                                                            </>
+                                                                                    }
+                                                                                </>
+                                                                        }
+                                                                    </>
+                                                                }
+                                                            </span>
                                                         </div>
                                                     )
                                             })

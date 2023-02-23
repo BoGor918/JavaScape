@@ -16,8 +16,15 @@ export default function ForumList({ listData }) {
                                 <div className=''>{forum.NegativeVote} &minus;</div>
                             </div>
                             <div className='w-full flex flex-col justify-center text-gray-300'>
-                                <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
-                                    {forum.Question}
+                                <span className='hidden sm:hidden md:block lg:block break-words text-justify text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
+                                    {
+                                        forum.Question.length >= 50 ? forum.Question.substring(0, 50) + "..." : forum.Question 
+                                    }
+                                </span>
+                                <span className='block sm:block md:hidden lg:hidden break-words text-justify text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
+                                    {
+                                        forum.Question.length >= 30 ? forum.Question.substring(0, 30) + "..." : forum.Question
+                                    }
                                 </span>
                                 <div className='text-[12px]'>
                                     <span>Create By {forum.CreateUser} {forum.CreateDate.toDate().getDate() + "/" + (forum.CreateDate.toDate().getMonth() + 1) + "/" + forum.CreateDate.toDate().getFullYear() + " "}</span>

@@ -164,12 +164,12 @@ export default function Forum() {
                                                         {/* Question Field */}
                                                         <div className='my-3 flex flex-col w-full max-w-[40rem]'>
                                                             <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Question : </span>
-                                                            <input ref={question} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                                            <input ref={question} maxLength={200} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                                                         </div>
                                                         {/* Textarea */}
                                                         <div className='my-3 flex flex-col w-full max-w-[40rem]'>
                                                             <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Enter Your Description Here : </span>
-                                                            <textarea ref={description} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                                            <textarea ref={description} maxLength={5000} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                                                         </div>
                                                         <div className="my-3 flex flex-col w-full max-w-[40rem]">
 
