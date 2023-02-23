@@ -345,9 +345,13 @@ export default function ForumDetail() {
                                                 if (forum.id === viewForum)
                                                     return (
                                                         <div key={i} className='flex flex-col justify-center my-[1rem] rounded-lg px-5 py-[5px]'>
-                                                            <a href={forum.Image} target="_blank" rel="noreferrer">
-                                                                <img src={forum.Image} alt="" className='w-full object-cover cursor-pointer h-[10rem] sm:h-[10rem] md:h-[15rem] lg:h-[25rem]' />
-                                                            </a>
+                                                            {
+                                                                forum.Image === null ?
+                                                                    <></> :
+                                                                    <a href={forum.Image} target="_blank" rel="noreferrer">
+                                                                        <img src={forum.Image} alt="" className='w-full object-cover cursor-pointer h-[10rem] sm:h-[10rem] md:h-[15rem] lg:h-[25rem]' />
+                                                                    </a>
+                                                            }
                                                             <span className='text-justify text-white text-[12px] sm:text-[12px] md:text:md lg:text-[16px]'>
                                                                 {
                                                                     <>

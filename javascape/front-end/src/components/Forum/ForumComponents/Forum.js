@@ -49,7 +49,7 @@ export default function Forum() {
             async () => {
                 await getDownloadURL(forumImageRef).then(
                     async (url) => {
-                        if (question.current.value !== "" && description.current.value !== "") {
+                        if (question.current.value !== "" && description.current.value !== "" && image !== undefined) {
                             await setDoc(doc(firestore, "Forum", timeCode), {
                                 Question: question.current.value,
                                 Description: description.current.value,
@@ -67,7 +67,25 @@ export default function Forum() {
                                 })
                                 window.location.reload()
                             })
-                        } else {
+                        } else if (question.current.value !== "" && description.current.value !== "" && image === undefined) {
+                            await setDoc(doc(firestore, "Forum", timeCode), {
+                                Question: question.current.value,
+                                Description: description.current.value,
+                                Image: null,
+                                CreateUser: currentUserDataSet[1],
+                                PositiveVote: 0,
+                                NegativeVote: 0,
+                                PositiveVotedUser: [],
+                                NegativeVotedUser: [],
+                                CreateDate: new Date(),
+                                EmailStatus: false,
+                            }).then(() => {
+                                addDoc(forumReplyRef, {
+                                    Comment: "Comment",
+                                })
+                                window.location.reload()
+                            })
+                        } else if (question.current.value === "" && description.current.value === "") {
                             alert("Please Input Your Question and Description")
                         }
                     }
