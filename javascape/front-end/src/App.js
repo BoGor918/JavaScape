@@ -18,6 +18,7 @@ import Compiler from './components/Topic/Compiler';
 import Shop from './components/Shop/Shop';
 import Ability from './components/Shop/Ability';
 import Loading from './components/Loading';
+import PageNotFound from './components/PageNotFound';
 
 export default function App() {
   // call data from mapper context js
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/ability" element={<Ability />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="*" element={<PageNotFound />} />
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
         {/* gameplay link */}

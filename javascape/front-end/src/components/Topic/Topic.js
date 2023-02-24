@@ -55,8 +55,8 @@ export default function Topic() {
                                                         <span className='font-thin bg-black/20 rounded cursor-pointer px-5' onClick={() => navigate("/topic?name=javaforloop")}>Java For Loop</span>
                                                     </>
                                                     :
-                                                    <>
-                                                    </>
+                                                    navigate("/topic?name=javaoutput")
+                                                    
                                         }
                                     </div>
                                     {/* Content View */}
