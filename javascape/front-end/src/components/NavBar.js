@@ -24,8 +24,6 @@ export default function NavBar() {
     const activeLink = "text-white uppercase"
     const inactiveLink = "text-[#B154F0] hover:text-white active:text-white duration-300 uppercase"
 
-    console.log(currentUserDataSet)
-
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase fixed z-50'>
             <div className='max-w-[1280px] h-[100px] mx-auto px-4 flex justify-between items-center'>

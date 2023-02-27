@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom"
 import { MapperContext } from "../../globalVariables/MapperContextProvider";
 import Loading from "../Loading";
+import { firestore } from "../../firebase"
+import { updateDoc, doc, arrayUnion } from 'firebase/firestore'
 
 export default function Ability() {
     // get user data from context
     const {
-        authUser
+        authUser,
+        currentUserDataSet
     } = useContext(MapperContext);
 
     // Get query from URL
@@ -23,6 +26,34 @@ export default function Ability() {
 
     // buying button checking
     const [buying, setBuying] = useState(false)
+
+    // buy function
+    const Buy = () => {
+        const updateUserPath = "Users/"
+        const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
+
+        if (params.get("ability") === "damage-x2") {
+            if (currentUserDataSet[6] >= 400) {
+                updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 400 })
+                updateDoc(updateUserRef, { Ability: arrayUnion("w1AY4atFvp") }).then(() => {
+                    alert("You Have Successfully Bought This Ability")
+                    navigate("/shop")
+                })
+            } else {
+                alert("You Don't Have Enough SpaceCoin to Buy This Ability")
+            }
+        } else {
+            if (currentUserDataSet[6] >= 470) {
+                updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 470 })
+                updateDoc(updateUserRef, { Ability: arrayUnion("fVCZo6bIVw") }).then(() => {
+                    alert("You Have Successfully Bought This Ability")
+                    navigate("/shop")
+                })
+            } else {
+                alert("You Don't Have Enough SpaceCoin to Buy This Ability")
+            }
+        }
+    }
 
     // loading function
     const [loading, setLoading] = useState(true);
@@ -83,7 +114,7 @@ export default function Ability() {
                                                 <span className='self-center text-center uppercase text-md sm:text-md md:text-2xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Are you sure you want to buy "{params.get("ability").replace(/-/g, ' ')}" as your ability ?</span>
                                                 <div className="self-center bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] mt-6 sm:mt-5 md:mt-7 lg:mt-7 max-w-[7rem] sm:max-w-[7rem] md:max-w-[10rem] lg:max-w-[10rem] w-full">
                                                     <div>
-                                                        <button className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>
+                                                        <button onClick={() => Buy()} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>
                                                             Go Ahead
                                                         </button>
                                                     </div>
