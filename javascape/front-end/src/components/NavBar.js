@@ -4,6 +4,7 @@ import Logo from "../images/Logo.png"
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { NavLink } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
+import SpaceCoins from '../images/SpaceCoins.png'
 
 export default function NavBar() {
     // call data from mapper context js
@@ -22,6 +23,8 @@ export default function NavBar() {
     // nav bar text active and inactive link style
     const activeLink = "text-white uppercase"
     const inactiveLink = "text-[#B154F0] hover:text-white active:text-white duration-300 uppercase"
+
+    console.log(currentUserDataSet)
 
     return (
         <div className='bg-[#19002A] w-full text-white font-exo uppercase fixed z-50'>
@@ -52,6 +55,20 @@ export default function NavBar() {
                             }
                         </div>
                     </div>
+                    {/* Space Coins */}
+                    <>
+                        {
+                            authUser === null
+                                ?
+                                <></>
+                                :
+
+                                <div className='flex items-center'>
+                                    <img src={SpaceCoins} alt="" className='max-w-[2rem] mr-2' />
+                                    <p className='font-extrabold'>{currentUserDataSet[6]}</p>
+                                </div>
+                        }
+                    </>
                 </div>
                 {/* Mobile Responsive Burger Tag */}
                 <div onClick={handleNav} className="block md:hidden">
@@ -85,6 +102,6 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
