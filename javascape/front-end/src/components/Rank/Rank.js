@@ -10,19 +10,34 @@ import RankPagination from './RankPagination'
 export default function Rank() {
     // call data from mapper context js
     const {
-        authUser,
         usersCollectionRef,
         currentUserDataSet,
     } = useContext(MapperContext)
 
     const [userData, setUserData] = useState([]);
 
+    // Sort by function
+    const [selectedOption, setSelectedOption] = useState("Descending");
+
+    const HandleChange = (event) => {
+        const value = event.target.value;
+        setSelectedOption(value);
+    };
+
     useEffect(() => {
-        const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
-        const unsub = onSnapshot(q, (snapshot) =>
-            setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
-        return unsub;
-    }, [authUser]);
+        if (selectedOption === "Descending") {
+            const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
+            return unsub;
+        } else {
+            const q = query(usersCollectionRef, orderBy("TotalScore", "asc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
+            return unsub;
+        }
+
+    }, [selectedOption]);
 
     // loading function
     const [loading, setLoading] = useState(true);
@@ -52,8 +67,15 @@ export default function Rank() {
                             {/* Title */}
                             <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Who is the best ?</span>
                             {/* Rank Content */}
-                            <div className='w-full flex flex-col justify-center items-center'>
-                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-5'>
+                            <div className='w-full flex flex-col justify-center items-center max-w-[21rem] sm:max-w-[23.5rem] md:max-w-[47.5rem] lg:max-w-[57.5rem]'>
+                                {/* select */}
+                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[3px] w-fit mx-5 self-start mb-3">
+                                    <select onChange={HandleChange} name="cars" id="cars" className='outline-none px-3 h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
+                                        <option value="Descending">Descending</option>
+                                        <option value="Ascending">Ascending</option>
+                                    </select>
+                                </div>
+                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-5'>
                                     {/* Rank Lable */}
                                     <div className='flex justify-between'>
                                         <div className='w-full flex justify-center'>
@@ -73,7 +95,7 @@ export default function Rank() {
                                         </div>
                                     </div>
                                     {/* Rank Table */}
-                                    <RankList listData={currentPost} currentUserDataSet={currentUserDataSet} />
+                                    <RankList listData={currentPost} currentUserDataSet={currentUserDataSet} userData={userData} order={selectedOption} />
                                 </div>
                             </div>
                             {/* Pagination */}
