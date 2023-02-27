@@ -101,6 +101,20 @@ export default function NavBar() {
                         }
                     </div>
                 </div>
+                {/* Space Coins */}
+                <>
+                    {
+                        authUser === null
+                            ?
+                            <></>
+                            :
+
+                            <div className='flex items-center px-[1.55rem]'>
+                                <img src={SpaceCoins} alt="" className='max-w-[2rem] mr-2' />
+                                <p className='font-extrabold'>{currentUserDataSet[6]}</p>
+                            </div>
+                    }
+                </>
             </div>
         </div >
     )
