@@ -79,9 +79,8 @@ export default function Level01() {
     } else if (currentUserDataSet[7].length === 2) {
       sendMessage("LevelLoader", "CallSetAbility", currentUserDataSet[7][0] + currentUserDataSet[7][1]);
     } else if (currentUserDataSet[7].length === 0) {
-      sendMessage("LevelLoader", "CallSetAbility", "");
+      sendMessage("LevelLoader", "CallSetAbility", "")
     }
-
     setIsGameStart(true);
   }
 
