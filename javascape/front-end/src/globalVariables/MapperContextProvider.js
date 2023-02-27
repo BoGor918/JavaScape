@@ -40,19 +40,19 @@ export default function MapperContextProvider(props) {
         if (user.Email === authUser?.email) {
             currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore)
 
-            currentUserSkillLength = user.Skill.length
+            currentUserSkillLength = user.Ability.length
 
-            if (user.Skill.length !== 0) {
+            if (user.Ability.length !== 0) {
                 var userSkill = null
 
-                for (let i = 0; i < user.Skill.length; i++) {
-                    if (i === user.Skill.length - 1) {
-                        userSkill += `skill${i + 1}=`;  // add separator
-                        userSkill += user.Skill[i]; // add value
+                for (let i = 0; i < user.Ability.length; i++) {
+                    if (i === user.Ability.length - 1) {
+                        userSkill += `ability${i + 1}=`;  // add separator
+                        userSkill += user.Ability[i]; // add value
                     }
-                    if (i < user.Skill.length - 1) {
-                        userSkill += `skill${i + 1}=`;  // add separator
-                        userSkill += user.Skill[i] + "&"; // add value
+                    if (i < user.Ability.length - 1) {
+                        userSkill += `ability${i + 1}=`;  // add separator
+                        userSkill += user.Ability[i] + "&"; // add value
                     }
                 }
 
