@@ -15,7 +15,6 @@ export default function Ability() {
     const {
         authUser,
         currentUserDataSet,
-        currentUserSkillSet
     } = useContext(MapperContext);
 
     // Get query from URL
@@ -41,7 +40,6 @@ export default function Ability() {
                     damageAppear = true
                 }
             }
-
             if (currentUserDataSet[6] >= 400 && damageAppear === false) {
                 updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 400 })
                 updateDoc(updateUserRef, { Ability: arrayUnion("w1AY4atFvp") }).then(() => {
@@ -55,23 +53,23 @@ export default function Ability() {
                 alert("You Don't Have Enough SpaceCoin to Buy This Ability")
             }
         } else {
-            // if (currentUserDataSet[6] >= 470 && currentUserSkillSet === undefined) {
-            //     updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 470 })
-            //     updateDoc(updateUserRef, { Ability: arrayUnion("fVCZo6bIVw") }).then(() => {
-            //         alert("You Have Successfully Bought This Ability")
-            //         navigate("/shop")
-            //         window.location.reload()
-            //     })
-            // }
-            // if (currentUserDataSet[6] >= 470 && currentUserSkillSet.includes("fVCZo6bIVw") === true) {
-            //     alert("You Already Have This Ability")
-            // }
-            // if (currentUserDataSet[6] < 470 && currentUserSkillSet.includes("fVCZo6bIVw") === true) {
-            //     alert("You Don't Have Enough SpaceCoin to Buy This Ability")
-            // }
-            // if (currentUserDataSet[6] < 470 && currentUserSkillSet === undefined) {
-            //     alert("You Don't Have Enough SpaceCoin to Buy This Ability")
-            // }
+            for (let i = 0; i < currentUserDataSet[7].length; i++) {
+                if (currentUserDataSet[7][i].includes("fVCZo6bIVw")) {
+                    damageAppear = true
+                }
+            }
+            if (currentUserDataSet[6] >= 470 && damageAppear === false) {
+                updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 470 })
+                updateDoc(updateUserRef, { Ability: arrayUnion("fVCZo6bIVw") }).then(() => {
+                    alert("You Have Successfully Bought This Ability")
+                    navigate("/shop")
+                    window.location.reload()
+                })
+            } else if (damageAppear === true) {
+                alert("You Already Have This Ability")
+            } else if (currentUserDataSet[6] < 470) {
+                alert("You Don't Have Enough SpaceCoin to Buy This Ability")
+            }
         }
     }
 

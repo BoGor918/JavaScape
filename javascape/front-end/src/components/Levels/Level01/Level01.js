@@ -45,7 +45,7 @@ export default function Level01() {
   })
 
   // unity context
-  const { unityProvider, addEventListener, removeEventListener, loadingProgression, isLoaded } =
+  const { unityProvider, addEventListener, removeEventListener, loadingProgression, isLoaded, sendMessage } =
     useUnityContext({
       loaderUrl: "/Level01/Level01.loader.js",
       dataUrl: "/Level01/Level01.data",
@@ -73,7 +73,17 @@ export default function Level01() {
     updateDoc(updateUserRef, { SpaceCoin: 50 + currentUserDataSet[6] })
   }, [currentLevelDataSet, currentUserDataSet]);
 
-  console.log(currentUserDataSet[6])
+  const handleClickStartGame = () => {
+    if (currentUserDataSet[7].length === 1) {
+      sendMessage("LevelLoader", "CallSetAbility", currentUserDataSet[7][0]);
+    } else if (currentUserDataSet[7].length === 2) {
+      sendMessage("LevelLoader", "CallSetAbility", currentUserDataSet[7][0] + currentUserDataSet[7][1]);
+    } else if (currentUserDataSet[7].length === 0) {
+      sendMessage("LevelLoader", "CallSetAbility", "");
+    }
+
+    setIsGameStart(true);
+  }
 
   // add and remove event listener
   useEffect(() => {
@@ -93,6 +103,9 @@ export default function Level01() {
     }, 1500);
   }, [])
 
+  // check is game Start
+  const [isGameStart, setIsGameStart] = useState(false);
+
   return (
     <div>
       {
@@ -105,8 +118,22 @@ export default function Level01() {
                   userLevel1Data.map((level1, i) => {
                     if (level1.Level === 1) {
                       return (
-                        <div key={i} className="w-full max-w-[1280px] text-3xl font-bold flex justify-between mb-3">
-                          <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
+                        <div key={i} className="w-full max-w-[1280px] text-3xl font-bold flex justify-between items-center mb-3">
+                          {
+                            isGameStart === false ?
+                              <div className="flex justify-center items-center">
+                                {/* Start Button */}
+                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 px-[2px] pb-[2px] pt-[0px] w-fit self-end">
+                                  <div>
+                                    <button onClick={handleClickStartGame} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Start Game</button>
+                                  </div>
+                                </div>
+                                <span className="text-sm sm:text-sm md:text-xl lg:text-3xl ml-5">Level 01</span>
+                              </div> :
+                              <div className="flex justify-center items-center">
+                                <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
+                              </div>
+                          }
                           <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
                         </div>
                       )
