@@ -35,7 +35,6 @@ export default function Battle() {
         }, 1500);
     }, [])
 
-
     return (
         <div>
             {loading ? <Loading /> :
