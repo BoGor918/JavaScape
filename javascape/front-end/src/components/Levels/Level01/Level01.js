@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useCallback, useEffect, useContext } from "react";
+import React, { useState, useCallback, useEffect, useContext, Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { firestore } from "../../../firebase"
 import { updateDoc, doc, collection, getDocs } from 'firebase/firestore'
@@ -87,6 +87,7 @@ export default function Level01() {
   // add and remove event listener
   useEffect(() => {
     addEventListener("GameOver", handleGameOver);
+    
     return () => {
       removeEventListener("GameOver", handleGameOver);
     };
@@ -106,7 +107,7 @@ export default function Level01() {
   const [isGameStart, setIsGameStart] = useState(false);
 
   return (
-    <div>
+    <Fragment>
       {
         loading ? <Loading /> :
           <div className="Level01 flex flex-col text-white font-exo w-full">
@@ -158,6 +159,6 @@ export default function Level01() {
             </div>
           </div>
       }
-    </div>
+    </Fragment>
   );
 }
