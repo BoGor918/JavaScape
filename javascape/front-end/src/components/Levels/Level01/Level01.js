@@ -68,7 +68,7 @@ export default function Level01() {
       updateDoc(updateLevelRef, { HighestScore: score })
       updateDoc(updateUserRef, { TotalScore: score + currentUserDataSet[5] - currentLevelDataSet[2] })
     }
-    
+
     // add space coin
     updateDoc(updateUserRef, { SpaceCoin: 50 + currentUserDataSet[6] })
   }, [currentLevelDataSet, currentUserDataSet]);
