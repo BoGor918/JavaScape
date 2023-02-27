@@ -14,7 +14,8 @@ export default function Ability() {
     // get user data from context
     const {
         authUser,
-        currentUserDataSet
+        currentUserDataSet,
+        currentUserSkillSet
     } = useContext(MapperContext);
 
     // Get query from URL
@@ -27,31 +28,50 @@ export default function Ability() {
     // buying button checking
     const [buying, setBuying] = useState(false)
 
+
     // buy function
     const Buy = () => {
         const updateUserPath = "Users/"
         const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
+        var damageAppear = false
 
         if (params.get("ability") === "damage-x2") {
-            if (currentUserDataSet[6] >= 400) {
+            for (let i = 0; i < currentUserDataSet[7].length; i++) {
+                if (currentUserDataSet[7][i].includes("w1AY4atFvp")) {
+                    damageAppear = true
+                }
+            }
+
+            if (currentUserDataSet[6] >= 400 && damageAppear === false) {
                 updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 400 })
                 updateDoc(updateUserRef, { Ability: arrayUnion("w1AY4atFvp") }).then(() => {
                     alert("You Have Successfully Bought This Ability")
                     navigate("/shop")
+                    window.location.reload()
                 })
-            } else {
+            } else if (damageAppear === true) {
+                alert("You Already Have This Ability")
+            } else if (currentUserDataSet[6] < 400) {
                 alert("You Don't Have Enough SpaceCoin to Buy This Ability")
             }
         } else {
-            if (currentUserDataSet[6] >= 470) {
-                updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 470 })
-                updateDoc(updateUserRef, { Ability: arrayUnion("fVCZo6bIVw") }).then(() => {
-                    alert("You Have Successfully Bought This Ability")
-                    navigate("/shop")
-                })
-            } else {
-                alert("You Don't Have Enough SpaceCoin to Buy This Ability")
-            }
+            // if (currentUserDataSet[6] >= 470 && currentUserSkillSet === undefined) {
+            //     updateDoc(updateUserRef, { SpaceCoin: currentUserDataSet[6] - 470 })
+            //     updateDoc(updateUserRef, { Ability: arrayUnion("fVCZo6bIVw") }).then(() => {
+            //         alert("You Have Successfully Bought This Ability")
+            //         navigate("/shop")
+            //         window.location.reload()
+            //     })
+            // }
+            // if (currentUserDataSet[6] >= 470 && currentUserSkillSet.includes("fVCZo6bIVw") === true) {
+            //     alert("You Already Have This Ability")
+            // }
+            // if (currentUserDataSet[6] < 470 && currentUserSkillSet.includes("fVCZo6bIVw") === true) {
+            //     alert("You Don't Have Enough SpaceCoin to Buy This Ability")
+            // }
+            // if (currentUserDataSet[6] < 470 && currentUserSkillSet === undefined) {
+            //     alert("You Don't Have Enough SpaceCoin to Buy This Ability")
+            // }
         }
     }
 
