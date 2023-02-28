@@ -15,19 +15,22 @@ export default function Rank() {
         userArray,
     } = useContext(MapperContext)
 
+    // ascending and descending data
     const [userDataDesc, setUserDataDesc] = useState([]);
     const [userDataAsc, setUserDataAsc] = useState([]);
 
-    // Sort by function
+    // sort by function
     const [selectedOption, setSelectedOption] = useState("Descending")
     // search function
     const [searchTerm, setSearchTerm] = useState("")
 
+    // change select value
     const HandleChange = (event) => {
         const value = event.target.value;
         setSelectedOption(value)
     };
 
+    // map descending data
     useEffect(() => {
         const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
         const unsub = onSnapshot(q, (snapshot) =>
@@ -35,6 +38,7 @@ export default function Rank() {
         return unsub
     }, []);
 
+    // map ascending data
     useEffect(() => {
         const q = query(usersCollectionRef, orderBy("TotalScore", "asc"));
         const unsub = onSnapshot(q, (snapshot) =>
@@ -42,6 +46,7 @@ export default function Rank() {
         return unsub
     }, [])
 
+    // check by query filter data
     useEffect(() => {
         if (searchTerm === "" && selectedOption === "Descending") {
             const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
@@ -77,6 +82,7 @@ export default function Rank() {
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
     var currentPost;
+    // check it the value is descending or ascending
     if (selectedOption === "Descending") {
         currentPost = userDataDesc.slice(firstPostIndex, lastPostIndex)
     } else {
