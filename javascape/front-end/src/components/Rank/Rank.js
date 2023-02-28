@@ -15,33 +15,49 @@ export default function Rank() {
         userArray,
     } = useContext(MapperContext)
 
-    const [userData, setUserData] = useState([]);
+    const [userDataDesc, setUserDataDesc] = useState([]);
+    const [userDataAsc, setUserDataAsc] = useState([]);
 
     // Sort by function
-    const [selectedOption, setSelectedOption] = useState("Descending");
+    const [selectedOption, setSelectedOption] = useState("Descending")
     // search function
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("")
 
     const HandleChange = (event) => {
         const value = event.target.value;
-        setSelectedOption(value);
+        setSelectedOption(value)
     };
+
+    useEffect(() => {
+        const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setUserDataDesc(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))))
+        return unsub
+    }, []);
+
+    useEffect(() => {
+        const q = query(usersCollectionRef, orderBy("TotalScore", "asc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setUserDataAsc(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))))
+        return unsub
+    }, [])
 
     useEffect(() => {
         if (searchTerm === "" && selectedOption === "Descending") {
             const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
             const unsub = onSnapshot(q, (snapshot) =>
-                setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
+                setUserDataDesc(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
             return unsub;
         } else if (searchTerm === "" && selectedOption === "Ascending") {
             const q = query(usersCollectionRef, orderBy("TotalScore", "asc"));
             const unsub = onSnapshot(q, (snapshot) =>
-                setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
+                setUserDataAsc(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
             return unsub;
-        } else if (searchTerm !== "" && selectedOption === "Descending") {
-            setUserData(userData.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
+        }
+        else if (searchTerm !== "" && selectedOption === "Descending") {
+            setUserDataDesc(userDataDesc.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
         } else if (searchTerm !== "" && selectedOption === "Ascending") {
-            setUserData(userData.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
+            setUserDataAsc(userDataAsc.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
         }
     }, [searchTerm, selectedOption]);
 
@@ -60,7 +76,12 @@ export default function Rank() {
     const postPerPage = 5
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
-    const currentPost = userData.slice(firstPostIndex, lastPostIndex)
+    var currentPost;
+    if (selectedOption === "Descending") {
+        currentPost = userDataDesc.slice(firstPostIndex, lastPostIndex)
+    } else {
+        currentPost = userDataAsc.slice(firstPostIndex, lastPostIndex)
+    }
 
     return (
         <div>
@@ -109,7 +130,7 @@ export default function Rank() {
                                 </div>
                             </div>
                             {/* Pagination */}
-                            <RankPagination totalPosts={userData.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+                            <RankPagination totalPosts={userDataDesc.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
                         </div>
                     </div>
             }
