@@ -103,14 +103,14 @@ export default function Rank() {
                             <div className='w-full flex flex-col justify-center items-center max-w-[23.5rem] sm:max-w-[23.5rem] md:max-w-[47.5rem] lg:max-w-[57.5rem]'>
                                 <div className='flex justify-center items-center w-full'>
                                     {/* select */}
-                                    <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[3px] w-fit ml-5 mr-2 self-start mb-3">
+                                    <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] sm:p-[2px] md:p-[2.5px] lg:p-[2.5px] w-fit ml-5 mr-2 self-start mb-3">
                                         <select onChange={HandleChange} name="order" id="order" className='rounded-none outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
                                         <option value="Descending">Descending</option>
                                             <option value="Ascending">Ascending</option>
                                         </select>
                                     </div>
                                     {/* Input */}
-                                    <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[3px] w-full mr-5 ml-2 self-start mb-3">
+                                    <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] sm:p-[2px] md:p-[2.5px] lg:p-[2.5px] w-full mr-5 ml-2 self-start mb-3">
                                         <input placeholder='Search For Username' onChange={(e) => setSearchTerm(e.target.value)} name="order" id="order" className='rounded-none w-full outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase' />
                                     </div>
                                 </div>

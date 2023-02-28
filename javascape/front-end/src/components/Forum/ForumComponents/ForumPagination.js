@@ -12,7 +12,7 @@ export default function ForumPagination({ totalPosts, postsPerPage, setCurrentPa
     // button style value
     const buttonActive = 'text-[7px] sm:text-[7px] md:text-[10px] lg:text-[12px] px-[13px] py-2 bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'
     const buttonNonActive = 'text-[7px] sm:text-[7px] md:text-[10px] lg:text-[12px] px-[13px] py-2 bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'
-    const buttonResponsive = 'bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 px-[2px] pb-[2px] pt-[2px] w-fit'
+    const buttonResponsive = 'bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 px-[2px] pb-[2px] pt-[0.3px] sm:pt-[0.3px] md:pt-[2px] lg:pt-[2px] w-fit'
 
     return (
         <div className='flex pt-8'>
