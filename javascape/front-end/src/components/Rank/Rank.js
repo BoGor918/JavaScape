@@ -12,12 +12,15 @@ export default function Rank() {
     const {
         usersCollectionRef,
         currentUserDataSet,
+        userArray,
     } = useContext(MapperContext)
 
     const [userData, setUserData] = useState([]);
 
     // Sort by function
     const [selectedOption, setSelectedOption] = useState("Descending");
+    // search function
+    const [searchTerm, setSearchTerm] = useState("");
 
     const HandleChange = (event) => {
         const value = event.target.value;
@@ -25,18 +28,22 @@ export default function Rank() {
     };
 
     useEffect(() => {
-        if (selectedOption === "Descending") {
+        if (searchTerm === "" && selectedOption === "Descending") {
             const q = query(usersCollectionRef, orderBy("TotalScore", "desc"));
             const unsub = onSnapshot(q, (snapshot) =>
                 setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
             return unsub;
-        } else {
+        } else if (searchTerm === "" && selectedOption === "Ascending") {
             const q = query(usersCollectionRef, orderBy("TotalScore", "asc"));
             const unsub = onSnapshot(q, (snapshot) =>
                 setUserData(snapshot.docs.map((doc, index) => ({ index, ...doc.data(), id: doc.id }))));
             return unsub;
+        } else if (searchTerm !== "" && selectedOption === "Descending") {
+            setUserData(userData.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
+        } else if (searchTerm !== "" && selectedOption === "Ascending") {
+            setUserData(userData.filter(user => user.Username.toLowerCase().includes(searchTerm.toLowerCase())))
         }
-    }, [selectedOption]);
+    }, [searchTerm, selectedOption]);
 
     // loading function
     const [loading, setLoading] = useState(true);
@@ -74,6 +81,10 @@ export default function Rank() {
                                         <option value="Ascending">Ascending</option>
                                     </select>
                                 </div>
+                                {/* Input */}
+                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[3px] w-fit mx-5 self-start mb-3">
+                                    <input onChange={(e) => setSearchTerm(e.target.value)} name="order" id="order" className='outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase' />
+                                </div>
                                 <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-5'>
                                     {/* Rank Lable */}
                                     <div className='flex justify-between'>
@@ -94,7 +105,7 @@ export default function Rank() {
                                         </div>
                                     </div>
                                     {/* Rank Table */}
-                                    <RankList listData={currentPost} currentUserDataSet={currentUserDataSet} userData={userData} order={selectedOption} />
+                                    <RankList listData={currentPost} currentUserDataSet={currentUserDataSet} wholeDataLength={userArray[2]} order={selectedOption} searchTerm={searchTerm} />
                                 </div>
                             </div>
                             {/* Pagination */}
