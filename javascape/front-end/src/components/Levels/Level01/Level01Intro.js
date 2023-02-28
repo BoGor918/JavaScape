@@ -36,7 +36,7 @@ export default function Battle() {
     return (
         <div>
             {
-                // loading ? <Loading /> :
+                loading ? <Loading /> :
                     <div className='Level01Intro flex flex-col text-white font-exo w-full'>
                         <NavBar />
                         <div className='flex flex-col justify-center items-center'>
