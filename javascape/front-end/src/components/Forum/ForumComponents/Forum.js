@@ -203,8 +203,8 @@ export default function Forum() {
                             {/* Create Question Button */}
                             {
                                 !modal && (
-                                    <div className='flex justify-center items-start w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem]'>
-                                        <div className="pb-5 w-full max-w-[6.5rem] sm:max-w-[6.5rem] md:max-w-[15rem] lg:max-w-[15rem]">
+                                    <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-start w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem]'>
+                                        <div className="pb-5 w-full max-w-[10rem] sm:max-w-[10rem] md:max-w-[15rem] lg:max-w-[15rem]">
                                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                                 <div>
                                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
