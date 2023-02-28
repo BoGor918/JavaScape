@@ -86,7 +86,7 @@ export default function Rank() {
     return (
         <div>
             {
-                // loading ? <Loading /> :
+                loading ? <Loading /> :
                     <div className='Rank flex flex-col text-white font-exo w-full'>
                         <NavBar />
                         {/* Content */}
