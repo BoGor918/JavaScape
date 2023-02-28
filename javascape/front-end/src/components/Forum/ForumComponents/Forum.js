@@ -204,7 +204,7 @@ export default function Forum() {
                             {
                                 !modal && (
                                     <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-start w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem]'>
-                                        <div className="pb-5 w-full max-w-[10rem] sm:max-w-[10rem] md:max-w-[15rem] lg:max-w-[15rem]">
+                                        <div className="pb-3 sm:pb-3 md:pb-5 lg:pb-5 w-full max-w-[10rem] sm:max-w-[10rem] md:max-w-[15rem] lg:max-w-[15rem]">
                                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                                 <div>
                                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
@@ -213,7 +213,7 @@ export default function Forum() {
                                         </div>
                                         <div className='flex justify-center items-center w-full'>
                                             {/* Input */}
-                                            <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-full mr-2 self-start mb-3">
+                                            <div onClick={() => setCurrentPage(1)} className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-full mr-2 self-start mb-3">
                                                 <input onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search For Topic' name="order" id="order" className='rounded-none w-full outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase' />
                                             </div>
                                             {/* select */}
