@@ -82,6 +82,12 @@ export default function SignUp() {
                     Level: 1,
                 })
 
+                await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level2"), {
+                    Username: registerUsername.current.value,
+                    HighestScore: 0,
+                    Level: 2,
+                })
+
                 await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
             })
         }

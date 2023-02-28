@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { isMobile } from 'react-device-detect';
 import Loading from '../../Loading'
 
-export default function Battle() {
+export default function Level01Intro() {
     const {
         authUser,
         currentUserDataSet,
