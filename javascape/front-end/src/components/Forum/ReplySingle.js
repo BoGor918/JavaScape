@@ -194,8 +194,8 @@ const ReplySingle = ({ data, replyReplyID }) => {
                             <span className='font-extrabold'>@</span>
                             {
                                 currentUserDataSet[1] === data.ReplyTo ?
-                                    <span onClick={() => navigate(`/profile`)} className='font-extrabold hover:underline cursor-pointer'>{data.ReplyTo}</span> :
-                                    <span onClick={() => navigate(`/profile/${data.ReplyTo}`)} className='font-extrabold hover:underline cursor-pointer'>{data.ReplyTo}</span>
+                                    <span onClick={() => navigate(`/profile`)} className='font-extrabold hover:underline cursor-pointer'>{data.ReplyTo}{" "}</span> :
+                                    <span onClick={() => navigate(`/profile/${data.ReplyTo}`)} className='font-extrabold hover:underline cursor-pointer'>{data.ReplyTo}{" "}</span>
                             }
                             <span>
                                 {

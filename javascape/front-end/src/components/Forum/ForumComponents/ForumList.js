@@ -18,7 +18,7 @@ export default function ForumList({ listData }) {
                             <div className='w-full flex flex-col justify-center text-gray-300'>
                                 <span className='hidden sm:hidden md:block lg:block break-words text-justify text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
                                     {
-                                        forum.Question.length >= 50 ? forum.Question.substring(0, 50) + "..." : forum.Question 
+                                        forum.Question.length >= 50 ? forum.Question.substring(0, 50) + "..." : forum.Question
                                     }
                                 </span>
                                 <span className='block sm:block md:hidden lg:hidden break-words text-justify text-sm sm:text-sm md:text-xl lg:text-xl text-white font-extrabold'>
