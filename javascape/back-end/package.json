@@ -6,13 +6,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "launch": "node launch.js",
-    "dev": "concurrently \"yarn watch-compile\" \"yarn watch-dev\"",
-    "watch-compile": "swc src -w --out-dir dist",
-    "watch-dev": "nodemon  --ignore scripts/ \"dist/**/*\" -e js ./dist/main.js",
     "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
     "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
-    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
