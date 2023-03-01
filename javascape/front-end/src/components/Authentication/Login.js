@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef, useState } from 'react'
-import { signInWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth"
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebase"
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom'
@@ -36,19 +36,8 @@ export default function Login() {
                     if (Object.is(userArray[0][i], loginEmailOrUsername.current.value)) {
                         const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
                         console.log(user)
-                        haveUsername = true
 
-                        if (user.user.emailVerified === false) {
-                            if (window.confirm("Plz Verify Your Email First\nPress Ok to Resend Verification Email"))
-                            {
-                                await sendEmailVerification(user.user)
-                                await signOut(auth)
-                                navigate("/email-verification")
-                            } else {
-                                await signOut(auth)
-                                navigate("/login")
-                            }
-                        }
+                        haveUsername = true
                         break;
                     }
                 }
@@ -59,7 +48,7 @@ export default function Login() {
         } catch (error) {
             console.log(error)
             console.log(haveUsername)
-            // alert("Invalid Email / Username or Password, Plz Try Again")
+            alert("Invalid Email / Username or Password, Plz Try Again")
         }
     }
     // Enter key press event and call Login function

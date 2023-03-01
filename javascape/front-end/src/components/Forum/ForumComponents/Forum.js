@@ -10,6 +10,7 @@ import NavBar from '../../NavBar'
 import Loading from '../../Loading'
 import ForumList from './ForumList'
 import ForumPagination from './ForumPagination'
+import EmailVerification from '../../EmailVerification'
 
 export default function Forum() {
     // call data from mapper context js
@@ -193,117 +194,118 @@ export default function Forum() {
         <div>
             {
                 loading ? <Loading /> :
-                    <div className='Forum flex flex-col text-white font-exo w-full'>
-                        {/* Navbar */}
-                        <NavBar />
-                        {/* Content */}
-                        <div className='w-full overflow-auto flex flex-col items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
-                            {/* Title */}
-                            <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Feel Free To Ask Your Teammates</span>
-                            {/* Create Question Button */}
-                            {
-                                !modal && (
-                                    <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-start w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem]'>
-                                        <div className="pb-3 sm:pb-3 md:pb-5 lg:pb-5 w-full max-w-[10rem] sm:max-w-[10rem] md:max-w-[15rem] lg:max-w-[15rem]">
-                                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                                                <div>
-                                                    <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='flex justify-center items-center w-full'>
-                                            {/* Input */}
-                                            <div onClick={() => setCurrentPage(1)} className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-full mr-2 self-start mb-3">
-                                                <input onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search For Topic' name="order" id="order" className='rounded-none w-full outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase' />
-                                            </div>
-                                            {/* select */}
-                                            <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-fit ml-2 self-start mb-3">
-                                                <select onChange={HandleChange} name="order" id="order" className='rounded-none outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
-                                                    <option value="Latest">Latest</option>
-                                                    <option value="Oldest">Oldest</option>
-                                                    <option value="MostVotes">Most Votes</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                )
-                            }
-                            {/* Back Button just the create question button is clicked */}
-                            {
-                                modal && (
-                                    <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start">
-                                        <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
-                                            <div>
-                                                <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            {/* Forum Column */}
-                            <div className='w-full flex flex-col justify-center items-center'>
-                                {/* All Question View */}
+                    authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
+                        <div className='Forum flex flex-col text-white font-exo w-full'>
+                            {/* Navbar */}
+                            <NavBar />
+                            {/* Content */}
+                            <div className='w-full overflow-auto flex flex-col items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
+                                {/* Title */}
+                                <span className='text-center mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Feel Free To Ask Your Teammates</span>
+                                {/* Create Question Button */}
                                 {
                                     !modal && (
-                                        <div className='w-full flex flex-col justify-center items-center'>
-                                            <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
-                                                {/* Forum Table */}
-                                                <ForumList listData={currentPost} />
+                                        <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-start w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem]'>
+                                            <div className="pb-3 sm:pb-3 md:pb-5 lg:pb-5 w-full max-w-[10rem] sm:max-w-[10rem] md:max-w-[15rem] lg:max-w-[15rem]">
+                                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                                                    <div>
+                                                        <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Create Question</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            {/* Pagination */}
-                                            <ForumPagination totalPosts={selectedOption === "Latest" ? forumDataLatest.length : selectedOption === "Oldest" ? forumDataOldest.length : forumDataMostVotes.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+                                            <div className='flex justify-center items-center w-full'>
+                                                {/* Input */}
+                                                <div onClick={() => setCurrentPage(1)} className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-full mr-2 self-start mb-3">
+                                                    <input onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search For Topic' name="order" id="order" className='rounded-none w-full outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase' />
+                                                </div>
+                                                {/* select */}
+                                                <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-fit ml-2 self-start mb-3">
+                                                    <select onChange={HandleChange} name="order" id="order" className='rounded-none outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
+                                                        <option value="Latest">Latest</option>
+                                                        <option value="Oldest">Oldest</option>
+                                                        <option value="MostVotes">Most Votes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     )
                                 }
-                                {/* Popup Model for create question */}
+                                {/* Back Button just the create question button is clicked */}
                                 {
                                     modal && (
-                                        <div className='w-full flex flex-col justify-center items-center'>
-                                            <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-[25px] md:lg:px-[50px]'>
-                                                {/* Rank Lable */}
-                                                <div className='flex justify-between'>
-                                                    <div className='w-full flex flex-col justify-center items-center'>
-                                                        {/* Question Field */}
-                                                        <div className='my-3 flex flex-col w-full max-w-[40rem]'>
-                                                            <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Question : </span>
-                                                            <input ref={question} maxLength={200} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
-                                                        </div>
-                                                        {/* Textarea */}
-                                                        <div className='my-3 flex flex-col w-full max-w-[40rem]'>
-                                                            <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Enter Your Description Here : </span>
-                                                            <textarea ref={description} maxLength={5000} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
-                                                        </div>
-                                                        <div className="my-3 flex flex-col w-full max-w-[40rem]">
-
-                                                            <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Upload Image (Optional) : </span>
-                                                            <input
-                                                                className=""
-                                                                type="file"
-                                                                ref={hiddenFileInput}
-                                                                onChange={handleImageUploaded}
-                                                                accept=".jpg,.png,.jpeg,.tiff"
-                                                                name="banner"
-                                                            />
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* Ask Question Button */}
-                                            <div className="w-full max-w-[1280px] pt-5 flex justify-center mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
-                                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
-                                                    <div>
-                                                        <button onClick={() => CreateQuestion()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Ask Question</button>
-                                                    </div>
+                                        <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start">
+                                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
+                                                <div>
+                                                    <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
                                                 </div>
                                             </div>
                                         </div>
                                     )
                                 }
+                                {/* Forum Column */}
+                                <div className='w-full flex flex-col justify-center items-center'>
+                                    {/* All Question View */}
+                                    {
+                                        !modal && (
+                                            <div className='w-full flex flex-col justify-center items-center'>
+                                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                                    {/* Forum Table */}
+                                                    <ForumList listData={currentPost} />
+                                                </div>
+                                                {/* Pagination */}
+                                                <ForumPagination totalPosts={selectedOption === "Latest" ? forumDataLatest.length : selectedOption === "Oldest" ? forumDataOldest.length : forumDataMostVotes.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+                                            </div>
+                                        )
+                                    }
+                                    {/* Popup Model for create question */}
+                                    {
+                                        modal && (
+                                            <div className='w-full flex flex-col justify-center items-center'>
+                                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5 px-[25px] md:lg:px-[50px]'>
+                                                    {/* Rank Lable */}
+                                                    <div className='flex justify-between'>
+                                                        <div className='w-full flex flex-col justify-center items-center'>
+                                                            {/* Question Field */}
+                                                            <div className='my-3 flex flex-col w-full max-w-[40rem]'>
+                                                                <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Question : </span>
+                                                                <input ref={question} maxLength={200} type="question" required className="border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                                            </div>
+                                                            {/* Textarea */}
+                                                            <div className='my-3 flex flex-col w-full max-w-[40rem]'>
+                                                                <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Enter Your Description Here : </span>
+                                                                <textarea ref={description} maxLength={5000} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
+                                                            </div>
+                                                            <div className="my-3 flex flex-col w-full max-w-[40rem]">
+
+                                                                <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Upload Image (Optional) : </span>
+                                                                <input
+                                                                    className=""
+                                                                    type="file"
+                                                                    ref={hiddenFileInput}
+                                                                    onChange={handleImageUploaded}
+                                                                    accept=".jpg,.png,.jpeg,.tiff"
+                                                                    name="banner"
+                                                                />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/* Ask Question Button */}
+                                                <div className="w-full max-w-[1280px] pt-5 flex justify-center mb-[3rem] sm:mb-[3rem] lg:mb-[6rem]">
+                                                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-2">
+                                                        <div>
+                                                            <button onClick={() => CreateQuestion()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Ask Question</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
             }
         </div>
     )

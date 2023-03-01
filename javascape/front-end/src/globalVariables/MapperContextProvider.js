@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react"
 import { firestore, auth } from "../firebase"
 import { collection, query, orderBy, onSnapshot, getDocs, doc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from "firebase/auth"
-import { send } from 'emailjs-com';
+import { send } from 'emailjs-com'
 
 export const MapperContext = createContext()
 
