@@ -36,7 +36,7 @@ export default function Level02Intro() {
     return (
         <div>
             {
-                loading ? <Loading /> :
+                // loading ? <Loading /> :
                     <div className='Level01Intro flex flex-col text-white font-exo w-full'>
                         <NavBar />
                         <div className='flex flex-col justify-center items-center'>
@@ -72,7 +72,7 @@ export default function Level02Intro() {
                         {/* Level Content */}
                         <div className='flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                             <span className='mt-[3rem] sm:mt-[3rem] md:mt-[5rem] lg:mt-[8rem] my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
-                            <div className='hidden sm:hidden md:grid lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px]'>
+                            <div className='hidden sm:hidden md:grid lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-[50px] sm:gap-x-[50px] lg:gap-x-[150px] gap-y-[50px] sm:gap-y-[50px] lg:gap-y-[110px]'>
                                 <img src={M04} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                                 <img src={M05} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                                 <img src={M06} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] md:ml-[0.6rem] lg:ml-[rem]' />
