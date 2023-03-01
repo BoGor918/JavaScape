@@ -23,9 +23,9 @@ export default function EmailVerification() {
     // send Email function
     const SendEmail = () => {
         sendEmailVerification(authUser)
-        .then(() => {
-            alert("Verification Email Sent")
-        });
+            .then(() => {
+                alert("Verification Email Sent")
+            });
     }
 
     // logout function
@@ -46,6 +46,13 @@ export default function EmailVerification() {
                             <div>
                                 <button onClick={() => SendEmail()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
                                     Send
+                                </button>
+                            </div>
+                        </div>
+                        <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit mx-3">
+                            <div>
+                                <button onClick={() => window.location.reload()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
+                                    Reload
                                 </button>
                             </div>
                         </div>
