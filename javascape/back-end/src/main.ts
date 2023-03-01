@@ -39,6 +39,7 @@ app.get("/querySearch", async (req, res) => {
     // launch puppeteer browser
     const browser = await puppeteer.launch({
       headless: true,
+      args: ['--no-sandbox','--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     await page.goto(`https://www.google.com/search?q=${q}`);
