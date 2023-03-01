@@ -8,7 +8,7 @@ import cors from "cors";
 // basic setup
 dotenv.config();
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
