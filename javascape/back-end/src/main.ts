@@ -23,12 +23,17 @@ app.use(
   })
 );
 
+const router = express.Router();
+
 // Default page
-app.get("/", function (req, res) {
+router.get("/", function (req, res) {
   res.json({
     message: "Welcome to JavaScape Back-End",
   });
 });
+
+// netlify function
+app.use("/.netlify/functions/main", router);
 
 // get result method
 app.get("/querySearch", async (req, res) => {
