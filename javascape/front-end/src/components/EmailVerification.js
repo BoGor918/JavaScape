@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 import React, { useContext } from 'react'
-import { sendEmailVerification, signOut } from "firebase/auth"
+import { signOut, sendEmailVerification } from "firebase/auth"
 import NavBar from './NavBar'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
 import { auth } from "../firebase"
@@ -18,12 +18,14 @@ export default function EmailVerification() {
     // navigate function
     const navigate = useNavigate();
 
+    console.log(authUser)
+
     // send Email function
     const SendEmail = () => {
         sendEmailVerification(authUser)
-            .then(() => {
-                alert("Verification Email Sent")
-            });
+        .then(() => {
+            alert("Verification Email Sent")
+        });
     }
 
     // logout function
