@@ -52,7 +52,7 @@ export default function App() {
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />
         <Route path="/battle/level02" element={<Level02Intro />} />
-        {/* gameplay link */}
+        {/* gameplay link route */}
         {
           authUser !== null ?
             <>
