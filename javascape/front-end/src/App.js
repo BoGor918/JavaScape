@@ -21,6 +21,7 @@ import Loading from './components/Loading';
 import PageNotFound from './components/PageNotFound';
 import Level02Intro from './components/Levels/Level02/Level02Intro';
 import Level02 from './components/Levels/Level02/Level02';
+import EmailVerification from './components/EmailVerification';
 
 export default function App() {
   // call data from mapper context js
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/ability" element={<Ability />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
         <Route path="*" element={<PageNotFound />} />
         {/* levels link */}
         <Route path="/battle/level01" element={<Level01Intro />} />

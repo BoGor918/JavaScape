@@ -31,7 +31,7 @@ export default function MapperContextProvider(props) {
     const userArray = [
         userData.map((user) => user.Username),
         userData.map((user) => user.Email),
-        userData.length
+        userData.length,
     ]
 
     // set current user data

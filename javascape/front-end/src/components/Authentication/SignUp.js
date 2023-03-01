@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef, useState } from 'react'
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth"
 import { auth, firestore } from "../../firebase"
 import { doc, setDoc } from "firebase/firestore"
 import Logo from '../../images/Logo.png'
@@ -89,6 +89,13 @@ export default function SignUp() {
                 })
 
                 await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
+                    .then(async (userCredential) => {
+                        // Signed in 
+                        const user = userCredential.user;
+                        await sendEmailVerification(user)
+                        await signOut(auth)
+                        navigate("/email-verification")
+                    })
             })
         }
     }
@@ -123,7 +130,7 @@ export default function SignUp() {
     return (
         <div>
             {
-                authUser !== null ? navigate('/profile') :
+                authUser !== null ? navigate(-1) :
                     loading ? <Loading /> :
                         <div className='SignUp flex flex-col justify-center items-center h-screen text-white font-exo uppercase'>
                             {/* Logo */}
