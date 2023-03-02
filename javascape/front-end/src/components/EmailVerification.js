@@ -18,15 +18,17 @@ export default function EmailVerification() {
     // navigate function
     const navigate = useNavigate();
 
-    console.log(authUser)
-
     // send Email function
     const SendEmail = () => {
-        sendEmailVerification(authUser)
-            .then(() => {
-                alert("Verification Email Sent")
-            });
+
+        try {
+            sendEmailVerification(authUser)
+            alert("Verification Email Sent")
+        } catch (error) {
+            alert("Too Many Requests, Plz Try Again Later")
+        }
     }
+
 
     // logout function
     const Logout = async () => {
