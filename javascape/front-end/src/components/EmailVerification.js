@@ -20,14 +20,12 @@ export default function EmailVerification() {
 
     // send Email function
     const SendEmail = () => {
-
-        try {
-            sendEmailVerification(authUser)
+        sendEmailVerification(authUser).then(() => {
             alert("Verification Email Sent")
-        } catch (error) {
+        }).catch(() => {
             alert("Too Many Requests, Plz Try Again Later")
-        }
-    }
+        });
+    } 
 
 
     // logout function

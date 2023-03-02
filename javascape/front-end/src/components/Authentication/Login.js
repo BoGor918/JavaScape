@@ -27,15 +27,13 @@ export default function Login() {
         try {
             // if user is using email to login
             if (loginEmailOrUsername.current.value.includes('.') && loginEmailOrUsername.current.value.includes('@')) {
-                const user = await signInWithEmailAndPassword(auth, loginEmailOrUsername.current.value, loginPassword.current.value)
-                console.log(user)
+                await signInWithEmailAndPassword(auth, loginEmailOrUsername.current.value, loginPassword.current.value)
             } else {
                 // if user is using username to login
                 var haveUsername = false;
                 for (var i = 0; i < userArray[0].length; i++) {
                     if (Object.is(userArray[0][i], loginEmailOrUsername.current.value)) {
-                        const user = await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
-                        console.log(user)
+                        await signInWithEmailAndPassword(auth, userArray[1][i], loginPassword.current.value)
 
                         haveUsername = true
                         break;

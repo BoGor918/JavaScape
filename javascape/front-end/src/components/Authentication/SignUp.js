@@ -26,8 +26,6 @@ export default function SignUp() {
 
     // Register function
     const Register = async () => {
-        console.log(registerEmail.current.value, registerPassword.current.value, registerUsername.current.value)
-
         // Check all register inputs
         var canReg = [true, true, true, true];
 
