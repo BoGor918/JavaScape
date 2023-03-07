@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import Loading from "../Loading";
+import { v1 as uuidv1 } from 'uuid';
 
 export default function SignUp() {
     // call data from mapper context js
@@ -64,7 +65,8 @@ export default function SignUp() {
 
         // if is all data ok
         if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
-            await setDoc(doc(firestore, "Users", registerUsername.current.value), {
+            const ramdonID = `JS${uuidv1().slice(0, 8)}`
+            await setDoc(doc(firestore, "Users", ramdonID), {
                 Username: registerUsername.current.value,
                 Email: registerEmail.current.value.toLowerCase(),
                 Password: registerPassword.current.value,
@@ -74,13 +76,13 @@ export default function SignUp() {
                 Ability: [],
                 SpaceCoin: 0,
             }).then(async () => {
-                await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level1"), {
+                await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level1"), {
                     Username: registerUsername.current.value,
                     HighestScore: 0,
                     Level: 1,
                 })
 
-                await setDoc(doc(firestore, `Users/${registerUsername.current.value}/Levels`, "Level2"), {
+                await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level2"), {
                     Username: registerUsername.current.value,
                     HighestScore: 0,
                     Level: 2,
@@ -103,7 +105,7 @@ export default function SignUp() {
 
     // Enter key press event and call Register function
     useEffect(() => {
-        const keyDownHandler = event => { 
+        const keyDownHandler = event => {
             if (event.key === 'Enter') {
                 event.preventDefault();
                 Register();

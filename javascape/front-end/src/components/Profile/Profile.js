@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { auth, firestore } from "../../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
 import Logo from "../../images/Logo.png"
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import NavBar from '../NavBar'
@@ -60,38 +60,69 @@ export default function Profile() {
         }, 1500);
     }, [])
 
+    // handle edit name
+    const [editName, setEditName] = useState(false);
+    const [newName, setNewName] = useState("");
+
+    const UpdateName = () => {
+        const updateDocRef = doc(firestore, "Users", currentUserDataSet[0])
+        updateDoc(updateDocRef, { Username: newName }).then(() => {
+            window.location.reload();
+        })
+    }
+
     return (
         <div>
             {
                 authUser === null ? navigate("/") :
                     loading ? <Loading /> :
-                    authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
-                        <div className='Profile flex flex-col text-white font-exo w-full'>
-                            <NavBar />
-                            <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
-                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
-                                    <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: {currentUserDataSet[1]}</span>
-                                    <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Score: {currentLevelScoreDataSet.reduce((total, currentValue) => total + currentValue, 0)}</span>
-                                    <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Space Coin: {currentUserDataSet[6]}</span>
-                                    <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: {currentUserDataSet[4]}</span>
-                                    <div className='flex items-center'>
-                                        <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4.5rem] sm:max-w-[4.5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
-                                            <div>
-                                                <button onClick={Logout} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
+                        authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
+                            <div className='Profile flex flex-col text-white font-exo w-full'>
+                                <NavBar />
+                                <div className='w-full flex flex-col justify-center items-center h-screen uppercase'>
+                                    <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[2rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                                        {
+                                            editName === false ?
+                                                <div className='flex items-baseline'>
+                                                    <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: {currentUserDataSet[1]}</span>
+                                                    <button onClick={() => setEditName(true)} className='text-sm underline mx-2'>Edit</button>
+                                                </div> :
+                                                <>
+                                                    <div className='flex sm:flex md:hidden lg:hidden flex-col items-baseline'>
+                                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: <input onChange={(e) => setNewName(e.target.value)} defaultValue={currentUserDataSet[1]} maxLength={8} className="bg-transparent outline-none border-white border-b-[1px]" /></span>
+                                                        <div className='flex'>
+                                                            <button onClick={UpdateName} className='text-sm underline mr-2'>Confirm</button>
+                                                            <button onClick={() => setEditName(false)} className='text-sm underline mx-2'>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                    <div className='hidden sm:hidden md:flex lg:flex items-baseline'>
+                                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: <input onChange={(e) => setNewName(e.target.value)} defaultValue={currentUserDataSet[1]} maxLength={8} className="bg-transparent outline-none border-white border-b-[1px]" /></span>
+                                                        <button onClick={UpdateName} className='text-sm underline mx-2'>Confirm</button>
+                                                        <button onClick={() => setEditName(false)} className='text-sm underline mx-2'>Cancel</button>
+                                                    </div>
+                                                </>
+                                        }
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Score: {currentLevelScoreDataSet.reduce((total, currentValue) => total + currentValue, 0)}</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Space Coin: {currentUserDataSet[6]}</span>
+                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: {currentUserDataSet[4]}</span>
+                                        <div className='flex items-center'>
+                                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4.5rem] sm:max-w-[4.5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
+                                                <div>
+                                                    <button onClick={Logout} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
+                                                </div>
+                                            </div>
+                                            <div className='ml-[0.5rem]'>
+                                                <button onClick={() => window.location.reload()}>
+                                                    <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
+                                                </button>
                                             </div>
                                         </div>
-                                        <div className='ml-[0.5rem]'>
-                                            <button onClick={() => window.location.reload()}>
-                                                <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
-                                            </button>
+                                        <div className='self-end mt-[-58px] sm:mt-[-58px] md:mt-[-66px] lg:mt-[-66px]'>
+                                            <img src={Logo} alt="" className="max-w-[6rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[7rem]" />
                                         </div>
-                                    </div>
-                                    <div className='self-end mt-[-58px] sm:mt-[-58px] md:mt-[-66px] lg:mt-[-66px]'>
-                                        <img src={Logo} alt="" className="max-w-[6rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[7rem]" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
             }
         </div>
     )
