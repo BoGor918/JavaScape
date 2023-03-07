@@ -31,7 +31,7 @@ export default function Ability() {
     // buy function
     const Buy = () => {
         const updateUserPath = "Users/"
-        const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
+        const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[0])
         var damageAppear = false
 
         if (params.get("ability") === "damage-x2") {
