@@ -37,7 +37,7 @@ export default function MapperContextProvider(props) {
     // set current user data
     userData.map((user) => {
         if (user.Email === authUser?.email) {
-            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore, user.SpaceCoin, user.Ability)
+            currentUserDataSet.push(user.id, user.Username, user.Email, user.Password, user.Position, user.TotalScore, user.SpaceCoin, user.Ability, user.PostCredit)
         }
     })
 
@@ -89,18 +89,30 @@ export default function MapperContextProvider(props) {
         CheckVote()
     }, [forumData])
 
+    if (`${new Date().getHours()}${new Date().getMinutes()}` === "1944") {
+
+        console.log(`${new Date().getHours()}${new Date().getMinutes()}`)
+    }
+
+    // post credit reset
+    setInterval(() => {
+        if (`${new Date().getHours()}${new Date().getMinutes()}${new Date().getSeconds()}` === "000") {
+            userData.map((user) => {
+                const updateDocRef = doc(firestore, "Users", user.id)
+                updateDoc(updateDocRef, { PostCredit: 3 })
+            })
+        }
+    }, 1000);
+
     // check position update
     const CheckPosition = async () => {
         userData.map((user) => {
+            const updateDocRef = doc(firestore, "Users", user.id)
             if (user.TotalScore >= 0 && user.TotalScore < 2200) {
-                const updateDocRef = doc(firestore, "Users", user.id)
                 updateDoc(updateDocRef, { Position: "E-1 Private" })
-            }
-            else if (user.TotalScore >= 2200 && user.TotalScore < 2800) {
-                const updateDocRef = doc(firestore, "Users", user.id)
+            } else if (user.TotalScore >= 2200 && user.TotalScore < 2800) {
                 updateDoc(updateDocRef, { Position: "E-4 Specialist" })
             } else if (user.TotalScore >= 2800) {
-                const updateDocRef = doc(firestore, "Users", user.id)
                 updateDoc(updateDocRef, { Position: "W-1 Warrant Officer 1" })
             }
         })

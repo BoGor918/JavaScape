@@ -3,7 +3,7 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import { MapperContext } from '../../../globalVariables/MapperContextProvider'
 import { firestore } from "../../../firebase"
-import { doc, setDoc, addDoc, collection, query, orderBy, onSnapshot } from 'firebase/firestore'
+import { doc, setDoc, addDoc, collection, query, orderBy, onSnapshot, updateDoc } from 'firebase/firestore'
 import { uploadBytes, ref, getStorage, getDownloadURL } from "firebase/storage"
 import { useNavigate } from 'react-router-dom'
 import NavBar from '../../NavBar'
@@ -40,60 +40,68 @@ export default function Forum() {
 
     // Create Question
     const CreateQuestion = async () => {
-        const today = new Date()
-        const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
+        if (currentUserDataSet[8] > 0) {
+            const today = new Date()
+            const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
 
-        const forumImageRef = ref(storage, "Forum/" + timeCode)
+            const forumImageRef = ref(storage, "Forum/" + timeCode)
 
-        // add reply sub collection
-        const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Comment');
+            // add reply sub collection
+            const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Comment');
 
-        await uploadBytes(forumImageRef, image).then(
-            async () => {
-                await getDownloadURL(forumImageRef).then(
-                    async (url) => {
-                        if (question.current.value !== "" && description.current.value !== "" && image !== undefined) {
-                            await setDoc(doc(firestore, "Forum", timeCode), {
-                                Question: question.current.value,
-                                Description: description.current.value,
-                                Image: url,
-                                CreateUser: currentUserDataSet[1],
-                                PositiveVote: 0,
-                                NegativeVote: 0,
-                                PositiveVotedUser: [],
-                                NegativeVotedUser: [],
-                                CreateDate: new Date(),
-                                EmailStatus: false,
-                            }).then(() => {
-                                addDoc(forumReplyRef, {
-                                    Comment: "Comment",
+            await uploadBytes(forumImageRef, image).then(
+                async () => {
+                    await getDownloadURL(forumImageRef).then(
+                        async (url) => {
+                            if (question.current.value !== "" && description.current.value !== "" && image !== undefined) {
+                                await setDoc(doc(firestore, "Forum", timeCode), {
+                                    Question: question.current.value,
+                                    Description: description.current.value,
+                                    Image: url,
+                                    CreateUser: currentUserDataSet[1],
+                                    PositiveVote: 0,
+                                    NegativeVote: 0,
+                                    PositiveVotedUser: [],
+                                    NegativeVotedUser: [],
+                                    CreateDate: new Date(),
+                                    EmailStatus: false,
+                                }).then(() => {
+                                    addDoc(forumReplyRef, {
+                                        Comment: "Comment",
+                                    })
+                                    window.location.reload()
                                 })
-                                window.location.reload()
-                            })
-                        } else if (question.current.value !== "" && description.current.value !== "" && image === undefined) {
-                            await setDoc(doc(firestore, "Forum", timeCode), {
-                                Question: question.current.value,
-                                Description: description.current.value,
-                                Image: null,
-                                CreateUser: currentUserDataSet[1],
-                                PositiveVote: 0,
-                                NegativeVote: 0,
-                                PositiveVotedUser: [],
-                                NegativeVotedUser: [],
-                                CreateDate: new Date(),
-                                EmailStatus: false,
-                            }).then(() => {
-                                addDoc(forumReplyRef, {
-                                    Comment: "Comment",
+                            } else if (question.current.value !== "" && description.current.value !== "" && image === undefined) {
+                                await setDoc(doc(firestore, "Forum", timeCode), {
+                                    Question: question.current.value,
+                                    Description: description.current.value,
+                                    Image: null,
+                                    CreateUser: currentUserDataSet[1],
+                                    PositiveVote: 0,
+                                    NegativeVote: 0,
+                                    PositiveVotedUser: [],
+                                    NegativeVotedUser: [],
+                                    CreateDate: new Date(),
+                                    EmailStatus: false,
+                                }).then(() => {
+                                    addDoc(forumReplyRef, {
+                                        Comment: "Comment",
+                                    })
+                                    window.location.reload()
                                 })
-                                window.location.reload()
-                            })
-                        } else if (question.current.value === "" && description.current.value === "") {
-                            alert("Please Input Your Question and Description")
+                            } else if (question.current.value === "" && description.current.value === "") {
+                                alert("Please Input Your Question and Description")
+                            }
                         }
-                    }
-                )
-            })
+                    )
+                }).then(() => {
+                    const updateDocRef = doc(firestore, "Users", currentUserDataSet[1])
+                    // update post credit
+                    updateDoc(updateDocRef, { PostCredit: currentUserDataSet[8] - 1 })
+                })
+        } else {
+            alert("You Have Not Enough Post Credit To Ask Question, Plz Try Next Day")
+        }
     }
 
     // Popup detail
@@ -194,7 +202,7 @@ export default function Forum() {
     return (
         <div>
             {
-                loading ? <Loading /> :
+                // loading ? <Loading /> :
                     authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
                         <div className='Forum flex flex-col text-white font-exo w-full'>
                             {/* Navbar */}
@@ -229,18 +237,20 @@ export default function Forum() {
                                                 </div>
                                             </div>
                                         </div>
-
                                     )
                                 }
                                 {/* Back Button just the create question button is clicked */}
                                 {
                                     modal && (
-                                        <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start">
+                                        <div className="w-full max-w-[20.88rem] sm:max-w-[20.88rem] md:max-w-[44.9rem] lg:max-w-[54.9rem] pb-5 flex justify-start items-center">
                                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit">
                                                 <div>
                                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
                                                 </div>
                                             </div>
+                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white uppercase mx-3 font-bold'>
+                                                Post Credits: {currentUserDataSet[8]} / 3
+                                            </span>
                                         </div>
                                     )
                                 }
@@ -291,7 +301,6 @@ export default function Forum() {
                                                                 <textarea ref={description} maxLength={5000} type="question" required className="text-justify border-l-0 border-b-2 border-r-0 border-t-0 bg-transparent focus:outline-none" />
                                                             </div>
                                                             <div className="my-3 flex flex-col w-full max-w-[40rem]">
-
                                                                 <span className='uppercase text-sm sm:text-sm md:text-xl lg:text-xl'>Upload Image (Optional) : </span>
                                                                 <input
                                                                     className=""
@@ -301,7 +310,6 @@ export default function Forum() {
                                                                     accept=".jpg,.png,.jpeg,.tiff"
                                                                     name="banner"
                                                                 />
-
                                                             </div>
                                                         </div>
                                                     </div>

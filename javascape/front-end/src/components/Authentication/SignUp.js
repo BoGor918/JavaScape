@@ -103,8 +103,7 @@ export default function SignUp() {
 
     // Enter key press event and call Register function
     useEffect(() => {
-        const keyDownHandler = event => {
-
+        const keyDownHandler = event => { 
             if (event.key === 'Enter') {
                 event.preventDefault();
                 Register();
