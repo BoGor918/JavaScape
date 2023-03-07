@@ -63,34 +63,41 @@ export default function SignUp() {
             alert("Invalid Password, It Shound At Least 6 Characters, Plz Try Again")
         }
 
-        // if is all data ok
-        if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
-            const ramdonID = `JS${uuidv1().slice(0, 8)}`
-            await setDoc(doc(firestore, "Users", ramdonID), {
-                Username: registerUsername.current.value,
-                Email: registerEmail.current.value.toLowerCase(),
-                Password: registerPassword.current.value,
-                Position: "E-1 Private",
-                TotalScore: 0,
-                CreateDate: new Date(),
-                Ability: [],
-                SpaceCoin: 0,
-                PostCredit: 0,
-            }).then(async () => {
-                await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level1"), {
+        // check username format 
+        if (registerUsername.current.value.includes(" ")) {
+            alert("Username Can't Have Space, Plz Try Again")
+        } else if (registerUsername.current.value === "") {
+            alert("Username Can't Be Empty, Plz Try Again")
+        } else {
+            // if is all data ok
+            if (canReg[0] === true && canReg[1] === true && canReg[2] === true && canReg[3] === true) {
+                const ramdonID = `JS${uuidv1().slice(0, 8)}`
+                await setDoc(doc(firestore, "Users", ramdonID), {
                     Username: registerUsername.current.value,
-                    HighestScore: 0,
-                    Level: 1,
-                })
+                    Email: registerEmail.current.value.toLowerCase(),
+                    Password: registerPassword.current.value,
+                    Position: "E-1 Private",
+                    TotalScore: 0,
+                    CreateDate: new Date(),
+                    Ability: [],
+                    SpaceCoin: 0,
+                    PostCredit: 0,
+                }).then(async () => {
+                    await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level1"), {
+                        Username: registerUsername.current.value,
+                        HighestScore: 0,
+                        Level: 1,
+                    })
 
-                await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level2"), {
-                    Username: registerUsername.current.value,
-                    HighestScore: 0,
-                    Level: 2,
-                })
+                    await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level2"), {
+                        Username: registerUsername.current.value,
+                        HighestScore: 0,
+                        Level: 2,
+                    })
 
-                await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
-            })
+                    await createUserWithEmailAndPassword(auth, registerEmail.current.value, registerPassword.current.value)
+                })
+            }
         }
     }
 
