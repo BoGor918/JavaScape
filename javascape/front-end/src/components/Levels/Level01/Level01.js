@@ -26,7 +26,7 @@ export default function Level01() {
   const [userLevel1Data, setUserLevel1Data] = useState([]);
   const currentLevelDataSet = [];
 
-  const usersLevel1Ref = collection(firestore, `Users/${currentUserDataSet[1]}/Levels`)
+  const usersLevel1Ref = collection(firestore, `Users/${currentUserDataSet[0]}/Levels`)
 
   // get and map the user data
   useEffect(() => {
@@ -58,11 +58,11 @@ export default function Level01() {
   const handleGameOver = useCallback((score) => {
     setScore(score);
 
-    const updateLevelPath = "Users/" + currentUserDataSet[1] + "/Levels/"
+    const updateLevelPath = "Users/" + currentUserDataSet[0] + "/Levels/"
     const updateLevelRef = doc(firestore, updateLevelPath, "Level1")
 
     const updateUserPath = "Users/"
-    const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[1])
+    const updateUserRef = doc(firestore, updateUserPath, currentUserDataSet[0])
 
     if (currentLevelDataSet[2] < score) {
       console.log(score + currentUserDataSet[5] - currentLevelDataSet[2])
