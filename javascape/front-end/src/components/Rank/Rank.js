@@ -92,8 +92,6 @@ export default function Rank() {
         currentPost = userDataAsc.slice(firstPostIndex, lastPostIndex)
     }
 
-    console.log(userData.length - 1)
-
     return (
         <div>
             {
@@ -133,7 +131,11 @@ export default function Rank() {
                                                 </div> :
                                                 <>
                                                     <div className='flex justify-between'>
-
+                                                        <div className='w-full flex justify-center'>
+                                                            <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
+                                                                Rank
+                                                            </span>
+                                                        </div>
                                                         <div className='w-full flex justify-center'>
                                                             <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>
                                                                 Name

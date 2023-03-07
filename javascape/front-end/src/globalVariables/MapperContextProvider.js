@@ -89,6 +89,28 @@ export default function MapperContextProvider(props) {
         CheckVote()
     }, [forumData])
 
+    // check position update
+    const CheckPosition = async () => {
+        userData.map((user) => {
+            if (user.TotalScore >= 0 && user.TotalScore < 2200) {
+                const updateDocRef = doc(firestore, "Users", user.id)
+                updateDoc(updateDocRef, { Position: "E-1 Private" })
+            }
+            else if (user.TotalScore >= 2200 && user.TotalScore < 2800) {
+                const updateDocRef = doc(firestore, "Users", user.id)
+                updateDoc(updateDocRef, { Position: "E-4 Specialist" })
+            } else if (user.TotalScore >= 2800) {
+                const updateDocRef = doc(firestore, "Users", user.id)
+                updateDoc(updateDocRef, { Position: "W-1 Warrant Officer 1" })
+            }
+        })
+    }
+
+    // call CheckPosition function
+    useEffect(() => {
+        CheckPosition()
+    }, [userData])
+
     return (
         // Pass the data to the children
         <MapperContext.Provider value={{

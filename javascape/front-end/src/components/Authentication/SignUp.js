@@ -68,7 +68,7 @@ export default function SignUp() {
                 Username: registerUsername.current.value,
                 Email: registerEmail.current.value.toLowerCase(),
                 Password: registerPassword.current.value,
-                Position: "Private (E-1)",
+                Position: "E-1 Private",
                 TotalScore: 0,
                 CreateDate: new Date(),
                 Ability: [],
