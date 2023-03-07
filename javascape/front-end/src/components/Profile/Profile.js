@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { auth, firestore } from "../../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
+import { collection, getDocs, doc, updateDoc, setDoc, deleteDoc } from 'firebase/firestore'
 import Logo from "../../images/Logo.png"
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import NavBar from '../NavBar'
@@ -68,6 +68,9 @@ export default function Profile() {
         const updateDocRef = doc(firestore, "Users", currentUserDataSet[1])
         updateDoc(updateDocRef, { Username: newName })
 
+        setDoc(doc(firestore, "Users", newName), {oldDocRef})
+
+        deleteDoc(oldDocRef)
 
         // // get the data from 'name@xxx.com'
         // firestore.collection("users").doc("name@xxx.com").get().then(function (doc) {
