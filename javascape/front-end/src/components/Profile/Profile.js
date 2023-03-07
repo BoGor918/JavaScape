@@ -67,10 +67,18 @@ export default function Profile() {
     const [newName, setNewName] = useState("");
 
     const UpdateName = () => {
-        const updateDocRef = doc(firestore, "Users", currentUserDataSet[0])
-        updateDoc(updateDocRef, { Username: newName }).then(() => {
-            window.location.reload();
-        })
+        if (currentUserDataSet[1] === newName) {
+            alert("Please Enter a New Name")
+        } else if (newName === "") {
+            alert("Please Enter a New Name")
+        } else if (newName.includes(" ")) {
+            alert("Please Enter a Name Without Space")
+        } else {
+            const updateDocRef = doc(firestore, "Users", currentUserDataSet[0])
+            updateDoc(updateDocRef, { Username: newName }).then(() => {
+                window.location.reload();
+            })
+        }
     }
 
     return (
