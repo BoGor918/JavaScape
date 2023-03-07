@@ -63,8 +63,23 @@ export default function Profile() {
     const [newName, setNewName] = useState("")
 
     const ApplyNewName = () => {
+        const oldDocRef = doc(firestore, "Users", currentUserDataSet[1])
+
         const updateDocRef = doc(firestore, "Users", currentUserDataSet[1])
         updateDoc(updateDocRef, { Username: newName })
+
+
+        // // get the data from 'name@xxx.com'
+        // firestore.collection("users").doc("name@xxx.com").get().then(function (doc) {
+        //     if (doc && doc.exists) {
+        //         var data = doc.data();
+        //         // saves the data to 'name'
+        //         firestore.collection("users").doc("name").set(data).then({
+        //             // deletes the old document
+        //             firestore.collection("users").doc("name@xxx.com").delete();
+        //         });
+        //     }
+        // });
     }
 
     return (
