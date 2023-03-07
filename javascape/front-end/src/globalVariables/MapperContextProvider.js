@@ -111,9 +111,9 @@ export default function MapperContextProvider(props) {
             if (user.TotalScore >= 0 && user.TotalScore < 2200) {
                 updateDoc(updateDocRef, { Position: "E-1 Private" })
             } else if (user.TotalScore >= 2200 && user.TotalScore < 2800) {
-                updateDoc(updateDocRef, { Position: "E-4 Specialist" })
+                updateDoc(updateDocRef, { Position: "E-3 Private First Class" })
             } else if (user.TotalScore >= 2800) {
-                updateDoc(updateDocRef, { Position: "W-1 Warrant Officer 1" })
+                updateDoc(updateDocRef, { Position: "E-5 Sergeant" })
             }
         })
     }

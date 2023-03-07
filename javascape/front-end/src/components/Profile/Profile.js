@@ -6,12 +6,14 @@ import { auth, firestore } from "../../firebase"
 import { signOut } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
-import Logo from "../../images/Logo.png"
+import Position from "../../images/Private.png"
 import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import NavBar from '../NavBar'
 import Loading from "../Loading";
 import EmailVerification from "../EmailVerification";
 import Refresh from "../../images/Refresh.png"
+import Private_First_Class from "../../images/Private_First_Class.png"
+import Sergeant from "../../images/Sergeant.png"
 
 export default function Profile() {
     // call data from mapper context js
@@ -34,7 +36,7 @@ export default function Profile() {
     // all level score
     const currentLevelScoreDataSet = [];
     // get users collection from firestore
-    const usersLevelRef = collection(firestore, `Users/${currentUserDataSet[1]}/Levels`)
+    const usersLevelRef = collection(firestore, `Users/${currentUserDataSet[0]}/Levels`)
 
     // get and map the user data
     useEffect(() => {
@@ -105,20 +107,22 @@ export default function Profile() {
                                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Total Score: {currentLevelScoreDataSet.reduce((total, currentValue) => total + currentValue, 0)}</span>
                                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Space Coin: {currentUserDataSet[6]}</span>
                                         <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Position: {currentUserDataSet[4]}</span>
-                                        <div className='flex items-center'>
-                                            <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4.5rem] sm:max-w-[4.5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
-                                                <div>
-                                                    <button onClick={Logout} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
+                                        <div className='flex justify-between'>
+                                            <div className='flex justify-between items-center w-full max-w-[6rem] sm:max-w-[6rem] md:max-w-[9rem] lg:max-w-[9rem]'>
+                                                <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4.5rem] sm:max-w-[4.5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
+                                                    <div>
+                                                        <button onClick={Logout} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
+                                                    </div>
+                                                </div>
+                                                <div className='ml-[0.5rem]'>
+                                                    <button onClick={() => window.location.reload()}>
+                                                        <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <div className='ml-[0.5rem]'>
-                                                <button onClick={() => window.location.reload()}>
-                                                    <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
-                                                </button>
+                                            <div className='self-end'>
+                                                <img src={currentUserDataSet[5] >= 0 && currentUserDataSet[5] < 2200 ? Position : currentUserDataSet[5] >= 2200 && currentUserDataSet[5] < 2800 ? Private_First_Class : Sergeant} alt="" className="max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
                                             </div>
-                                        </div>
-                                        <div className='self-end mt-[-58px] sm:mt-[-58px] md:mt-[-66px] lg:mt-[-66px]'>
-                                            <img src={Logo} alt="" className="max-w-[6rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[7rem]" />
                                         </div>
                                     </div>
                                 </div>
