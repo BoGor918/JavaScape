@@ -9,6 +9,7 @@ import { MapperContext } from '../../globalVariables/MapperContextProvider'
 import NavBar from '../NavBar'
 import Loading from "../Loading";
 import EmailVerification from "../EmailVerification";
+import Refresh from "../../images/Refresh.png"
 
 export default function AllUserProfile() {
     // call data from mapper context js
@@ -60,7 +61,9 @@ export default function AllUserProfile() {
                                                             </div>
                                                         </div>
                                                         <div className='ml-[0.5rem]'>
-                                                            <button onClick={() => window.location.reload()} className='text-[2rem]'>⟳</button>
+                                                            <button onClick={() => window.location.reload()}>
+                                                                <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div className='self-end mt-[-58px] sm:mt-[-58px] md:mt-[-66px] lg:mt-[-66px]'>
