@@ -31,13 +31,34 @@ export default function ForumDetail() {
     const commentCollectionRef = collection(firestore, `Forum/${viewForum}/Comment`)
     const [commentData, setCommentData] = useState([]);
 
-    // Get Comment Data
+    // handle selected option
+    const [selectedOption, setSelectedOption] = useState("Latest");
+
+    // change select value
+    const HandleChange = (event) => {
+        const value = event.target.value;
+        setSelectedOption(value)
+    };
+
+    // check by query filter data
     useEffect(() => {
-        const q = query(commentCollectionRef, orderBy("CreateDate", "asc"));
-        const unsub = onSnapshot(q, (snapshot) =>
-            setCommentData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
-        return unsub;
-    }, [authUser]);
+        if (selectedOption === "Latest") {
+            const q = query(commentCollectionRef, orderBy("CreateDate", "desc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setCommentData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+            return unsub;
+        } else if (selectedOption === "Oldest") {
+            const q = query(commentCollectionRef, orderBy("CreateDate", "asc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setCommentData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+            return unsub;
+        } else if (selectedOption === "MostVotes") {
+            const q = query(commentCollectionRef, orderBy("PositiveVote", "desc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setCommentData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+            return unsub;
+        }
+    }, [selectedOption]);
 
     // Comment Submit Function
     const SubmitComment = async () => {
@@ -458,20 +479,29 @@ export default function ForumDetail() {
                                             }
 
                                         </div>
+                                        {/* select */}
+                                        <div className='flex justify-end max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[69.8rem] w-full mt-[2rem] mb-[0.5rem]'>
+                                            <div className="rounded-none bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[1.9px] w-fit ml-2 self-start">
+                                                <select onChange={HandleChange} name="order" id="order" className='rounded-none outline-none text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>
+                                                    <option value="Latest">Latest</option>
+                                                    <option value="Oldest">Oldest</option>
+                                                    <option value="MostVotes">Most Votes</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         {/* Comment column */}
                                         {
                                             commentData.length === 0 ?
-                                                <div className='flex flex-col justify-center items-center max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px] mt-[1rem] '>
+                                                <div className='flex flex-col justify-center items-center max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[50px]'>
                                                     <span className='text-justify text-white text-[12px] sm:text-[12px] md:text-md lg:text-[16px]'>There is no comment yet......</span>
                                                 </div> :
-                                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 md:py-5 md:px-[50px] lg:py-5 lg:px-[50px] mt-[1rem] '>
+                                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 md:py-5 md:px-[50px] lg:py-5 lg:px-[50px]'>
                                                     {/* Comment Content */}
                                                     {
                                                         commentData.map((data, i) => <Comment key={i} data={data} />)
                                                     }
                                                 </div>
                                         }
-
                                         {/* New Comment */}
                                         <textarea ref={comment} maxLength={400} type="comment" placeholder='Type Your Comment Here......' className='text-[12px] sm:text-[12px] md:text-md lg:text-[16px] text-justify bg-transparent focus:outline-none flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:md:max-w-[69.8rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-2 px-[20px] sm:py-2 sm:px-[20px] md:py-5 md:px-[70px] lg:py-5 lg:px-[70px] mt-[1rem] placeholder-white' />
                                         {/* Submit Button */}

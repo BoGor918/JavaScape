@@ -175,6 +175,8 @@ const ReplySingle = ({ data, replyReplyID }) => {
                     {
                         currentUserDataSet[1] === data.ReplyUser ?
                             <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
+                                <button className='p-1 mx-2 border-[1px] border-gray-300 rounded-md text-gray-300'>{data.PositiveVote} &#43;</button>
+                                <button className='p-1 mr-2 border-[1px] border-gray-300 rounded-md text-gray-300'>{data.NegativeVote} &minus;</button>
                             </div> :
                             <div className='w-full max-w-[6rem] flex justify-center text-[12px]'>
                                 {
