@@ -202,7 +202,7 @@ export default function Forum() {
     return (
         <div>
             {
-                // loading ? <Loading /> :
+                loading ? <Loading /> :
                     authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
                         <div className='Forum flex flex-col text-white font-exo w-full'>
                             {/* Navbar */}
