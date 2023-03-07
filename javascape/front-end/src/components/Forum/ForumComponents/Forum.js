@@ -18,6 +18,7 @@ export default function Forum() {
         currentUserDataSet,
         forumCollectionRef,
         authUser,
+        forumData,
     } = useContext(MapperContext)
 
     // navigate function
@@ -248,14 +249,27 @@ export default function Forum() {
                                     {/* All Question View */}
                                     {
                                         !modal && (
-                                            <div className='w-full flex flex-col justify-center items-center'>
-                                                <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
-                                                    {/* Forum Table */}
-                                                    <ForumList listData={currentPost} />
-                                                </div>
-                                                {/* Pagination */}
-                                                <ForumPagination totalPosts={selectedOption === "Latest" ? forumDataLatest.length : selectedOption === "Oldest" ? forumDataOldest.length : forumDataMostVotes.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
-                                            </div>
+                                            <>
+                                                {
+                                                    forumData.length === 0 ?
+                                                        <div className='w-full flex flex-col justify-center items-center'>
+                                                            <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                                                <div className='w-full flex justify-center'>
+                                                                    <span className='text-sm sm:text-sm md:text-xl lg:text-2xl text-white my-2 sm:my-2 md:my-3 lg:my-3 uppercase'>
+                                                                        There is no topic Yet...
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div> :
+                                                        <div className='w-full flex flex-col justify-center items-center'>
+                                                            <div className='flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[55rem] w-full rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 py-5 px-[20px] sm:px-[20px] md:px-[35px] lg:px-[50px]'>
+                                                                {/* Forum Table */}
+                                                                <ForumList listData={currentPost} />
+                                                            </div>
+                                                            {/* Pagination */}
+                                                            <ForumPagination totalPosts={selectedOption === "Latest" ? forumDataLatest.length : selectedOption === "Oldest" ? forumDataOldest.length : forumDataMostVotes.length} postsPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+                                                        </div>
+                                                }</>
                                         )
                                     }
                                     {/* Popup Model for create question */}
