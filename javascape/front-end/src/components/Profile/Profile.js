@@ -129,7 +129,7 @@ export default function Profile() {
                                                 </div>
                                             </div>
                                             <div className='self-end'>
-                                                <img src={currentUserDataSet[5] >= 0 && currentUserDataSet[5] < 2200 ? Position : currentUserDataSet[5] >= 2200 && currentUserDataSet[5] < 2800 ? Private_First_Class : Sergeant} alt="" className="max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
+                                                <img src={currentUserDataSet[5] >= 0 && currentUserDataSet[5] < 2200 ? Position : currentUserDataSet[5] >= 2200 && currentUserDataSet[5] < 2800 ? Private_First_Class : Sergeant} alt="" className="opacity-80 max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
                                             </div>
                                         </div>
                                     </div>

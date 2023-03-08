@@ -68,7 +68,7 @@ export default function AllUserProfile() {
                                                             </div>
                                                         </div>
                                                         <div className='self-end'>
-                                                            <img src={user.TotalScore>= 0 && user.TotalScore < 2200 ? Position : user.TotalScore >= 2200 && user.TotalScore < 2800 ? Private_First_Class : Sergeant} alt="" className="max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
+                                                            <img src={user.TotalScore>= 0 && user.TotalScore < 2200 ? Position : user.TotalScore >= 2200 && user.TotalScore < 2800 ? Private_First_Class : Sergeant} alt="" className="opacity-80 selection:max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
                                                         </div>
                                                     </div>
                                                 </div>
