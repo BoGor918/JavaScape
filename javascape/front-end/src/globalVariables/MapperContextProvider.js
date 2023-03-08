@@ -96,13 +96,12 @@ export default function MapperContextProvider(props) {
 
     // post credit reset
     setInterval(() => {
-        if (`${new Date().getHours()}${new Date().getMinutes()}${new Date().getSeconds()}` === "02610") {
+        if (`${new Date().getHours()}${new Date().getMinutes()}${new Date().getSeconds()}` === "000") {
             userData.map((user) => {
                 const updateDocRef = doc(firestore, "Users", user.id)
                 updateDoc(updateDocRef, { PostCredit: 3 })
             })
         }
-        console.log(`${new Date().getHours()}${new Date().getMinutes()}${new Date().getSeconds()}`)
     }, 1000);
 
 
