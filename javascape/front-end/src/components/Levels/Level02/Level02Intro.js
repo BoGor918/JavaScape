@@ -79,7 +79,7 @@ export default function Level02Intro() {
                             </div>
                             {/* filter button */}
                             <div className='flex justify-center items-center mt-[3rem] sm:mt-[3rem] md:mt-[5rem] lg:mt-[8rem] font-bold'>
-                                <div className="mx-[1px] bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4rem] sm:max-w-[4rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
+                                <div className="mx-[1px] bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[5rem] sm:max-w-[5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
                                     {
                                         display === "default" ?
                                             <button onClick={() => setDisplay("default")} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#541680] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>Level 02</button> :
