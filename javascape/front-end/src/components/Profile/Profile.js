@@ -75,8 +75,15 @@ export default function Profile() {
             alert("Please Enter a Name Without Space")
         } else {
             const updateDocRef = doc(firestore, "Users", currentUserDataSet[0])
+            const updateLevel1DocRef = doc(firestore, `Users/${currentUserDataSet[0]}/Levels`, "Level1")
+            const updateLevel2DocRef = doc(firestore, `Users/${currentUserDataSet[0]}/Levels`, "Level2")
+
             updateDoc(updateDocRef, { Username: newName }).then(() => {
-                window.location.reload();
+                updateDoc(updateLevel1DocRef, { Username: newName }).then(() => {
+                    updateDoc(updateLevel2DocRef, { Username: newName }).then(() => {
+                        window.location.reload();
+                    })
+                })
             })
         }
     }
