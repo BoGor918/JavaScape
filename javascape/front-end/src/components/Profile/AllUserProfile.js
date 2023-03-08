@@ -58,17 +58,17 @@ export default function AllUserProfile() {
                                                         <div className='flex justify-between items-center w-full max-w-[6rem] sm:max-w-[6rem] md:max-w-[9rem] lg:max-w-[9rem]'>
                                                             <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[4.5rem] sm:max-w-[4.5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
                                                                 <div>
-                                                                    <button onClick={() => navigate(-1)} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>LOGOUT</button>
+                                                                    <button onClick={() => navigate(-1)} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px]'>BACK</button>
                                                                 </div>
                                                             </div>
                                                             <div className='ml-[0.5rem]'>
                                                                 <button onClick={() => window.location.reload()}>
-                                                                    <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
+                                                                    <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] sm:max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
                                                                 </button>
                                                             </div>
                                                         </div>
                                                         <div className='self-end'>
-                                                            <img src={user.TotalScore>= 0 && user.TotalScore < 2200 ? Position : user.TotalScore >= 2200 && user.TotalScore < 2800 ? Private_First_Class : Sergeant} alt="" className="opacity-80 selection:max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
+                                                            <img src={user.TotalScore >= 0 && user.TotalScore < 2200 ? Position : user.TotalScore >= 2200 && user.TotalScore < 2800 ? Private_First_Class : Sergeant} alt="" className="opacity-80 max-w-[2.5rem] sm:max-w-[2.5rem] md:max-w-[3rem] lg:max-w-[3rem]" />
                                                         </div>
                                                     </div>
                                                 </div>

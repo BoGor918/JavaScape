@@ -131,7 +131,7 @@ export default function Profile() {
                                                 </div>
                                                 <div className='ml-[0.5rem]'>
                                                     <button onClick={() => window.location.reload()}>
-                                                        <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
+                                                        <img src={Refresh} alt="Refresh" className='w-full max-w-[20px] sm:max-w-[20px] md:max-w-[25px] lg:max-w-[30px] mt-[6px]' />
                                                     </button>
                                                 </div>
                                             </div>
