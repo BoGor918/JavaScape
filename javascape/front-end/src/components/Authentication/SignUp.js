@@ -81,7 +81,6 @@ export default function SignUp() {
                     CreateDate: new Date(),
                     Ability: [],
                     SpaceCoin: 0,
-                    PostCredit: 0,
                 }).then(async () => {
                     await setDoc(doc(firestore, `Users/${ramdonID}/Levels`, "Level1"), {
                         Username: registerUsername.current.value,

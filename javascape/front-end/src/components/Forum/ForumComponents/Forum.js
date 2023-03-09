@@ -40,68 +40,64 @@ export default function Forum() {
 
     // Create Question
     const CreateQuestion = async () => {
-        if (currentUserDataSet[8] > 0) {
-            const today = new Date()
-            const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
+        const today = new Date()
+        const timeCode = currentUserDataSet[1] + "-" + today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds()
 
-            const forumImageRef = ref(storage, "Forum/" + timeCode)
+        const forumImageRef = ref(storage, "Forum/" + timeCode)
 
-            // add reply sub collection
-            const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Comment');
+        // add reply sub collection
+        const forumReplyRef = collection(firestore, 'Forum/' + timeCode + '/Comment');
 
-            await uploadBytes(forumImageRef, image).then(
-                async () => {
-                    await getDownloadURL(forumImageRef).then(
-                        async (url) => {
-                            if (question.current.value !== "" && description.current.value !== "" && image !== undefined) {
-                                await setDoc(doc(firestore, "Forum", timeCode), {
-                                    Question: question.current.value,
-                                    Description: description.current.value,
-                                    Image: url,
-                                    CreateUser: currentUserDataSet[1],
-                                    PositiveVote: 0,
-                                    NegativeVote: 0,
-                                    PositiveVotedUser: [],
-                                    NegativeVotedUser: [],
-                                    CreateDate: new Date(),
-                                    EmailStatus: false,
-                                }).then(() => {
-                                    addDoc(forumReplyRef, {
-                                        Comment: "Comment",
-                                    })
-                                    window.location.reload()
+        await uploadBytes(forumImageRef, image).then(
+            async () => {
+                await getDownloadURL(forumImageRef).then(
+                    async (url) => {
+                        if (question.current.value !== "" && description.current.value !== "" && image !== undefined) {
+                            await setDoc(doc(firestore, "Forum", timeCode), {
+                                Question: question.current.value,
+                                Description: description.current.value,
+                                Image: url,
+                                CreateUser: currentUserDataSet[1],
+                                PositiveVote: 0,
+                                NegativeVote: 0,
+                                PositiveVotedUser: [],
+                                NegativeVotedUser: [],
+                                CreateDate: new Date(),
+                                EmailStatus: false,
+                            }).then(() => {
+                                addDoc(forumReplyRef, {
+                                    Comment: "Comment",
                                 })
-                            } else if (question.current.value !== "" && description.current.value !== "" && image === undefined) {
-                                await setDoc(doc(firestore, "Forum", timeCode), {
-                                    Question: question.current.value,
-                                    Description: description.current.value,
-                                    Image: null,
-                                    CreateUser: currentUserDataSet[1],
-                                    PositiveVote: 0,
-                                    NegativeVote: 0,
-                                    PositiveVotedUser: [],
-                                    NegativeVotedUser: [],
-                                    CreateDate: new Date(),
-                                    EmailStatus: false,
-                                }).then(() => {
-                                    addDoc(forumReplyRef, {
-                                        Comment: "Comment",
-                                    })
-                                    window.location.reload()
+                                window.location.reload()
+                            })
+                        } else if (question.current.value !== "" && description.current.value !== "" && image === undefined) {
+                            await setDoc(doc(firestore, "Forum", timeCode), {
+                                Question: question.current.value,
+                                Description: description.current.value,
+                                Image: null,
+                                CreateUser: currentUserDataSet[1],
+                                PositiveVote: 0,
+                                NegativeVote: 0,
+                                PositiveVotedUser: [],
+                                NegativeVotedUser: [],
+                                CreateDate: new Date(),
+                                EmailStatus: false,
+                            }).then(() => {
+                                addDoc(forumReplyRef, {
+                                    Comment: "Comment",
                                 })
-                            } else if (question.current.value === "" && description.current.value === "") {
-                                alert("Please Input Your Question and Description")
-                            }
+                                window.location.reload()
+                            })
+                        } else if (question.current.value === "" && description.current.value === "") {
+                            alert("Please Input Your Question and Description")
                         }
-                    )
-                }).then(() => {
-                    const updateDocRef = doc(firestore, "Users", currentUserDataSet[1])
-                    // update post credit
-                    updateDoc(updateDocRef, { PostCredit: currentUserDataSet[8] - 1 })
-                })
-        } else {
-            alert("You Have Not Enough Post Credit To Ask Question, Plz Try Next Day")
-        }
+                    }
+                )
+            }).then(() => {
+                const updateDocRef = doc(firestore, "Users", currentUserDataSet[1])
+                // update post credit
+                updateDoc(updateDocRef, { PostCredit: currentUserDataSet[8] - 1 })
+            })
     }
 
     // Popup detail
@@ -248,9 +244,6 @@ export default function Forum() {
                                                     <button onClick={toggleModal} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Back</button>
                                                 </div>
                                             </div>
-                                            <span className='text-sm sm:text-sm md:text-xl lg:text-xl text-white uppercase mx-3 font-bold'>
-                                                Post Credits: {currentUserDataSet[8]} / 3
-                                            </span>
                                         </div>
                                     )
                                 }
