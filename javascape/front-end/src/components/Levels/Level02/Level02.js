@@ -68,6 +68,7 @@ export default function Level02() {
       console.log(score + currentUserDataSet[5] - currentLevelDataSet[2])
       updateDoc(updateLevelRef, { HighestScore: score })
       updateDoc(updateUserRef, { TotalScore: score + currentUserDataSet[5] - currentLevelDataSet[2] })
+      updateDoc(updateUserRef, { Level2Score: score })
     }
 
     // add space coin

@@ -7,10 +7,11 @@ import M03 from "../../../images/Levels/Level01/M03.png"
 import NavBar from '../../NavBar'
 import { useNavigate } from 'react-router-dom'
 import { isMobile } from 'react-device-detect';
-import Loading from '../../Loading'
 import EmailVerification from '../../EmailVerification'
 import HowToPlay1 from "../../../images/Levels/Level01/HowToPlay1.png"
 import HowToPlay2 from "../../../images/Levels/Level01/HowToPlay2.png"
+import L1Rank from './L1Rank/L1Rank'
+import Loading from '../../Loading'
 
 export default function Level01Intro() {
     const {
@@ -53,7 +54,6 @@ export default function Level01Intro() {
                                     <div className='opacity-0 duration-500 group-hover:opacity-100'>
                                         <div style={hoverButton} className="absolute bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[10rem] sm:max-w-[8rem] md:max-w-[13rem] lg:max-w-[17rem] w-full">
                                             {
-
                                                 isMobile ?
                                                     <div>
                                                         {
@@ -92,7 +92,13 @@ export default function Level01Intro() {
                                             <button onClick={() => setDisplay("howtoplay")} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#541680] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>How To Play</button> :
                                             <button onClick={() => setDisplay("howtoplay")} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>How To Play</button>
                                     }
-
+                                </div>
+                                <div className="mx-[1px] bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] my-3 max-w-[5rem] sm:max-w-[5rem] md:max-w-[7rem] lg:max-w-[7rem] w-full">
+                                    {
+                                        display === "rank" ?
+                                            <button onClick={() => setDisplay("rank")} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#541680] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>Rank</button> :
+                                            <button onClick={() => setDisplay("rank")} className='w-full h-[2.5rem] sm:h-[2.5rem] md:h-[3rem] lg:h-[3rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 text-sm sm:text-sm md:text-[18px] lg:text-[18px] uppercase'>Rank</button>
+                                    }
                                 </div>
                             </div>
                             {/* Level Content */}
@@ -113,24 +119,28 @@ export default function Level01Intro() {
                                                 <img src={M02} alt="" className='w-full max-w-[17rem]' />
                                                 <img src={M03} alt="" className='w-full max-w-[17rem] ml-[0.69rem]' />
                                             </div>
-                                        </div> :
-                                        <div className='w-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[75rem] self-center flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
-                                            <span className='my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>How to Play ?</span>
-                                            <div className='flex flex-col justify-center items-center'>
-                                                <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row mb-[1rem] sm:mb-[1rem] md:mb-[3rem] lg:mb-[3rem] justify-center items-center'>
-                                                    <img src={HowToPlay2} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
-                                                    <span className='md:text-[18px] md:pl-[2rem] lg:text-[23px] lg:pl-[5rem] text-justify w-full mt-3 sm:mt-3 md:mt-0 lg:mt-0'>
-                                                        This is a multiple choices question, members need to click the correct box for attacking the enemies.
-                                                    </span>
+                                        </div> : display === "howtoplay" ?
+                                            <div className='w-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[75rem] self-center flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
+                                                <span className='my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>How to Play ?</span>
+                                                <div className='flex flex-col justify-center items-center'>
+                                                    <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row mb-[1rem] sm:mb-[1rem] md:mb-[3rem] lg:mb-[3rem] justify-center items-center'>
+                                                        <img src={HowToPlay2} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
+                                                        <span className='md:text-[18px] md:pl-[2rem] lg:text-[23px] lg:pl-[5rem] text-justify w-full mt-3 sm:mt-3 md:mt-0 lg:mt-0'>
+                                                            This is a multiple choices question, members need to click the correct box for attacking the enemies.
+                                                        </span>
+                                                    </div>
+                                                    <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row mt-[1rem] sm:mt-[1rem] md:mt-[3rem] lg:mt-[3rem] justify-center items-center'>
+                                                        <img src={HowToPlay1} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
+                                                        <span className='md:text-[18px] md:pl-[2rem] lg:text-[23px] lg:pl-[5rem] text-justify w-full mt-3 sm:mt-3 md:mt-0 lg:mt-0'>
+                                                            This is a fill-in-the-blank question, members need to type in the correct answer in the middle box for attacking the enemies.
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row mt-[1rem] sm:mt-[1rem] md:mt-[3rem] lg:mt-[3rem] justify-center items-center'>
-                                                    <img src={HowToPlay1} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
-                                                    <span className='md:text-[18px] md:pl-[2rem] lg:text-[23px] lg:pl-[5rem] text-justify w-full mt-3 sm:mt-3 md:mt-0 lg:mt-0'>
-                                                        This is a fill-in-the-blank question, members need to type in the correct answer in the middle box for attacking the enemies.
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </div> : display === "rank" ?
+                                                <div className='w-full max-w-[24rem] sm:max-w-[24rem] md:max-w-[50rem] lg:max-w-[75rem] self-center flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
+                                                    <span className='my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>Who's the best in this level ?</span>
+                                                    <L1Rank />
+                                                </div> : <></>
                                 }
                             </>
                         </div>
