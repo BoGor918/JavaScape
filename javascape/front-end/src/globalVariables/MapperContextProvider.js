@@ -41,6 +41,7 @@ export default function MapperContextProvider(props) {
         }
     })
 
+
     useEffect(() => {
         const GetUserData = async () => {
             const userDataRef = await getDocs(usersCollectionRef)

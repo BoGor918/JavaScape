@@ -14,6 +14,8 @@ import EmailVerification from "../EmailVerification";
 import Refresh from "../../images/Refresh.png"
 import Private_First_Class from "../../images/Private_First_Class.png"
 import Sergeant from "../../images/Sergeant.png"
+import DamageX2Icon from "../../images/DamageX2Icon.png"
+import HealthX2Icon from "../../images/HealthX2Icon.png"
 
 export default function Profile() {
     // call data from mapper context js
@@ -88,6 +90,10 @@ export default function Profile() {
         }
     }
 
+    useEffect(() => {
+        console.log(currentUserDataSet[7] !== undefined ? currentUserDataSet[7].includes("fVCZo6bIVw") : "false")
+    }, [currentUserDataSet])
+
     return (
         <div>
             {
@@ -140,9 +146,40 @@ export default function Profile() {
                                             </div>
                                         </div>
                                     </div>
+                                    {
+                                        currentUserDataSet[7] !== undefined
+                                            ?
+                                            currentUserDataSet[7].includes("fVCZo6bIVw") && currentUserDataSet[7].includes("w1AY4atFvp")
+                                                ?
+                                                <div className='mt-3 flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[1.4rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                                                    <div className='flex items-center'>
+                                                        <img src={DamageX2Icon} alt="DamageX2Icon" className='w-[2.5rem] sm:w-[2.5rem] md:w-[3.5rem] lg:w-[3.5rem] mx-2' />
+                                                        <img src={HealthX2Icon} alt="HealthX2Icon" className='w-[2.5rem] sm:w-[2.5rem] md:w-[3.5rem] lg:w-[3.5rem] mx-2' />
+                                                    </div>
+                                                </div>
+                                                :
+                                                currentUserDataSet[7].includes("fVCZo6bIVw") && currentUserDataSet[7].includes("w1AY4atFvp") === false
+                                                    ?
+                                                    <div className='mt-3 flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[1.4rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                                                        <div className='flex items-center'>
+                                                            <img src={HealthX2Icon} alt="HealthX2Icon" className='w-[2.5rem] sm:w-[2.5rem] md:w-[3.5rem] lg:w-[3.5rem] mx-2' />
+                                                        </div>
+                                                    </div>
+                                                    : currentUserDataSet[7].includes("fVCZo6bIVw") === false && currentUserDataSet[7].includes("w1AY4atFvp")
+                                                        ?
+                                                        <div className='mt-3 flex flex-col max-w-[21rem] sm:max-w-[21rem] md:max-w-[35rem] lg:md:max-w-[35rem] w-full pl-[1.4rem] pr-[1rem] rounded-2xl border-2 bg-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold py-5'>
+                                                            <div className='flex items-center'>
+                                                                <img src={DamageX2Icon} alt="DamageX2Icon" className='w-[2.5rem] sm:w-[2.5rem] md:w-[3.5rem] lg:w-[3.5rem] mx-2' />
+                                                            </div>
+                                                        </div>
+                                                        :
+                                                        <></>
+                                            :
+                                            <></>
+                                    }
                                 </div>
                             </div>
             }
-        </div>
+        </div >
     )
 }
