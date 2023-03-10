@@ -114,7 +114,7 @@ export default function Level01Intro() {
                                                 <img src={M02} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] md:mx-[2rem] lg:mx-[3rem] mb-[3rem] sm:mb-[3rem] md:mb-[0rem] lg:mb-[0rem]' />
                                             </div>
                                             <div className='flex flex-col md:flex-row lg:flex-row justify-center items-center self-start w-full md:mt-[6.5rem] lg:mt-[10rem]'>
-                                                <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.4rem] sm:ml-[1.4rem] md:ml-[0rem] lg:ml:[0rem] md:mx-[1rem] lg:mx-[1.4rem]' />
+                                                <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.6rem] sm:ml-[1.4rem] md:ml-[0rem] lg:ml:[0rem] md:mx-[1rem] lg:mx-[1.4rem]' />
                                                 <img src={M03} alt="" className='hidden sm:hidden md:block lg:block opacity-0 w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] md:mx-[1rem] lg:mx-[1.4rem]' />
                                             </div>
                                         </div> : display === "howtoplay" ?
