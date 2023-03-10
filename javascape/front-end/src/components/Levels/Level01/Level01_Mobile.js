@@ -73,7 +73,7 @@ export default function Level01() {
     }
 
     // add space coin
-    updateDoc(updateUserRef, { SpaceCoin: 20 + currentUserDataSet[6] })
+    updateDoc(updateUserRef, { SpaceCoin: 25 + currentUserDataSet[6] })
   }, [currentLevelDataSet, currentUserDataSet]);
 
   const handleClickStartGame = () => {
