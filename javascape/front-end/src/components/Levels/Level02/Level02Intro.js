@@ -44,7 +44,7 @@ export default function Level02Intro() {
     return (
         <div>
             {
-                // loading ? <Loading /> :
+                loading ? <Loading /> :
                     authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
                         <div className='Level01Intro flex flex-col text-white font-exo w-full'>
                             <NavBar />
