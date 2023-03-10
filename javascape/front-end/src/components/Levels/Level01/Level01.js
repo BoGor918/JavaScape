@@ -10,6 +10,7 @@ import NavBar from "../../NavBar";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
 import EmailVerification from '../../EmailVerification'
+import { isMobile } from 'react-device-detect';
 
 export default function Level01() {
   // get user data from context
@@ -111,56 +112,57 @@ export default function Level01() {
   return (
     <Fragment>
       {
-        // loading ? <Loading /> :
+        loading ? <Loading /> :
           authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
-            <div className="Level01 flex flex-col text-white font-exo w-full">
-              <NavBar />
-              <div className="mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]">
-                <div className="w-full flex flex-col justify-center items-center px-4 sm:px-4 md:px-24 lg:px-24 pt-[10rem]">
-                  {
-                    userLevel1Data.map((level1, i) => {
-                      if (level1.Level === 1) {
-                        return (
-                          <div key={i} className="w-full max-w-[1280px] text-3xl font-bold flex justify-between items-center mb-3">
-                            {
-                              isGameStart === false ?
-                                <div className="flex justify-center items-center">
-                                  {/* Start Button */}
-                                  <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 px-[2px] pb-[2px] pt-[0px] w-fit self-end">
-                                    <div>
-                                      <button onClick={handleClickStartGame} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Start Game</button>
+            isMobile === true ? window.location.replace("/battle/level01") :
+              <div className="Level01 flex flex-col text-white font-exo w-full">
+                <NavBar />
+                <div className="mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]">
+                  <div className="w-full flex flex-col justify-center items-center px-4 sm:px-4 md:px-24 lg:px-24 pt-[10rem]">
+                    {
+                      userLevel1Data.map((level1, i) => {
+                        if (level1.Level === 1) {
+                          return (
+                            <div key={i} className="w-full max-w-[1280px] text-3xl font-bold flex justify-between items-center mb-3">
+                              {
+                                isGameStart === false ?
+                                  <div className="flex justify-center items-center">
+                                    {/* Start Button */}
+                                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 px-[2px] pb-[2px] pt-[0px] w-fit self-end">
+                                      <div>
+                                        <button onClick={handleClickStartGame} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Start Game</button>
+                                      </div>
                                     </div>
+                                    <span className="text-sm sm:text-sm md:text-xl lg:text-3xl ml-5">Level 01</span>
+                                  </div> :
+                                  <div className="flex justify-center items-center">
+                                    <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
                                   </div>
-                                  <span className="text-sm sm:text-sm md:text-xl lg:text-3xl ml-5">Level 01</span>
-                                </div> :
-                                <div className="flex justify-center items-center">
-                                  <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Level 01</span>
-                                </div>
-                            }
-                            <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
-                          </div>
-                        )
-                      }
-                    })
-                  }
-                  {!isLoaded && (
-                    <div className="flex justify-center items-center text-lg sm:text-lg md:text-2xl lg:text-2xl mt-[10rem] md:mt-[20rem] lg:mt-[20rem]">
-                      <span>Loading Application... {Math.round(loadingProgression * 100)}%</span>
-                    </div>
-                  )}
-                  {/* Unity Game Content */}
-                  <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
-                  {/* Exit Button */}
-                  <div className="w-full max-w-[1280px] pt-5">
-                    <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
-                      <div>
-                        <button onClick={() => window.close()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
+                              }
+                              <span className="text-sm sm:text-sm md:text-xl lg:text-3xl">Highest Score: {level1.HighestScore}</span>
+                            </div>
+                          )
+                        }
+                      })
+                    }
+                    {!isLoaded && (
+                      <div className="flex justify-center items-center text-lg sm:text-lg md:text-2xl lg:text-2xl mt-[10rem] md:mt-[20rem] lg:mt-[20rem]">
+                        <span>Loading Application... {Math.round(loadingProgression * 100)}%</span>
+                      </div>
+                    )}
+                    {/* Unity Game Content */}
+                    <Unity unityProvider={unityProvider} className="w-full max-w-[1280px]" />
+                    {/* Exit Button */}
+                    <div className="w-full max-w-[1280px] pt-5">
+                      <div className="bg-gradient-to-r from-[#FFA9C5] to-[#FF3073]/50 p-[2px] w-fit self-end">
+                        <div>
+                          <button onClick={() => window.close()} className='text-[7px] sm:text-[7px] md:text-[10px] lg:text-[16px] px-3 h-[2rem] sm:h-[2rem] md:h-[2.6rem] lg:h-[2.6rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 font-extrabold uppercase'>Leave Game</button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
       }
     </Fragment>
   );

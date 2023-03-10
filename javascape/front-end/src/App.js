@@ -5,6 +5,7 @@ import Profile from './components/Profile/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import Level01 from './components/Levels/Level01/Level01';
+import Level01Mobile from './components/Levels/Level01/Level01_Mobile';
 import { MapperContext } from './globalVariables/MapperContextProvider';
 import Battle from './components/Battle';
 import Level01Intro from './components/Levels/Level01/Level01Intro';
@@ -57,6 +58,7 @@ export default function App() {
           authUser !== null ?
             <>
               <Route path={"/battle/level01/" + currentUserDataSet[1]} element={<Level01 />} />
+              <Route path={"/battle/level01/" + currentUserDataSet[1] + "/mobile"} element={<Level01Mobile />} />
               <Route path={"/battle/level02/" + currentUserDataSet[1]} element={<Level02 />} />
             </> : <></>
         }
