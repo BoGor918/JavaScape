@@ -41,8 +41,8 @@ export default function Battle() {
                                 <span className='mt-[10rem] sm:mt-[10rem] lg:mt-[13rem] mb-[3rem] sm:mb-[3rem] lg:mb-[6rem] text-[1.7rem] sm:text-[1.7rem] md:text-[2rem] lg:text-[2.5rem] uppercase font-extrabold text-[#B154F0]'>Ready To Beat Them ?</span>
                                 {/* Level Grid Column */}
                                 <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px] sm:gap-[50px] md:gap-[100px] lg:gap-[100px]'>
-                                    <NavLink to="/battle/level01"><img src={isMobile ? Level01BannerMobile : Level01Banner} alt="" className='w-full max-w-[260px] cursor-pointer' /></NavLink>
-                                    <NavLink to="/battle/level02"><img src={isMobile ? Level02BannerMobile : Level02Banner} alt="" className='w-full max-w-[260px] cursor-pointer' /></NavLink>
+                                    <NavLink to="/battle/level01"><img src={isMobile ? Level01BannerMobile : Level01Banner} alt="" className='w-full max-w-[260px] lg:hover:max-w-[270px] lg:duration-200 cursor-pointer' /></NavLink>
+                                    <NavLink to="/battle/level02"><img src={isMobile ? Level02BannerMobile : Level02Banner} alt="" className='w-full max-w-[260px] lg:hover:max-w-[270px] lg:duration-200 cursor-pointer' /></NavLink>
                                     <NavLink><img src={Level03Banner} alt="" className='w-full max-w-[260px] cursor-pointer' /></NavLink>
                                     <NavLink><img src={Level04Banner} alt="" className='w-full max-w-[260px] cursor-pointer' /></NavLink>
                                 </div>
