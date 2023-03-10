@@ -109,12 +109,16 @@ export default function Level01Intro() {
                                     display === "default" ?
                                         <div className='flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                                             <span className='my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
-                                            <div className='hidden sm:hidden md:grid lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px]'>
+                                            <div className='hidden sm:hidden md:hidden lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[50px] sm:gap-[50px] lg:gap-[150px]'>
                                                 <img src={M01} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                                                 <img src={M02} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
                                                 <img src={M03} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] md:ml-[1rem] lg:ml-[1.85rem]' />
                                             </div>
-
+                                            <div className='hidden sm:hidden md:grid lg:hidden grid-cols-2 gap-x-[50px] gap-y-[100px]'>
+                                                <img src={M01} alt="" className='w-full max-w-[20rem]' />
+                                                <img src={M02} alt="" className='w-full max-w-[20rem]' />
+                                                <img src={M03} alt="" className='w-full max-w-[20rem] ml-[0.69rem]' />
+                                            </div>
                                             <div className='grid sm:grid md:hidden lg:hidden grid-cols-1 gap-[50px]'>
                                                 <img src={M01} alt="" className='w-full max-w-[17rem]' />
                                                 <img src={M02} alt="" className='w-full max-w-[17rem]' />
