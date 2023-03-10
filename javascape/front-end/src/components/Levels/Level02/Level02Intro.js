@@ -59,8 +59,12 @@ export default function Level02Intro() {
                                                 isMobile ?
                                                     <div>
                                                         {
-                                                            <button onClick={() => window.open(`/battle/level02/${currentUserDataSet[1]}/mobile`,
-                                                                "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
+                                                            authUser === null
+                                                                ?
+                                                                <button onClick={() => navigate(`/login`)} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
+                                                                :
+                                                                <button onClick={() => window.open(`/battle/level02/${currentUserDataSet[1]}/mobile`,
+                                                                    "_blank")} className='text-sm sm:text-sm md:text-[22px] lg:text-md w-full h-[3rem] sm:h-[3rem] md:h-[5rem] lg:h-[5rem] bg-[#371152] duration-200 hover:bg-[#541680] border-gradient-to-br from-[#FC6DFF] to-[#9900ff]/30 uppecase font-extrabold'>Start Game</button>
                                                         }
                                                     </div>
                                                     :
