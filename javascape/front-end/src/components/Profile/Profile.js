@@ -107,8 +107,9 @@ export default function Profile() {
                                                     <button onClick={() => setEditName(true)} className='text-sm underline mx-2'>Edit</button>
                                                 </div> :
                                                 <>
-                                                    <div className='flex sm:flex md:flex lg:hidden flex-col items-baseline'>
-                                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-2 sm:my-2 md:my-3 lg:my-3'>Member Name: <input onChange={(e) => setNewName(e.target.value)} defaultValue={currentUserDataSet[1]} maxLength={8} className="bg-transparent outline-none border-white border-b-[1px]" /></span>
+                                                    <div className='flex flex-col sm:flex md:flex lg:hidden items-baseline'>
+                                                        <span className='text-md sm:text-md md:text-xl lg:text-xl text-white my-0'>Member Name: </span>
+                                                        <input onChange={(e) => setNewName(e.target.value)} defaultValue={currentUserDataSet[1]} maxLength={8} className="mb-3 bg-transparent outline-none border-white border-b-[1px]" />
                                                         <div className='flex'>
                                                             <button onClick={UpdateName} className='text-sm underline mr-2'>Confirm</button>
                                                             <button onClick={() => setEditName(false)} className='text-sm underline mx-2'>Cancel</button>
