@@ -10,6 +10,9 @@ import NavBar from './NavBar'
 import Loading from './Loading'
 import EmailVerification from './EmailVerification'
 import { MapperContext } from '../globalVariables/MapperContextProvider'
+import Private_Banner from "../images/Private_Banner.png"
+import Private_Frist_Class_Banner from "../images/Private_First_Banner.png"
+import Sergeant_Banner from "../images/Sergeant_Banner.png"
 
 export default function Home() {
   // call data from mapper context js
@@ -60,6 +63,17 @@ export default function Home() {
                       To combat bugs, fix the Java code's structure, and bring electricity back to the power plant, the Javaland planetary leader formed an organization called JavaScape. Additionally, you are a member of JavaScape, committed to assisting JavaScape in achieving its goal and preserving Javaland.
                     </span>
                     <img src={Intro2} alt="" className="mt-5 sm:mt-5 md:mt-0 lg:mt-0 md:max-w-[23rem] lg:max-w-[30rem] border-[3px] rounded-2xl border-[#B154F0]" />
+                  </div>
+                  {/* position banner part */}
+                  <div className='flex flex-col mt-[5rem] justify-center items-center'>
+                    {/* text topic */}
+                    <span className='md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>Make your contribution</span>
+                    {/* Banner */}
+                    <div className="max-w-[16rem] md:max-w-[13rem] lg:max-w-[20rem] flex justify-center content-center flex-col sm:flex-col md:flex-row lg:flex-row mt-[4rem] mb-0 sm:mb-0 md:mb-20 lg:mb-20">
+                      <img src={Private_Banner} alt="Private_Banner" className='mb-5 sm:mb-5 md:mb-0 lg-mb-0 mx-0 sm:mx-0 md:mx-10 lg:mx-10' />
+                      <img src={Private_Frist_Class_Banner} alt="Private_Frist_Class_Banner" className='my-5 sm:my-5 md:my-0 lg:my-0 mx-0 sm:mx-0 md:mx-10 lg:mx-10' />
+                      <img src={Sergeant_Banner} alt="Sergeant_Banner" className='my-5 sm:my-5 md:my-0 lg:my-0 mx-0 sm:mx-0 md:mx-10 lg:mx-10' />
+                    </div>
                   </div>
                   {/* Navigation part */}
                   <div className='flex flex-col mt-[5rem] justify-center items-center'>
