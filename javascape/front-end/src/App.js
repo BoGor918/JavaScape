@@ -22,6 +22,7 @@ import Loading from './components/Loading';
 import PageNotFound from './components/PageNotFound';
 import Level02Intro from './components/Levels/Level02/Level02Intro';
 import Level02 from './components/Levels/Level02/Level02';
+import Level02Mobile from './components/Levels/Level02/Level02_Mobile';
 
 export default function App() {
   // call data from mapper context js
@@ -60,6 +61,7 @@ export default function App() {
               <Route path={"/battle/level01/" + currentUserDataSet[1]} element={<Level01 />} />
               <Route path={"/battle/level01/" + currentUserDataSet[1] + "/mobile"} element={<Level01Mobile />} />
               <Route path={"/battle/level02/" + currentUserDataSet[1]} element={<Level02 />} />
+              <Route path={"/battle/level02/" + currentUserDataSet[1] + "/mobile"} element={<Level02Mobile />} />
             </> : <></>
         }
         {/* all User Profile Link */}
