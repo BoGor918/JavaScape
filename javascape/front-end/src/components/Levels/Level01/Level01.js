@@ -111,7 +111,7 @@ export default function Level01() {
   return (
     <Fragment>
       {
-        loading ? <Loading /> :
+        // loading ? <Loading /> :
           authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
             <div className="Level01 flex flex-col text-white font-exo w-full">
               <NavBar />
