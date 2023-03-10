@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef, useState } from 'react'
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../../firebase"
 import Logo from "../../images/Logo.png"
 import { useNavigate } from 'react-router-dom'
@@ -52,7 +52,6 @@ export default function Login() {
     // Enter key press event and call Login function
     useEffect(() => {
         const keyDownHandler = event => {
-
             if (event.key === 'Enter') {
                 event.preventDefault();
                 Login();
@@ -76,6 +75,20 @@ export default function Login() {
         }, 1500);
     }, [])
 
+    // send reset password
+    const SendResetPassword = async () => {
+        if (loginEmailOrUsername.current.value !== "" && loginEmailOrUsername.current.value.includes('.') && loginEmailOrUsername.current.value.includes('@')) {
+            await sendPasswordResetEmail(auth, loginEmailOrUsername.current.value).then(() => {
+                alert("Reset Password Link Has Been Sent to Your Email Address")
+            }).catch(() => {
+                alert("Too Many Requests, Plz Try Again Later")
+            });
+        } else if (loginEmailOrUsername.current.value === "") {
+            alert("Please Enter Your Email Address to Reset Your Password")
+        } else if (loginEmailOrUsername.current.value.includes('.') === false || loginEmailOrUsername.current.value.includes('@') === false) {
+            alert("Please Enter Your Email Address to Reset Your Password")
+        }
+    }
 
     return (
         <div>
@@ -109,6 +122,9 @@ export default function Login() {
                                 {/* Link to sign up view */}
                                 <div className='my-3 text-xs sm:text-sm md:text-md lg:text-md'>
                                     <span>Do not have a account ? <span onClick={() => navigate("/sign-up")} className='underline cursor-pointer'>Sign Up</span></span>
+                                </div>
+                                <div className='mb-[1.3rem] text-xs sm:text-sm md:text-md lg:text-md'>
+                                    <span onClick={SendResetPassword} className='underline cursor-pointer'>Forgot Password</span>
                                 </div>
                             </div>
                         </div>
