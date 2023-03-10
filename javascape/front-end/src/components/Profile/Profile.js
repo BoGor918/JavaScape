@@ -90,10 +90,6 @@ export default function Profile() {
         }
     }
 
-    useEffect(() => {
-        console.log(currentUserDataSet[7] !== undefined ? currentUserDataSet[7].includes("fVCZo6bIVw") : "false")
-    }, [currentUserDataSet])
-
     return (
         <div>
             {
