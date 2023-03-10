@@ -44,7 +44,7 @@ export default function Level02Intro() {
     return (
         <div>
             {
-                loading ? <Loading /> :
+                // loading ? <Loading /> :
                     authUser != null && authUser.emailVerified === false ? <EmailVerification /> :
                         <div className='Level01Intro flex flex-col text-white font-exo w-full'>
                             <NavBar />
@@ -110,20 +110,13 @@ export default function Level02Intro() {
                                     display === "default" ?
                                         <div className='flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
                                             <span className='my-[3rem] sm:my-[3rem] md:my-[5rem] lg:my-[5rem] md:text-[1.3rem] lg:text-[1.7rem] uppercase font-extrabold text-[#B154F0]'>WHAT WILL YOU MEET IN THIS LEVEL ?</span>
-                                            <div className='hidden sm:hidden md:hidden lg:grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-[50px] sm:gap-x-[50px] lg:gap-x-[150px] gap-y-[50px] sm:gap-y-[50px] lg:gap-y-[110px]'>
-                                                <img src={M04} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
-                                                <img src={M05} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem]' />
-                                                <img src={M06} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[1.5rem] sm:ml-[1.5rem] md:ml-[0.6rem] lg:ml-[rem]' />
+                                            <div className='flex flex-col md:flex-row lg:flex-row justify-center items-center w-full'>
+                                                <img src={M04} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] md:mx-[2rem] lg:mx-[3rem] mb-[3rem] sm:mb-[3rem] md:mb-[0rem] lg:mb-[0rem]' />
+                                                <img src={M05} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] md:mx-[2rem] lg:mx-[3rem] mb-[3rem] sm:mb-[3rem] md:mb-[0rem] lg:mb-[0rem]' />
                                             </div>
-                                            <div className='hidden sm:hidden md:grid lg:hidden grid-cols-2 gap-x-[50px] gap-y-[100px]'>
-                                                <img src={M04} alt="" className='w-full max-w-[20rem]' />
-                                                <img src={M05} alt="" className='w-full max-w-[20rem]' />
-                                                <img src={M06} alt="" className='w-full max-w-[20rem] ml-[0.4rem]' />
-                                            </div>
-                                            <div className='grid sm:grid md:hidden lg:hidden grid-cols-1 gap-[50px]'>
-                                                <img src={M04} alt="" className='w-full max-w-[17rem]' />
-                                                <img src={M05} alt="" className='w-full max-w-[17rem]' />
-                                                <img src={M06} alt="" className='w-full max-w-[17rem] ml-[0.5rem]' />
+                                            <div className='flex flex-col md:flex-row lg:flex-row justify-center items-center self-start w-full md:mt-[6.5rem] lg:mt-[9rem]'>
+                                                <img src={M06} alt="" className='w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] ml-[0.7rem] sm:ml-[0.7rem] md:ml-[0rem] lg:ml:[0rem] md:mx-[1.1rem] lg:mx-[2.2rem]' />
+                                                <img src={M06} alt="" className='hidden sm:hidden md:block lg:block opacity-0 w-full max-w-[17rem] md:max-w-[20rem] lg:max-w-[35rem] md:mx-[1.1rem] lg:mx-[2.2rem]' />
                                             </div>
                                         </div> : display === "howtoplay" ?
                                             <div className='w-full max-w-[21rem] sm:max-w-[21rem] md:max-w-[45rem] lg:max-w-[75rem] self-center flex flex-col justify-center items-center mb-[7rem] sm:mb-[7rem] md:mb-[10rem] lg:mb-[10rem]'>
