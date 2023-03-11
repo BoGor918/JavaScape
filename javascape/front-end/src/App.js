@@ -1,6 +1,7 @@
 import React, { useContext, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MapperContext } from './globalVariables/MapperContextProvider';
+import FallBackLoading from './components/FallBackLoading/FallBackLoading';
 
 // import all lazy load component
 const Login = lazy(() => import('./components/Authentication/Login'));
@@ -24,7 +25,6 @@ const Profile = lazy(() => import('./components/Profile/Profile'));
 const AllUserProfile = lazy(() => import('./components/Profile/AllUserProfile'));
 const AutoResearchSystem = lazy(() => import('./components/AutoResearchSystem'));
 const PageNotFound = lazy(() => import('./components/PageNotFound'));
-const FallBackLoading = lazy(() => import('./components/FallBackLoading/FallBackLoading'));
 
 export default function App() {
   // call data from mapper context js
