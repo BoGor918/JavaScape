@@ -26,7 +26,6 @@ const AutoResearchSystem = lazy(() => import('./components/AutoResearchSystem'))
 const PageNotFound = lazy(() => import('./components/PageNotFound'));
 const FallBackLoading = lazy(() => import('./components/FallBackLoading/FallBackLoading'));
 
-
 export default function App() {
   // call data from mapper context js
   const {
