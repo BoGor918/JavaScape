@@ -5,8 +5,9 @@ import { MapperContext } from './globalVariables/MapperContextProvider';
 // import all lazy load component
 const Login = lazy(() => import('./components/Authentication/Login'));
 const SignUp = lazy(() => import('./components/Authentication/SignUp'));
-const Rank = lazy(() => import('./components/Rank/Rank'));
 const Home = lazy(() => import('./components/Home'));
+const Topic = lazy(() => import('./components/Topic/Topic'));
+const Compiler = lazy(() => import('./components/Topic/Compiler'));
 const Battle = lazy(() => import('./components/Battle'));
 const Level01Intro = lazy(() => import('./components/Levels/Level01/Level01Intro'));
 const Level02Intro = lazy(() => import('./components/Levels/Level02/Level02Intro'));
@@ -14,16 +15,17 @@ const Level01 = lazy(() => import('./components/Levels/Level01/Level01'));
 const Level01Mobile = lazy(() => import('./components/Levels/Level01/Level01_Mobile'));
 const Level02 = lazy(() => import('./components/Levels/Level02/Level02'));
 const Level02Mobile = lazy(() => import('./components/Levels/Level02/Level02_Mobile'));
-const Profile = lazy(() => import('./components/Profile/Profile'));
-const AllUserProfile = lazy(() => import('./components/Profile/AllUserProfile'));
+const Rank = lazy(() => import('./components/Rank/Rank'));
 const Forum = lazy(() => import('./components/Forum/ForumComponents/Forum'));
 const ForumDetail = lazy(() => import('./components/Forum/ForumDetail'));
-const Topic = lazy(() => import('./components/Topic/Topic'));
-const AutoResearchSystem = lazy(() => import('./components/AutoResearchSystem'));
-const Compiler = lazy(() => import('./components/Topic/Compiler'));
 const Shop = lazy(() => import('./components/Shop/Shop'));
 const Ability = lazy(() => import('./components/Shop/Ability'));
+const Profile = lazy(() => import('./components/Profile/Profile'));
+const AllUserProfile = lazy(() => import('./components/Profile/AllUserProfile'));
+const AutoResearchSystem = lazy(() => import('./components/AutoResearchSystem'));
 const PageNotFound = lazy(() => import('./components/PageNotFound'));
+const FallBackLoading = lazy(() => import('./components/FallBackLoading/FallBackLoading'));
+
 
 export default function App() {
   // call data from mapper context js
@@ -36,7 +38,7 @@ export default function App() {
 
   return (
     <Router>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<FallBackLoading />}>
         <Routes>
           {/* common link */}
           <Route path="/" element={<Home />} />
