@@ -5,8 +5,6 @@ export default function RankList({ listData, currentUserDataSet, wholeDataLength
     // navigate function
     const navigate = useNavigate()
 
-    console.log(wholeDataLength)
-
     return (
         <>
             {
