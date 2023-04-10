@@ -4,6 +4,9 @@ Student Name: CHEUNG Tsz Lai
 Student ID: 21018133D
 
 # Step to start the project
+1. Install Node JS by the link "https://nodejs.org/en/download'
+2. Install yarn by the command "npm install --global yarn"
+
 # Front-end server
 1. cd javascape
 2. cd front-end
