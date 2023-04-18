@@ -75,7 +75,6 @@ export default function SignUp() {
                 await setDoc(doc(firestore, "Users", ramdonID), {
                     Username: registerUsername.current.value,
                     Email: registerEmail.current.value.toLowerCase(),
-                    Password: registerPassword.current.value,
                     Position: "E-1 Private",
                     TotalScore: 0,
                     CreateDate: new Date(),
