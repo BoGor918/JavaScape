@@ -1,7 +1,5 @@
-# JavaScape_COMP4913_FYP_Project
-This is the final year project of The Hong Kong Polytechnic University
-Student Name: CHEUNG Tsz Lai
-Student ID: 21018133D
+# Java Learning Tool
+This is a Java Learning Tool for junior college students in learning basic Java
 
 # Step to start the project
 1. Install Node JS by the link "https://nodejs.org/en/download'
